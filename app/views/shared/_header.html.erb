@@ -1,3 +1,22 @@
 <header>
-  <p>webapp</p>
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <%= link_to "webpp", root_path, class:"navbar-brand logo"  %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav" >
+      <ul class="nav navbar-nav ml-auto mr-auto">
+        <li class="nav-item"><%= link_to "人気ランキング", "#", class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "本を探す", "#", class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "口コミ一覧", "#", class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "新規登録", "#", class:"nav-link" %></li>
+        <li class="nav-item"><%= link_to "ログイン", "#", class:"nav-link" %></li>
+        <li class="nav-item">
+          <form class="form-inline">
+            <button class="btn btn-info" type="button">テストログイン</button>
+          </form>
+        </li>
+      </ul>
+    </div>
+  </nav>
 </header>
