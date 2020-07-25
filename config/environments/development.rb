@@ -60,4 +60,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   config.web_console.whitelisted_ips = ["172.16.0.0/12"]
+
+  # mailer setting
+  config.action_mailer.default_url_options = { host: 'localhost', port: 80 }
 end
