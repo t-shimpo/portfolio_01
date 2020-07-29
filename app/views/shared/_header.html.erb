@@ -11,10 +11,10 @@
         <li class="nav-item"><%= link_to "口コミ一覧", "#", class:"nav-link" %></li>
         <% if user_signed_in? %>
           <li class="nav-item"><%= link_to "マイページ", "#", class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト",  destroy_user_session_path, method: :delete, class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログアウト",  logout_path, class:"nav-link" %></li>
         <%else%>
-          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "新規登録", signup_path, class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "ログイン", login_path, class:"nav-link" %></li>
           <li class="nav-item">
             <form class="form-inline">
               <button class="btn btn-info" type="button">テストログイン</button>

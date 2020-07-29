@@ -1,7 +1,8 @@
 FROM ruby:2.6.6
 RUN apt-get update -qq && \
     apt-get install -y build-essential \
-                       nodejs
+                       nodejs \
+                       vim
 RUN mkdir /webapp
 WORKDIR /webapp
 COPY Gemfile /webapp/Gemfile
