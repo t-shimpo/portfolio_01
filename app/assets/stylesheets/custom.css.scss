@@ -101,3 +101,22 @@ footer {
     font-size: 0.9em;
   }
 }
+
+
+
+
+
+/* debug */
+
+.debug_dump {
+  clear: both;
+  box-sizing: border-box;
+  margin: 45px auto 0;
+  width: 90%;
+  padding: 1.5em 1.5em;
+  background-color: whitesmoke;
+  color: #474747;
+  font-weight: 600;
+  border: solid 1px silver;
+  border-radius: 5px;
+}
