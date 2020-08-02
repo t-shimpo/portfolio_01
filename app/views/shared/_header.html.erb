@@ -10,7 +10,7 @@
         <li class="nav-item"><%= link_to "本を探す", "#", class:"nav-link" %></li>
         <li class="nav-item"><%= link_to "口コミ一覧", "#", class:"nav-link" %></li>
         <% if user_signed_in? %>
-          <li class="nav-item"><%= link_to "マイページ", "#", class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "マイページ", user_path(id: current_user.id), class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト",  logout_path, class:"nav-link" %></li>
         <%else%>
           <li class="nav-item"><%= link_to "新規登録", signup_path, class:"nav-link" %></li>

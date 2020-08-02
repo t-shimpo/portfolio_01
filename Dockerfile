@@ -2,7 +2,8 @@ FROM ruby:2.6.6
 RUN apt-get update -qq && \
     apt-get install -y build-essential \
                        nodejs \
-                       vim
+                       vim \
+                       imagemagick
 RUN mkdir /webapp
 WORKDIR /webapp
 COPY Gemfile /webapp/Gemfile

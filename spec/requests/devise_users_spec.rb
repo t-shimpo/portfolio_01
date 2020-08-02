@@ -192,4 +192,36 @@ RSpec.describe "UserAuthentications", type: :request do
     end
   end
 
+  describe 'GET #show' do
+    describe 'ログインしていないユーザ' do
+      context 'ユーザのページにアクセスした場合' do
+        it 'ログインページが表示されること' do
+          user.confirm
+          user_id = user.id
+          get "/users/#{user_id}" 
+          is_expected.to redirect_to new_user_session_path
+        end
+
+      end
+    end
+
+    describe 'ログイン済みのユーザ' do
+      before do
+        user.confirm
+        sign_in user
+      end
+      context '存在するユーザのページを表示する場合' do
+        it 'エラーが発生しないこと' do
+          user_id = user.id
+          expect{ get "/users/#{user_id}" }.not_to raise_error
+        end
+      end
+      context '存在しないユーザのページを表示する場合' do
+        it 'エラーが発生すること' do
+          expect{ get "/users/999999" }.to raise_error ActiveRecord::RecordNotFound
+        end
+      end
+    end
+  end
+
 end

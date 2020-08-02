@@ -1,3 +1,10 @@
 <% @title = "user" %>
 
-<p>user controller show </p>
+<h2>ユーザ情報</h2>
+<% if @user.image.present? %>
+  <p><%= image_tag @user.image_url(:thumb) %></p>
+<% else %>
+  <p><%= image_tag 'default.png' %></p>
+<% end %>
+<p><%= @user.nickname %></p>
+<%= link_to "編集", edit_user_registration_path %> 

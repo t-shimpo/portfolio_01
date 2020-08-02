@@ -12,6 +12,7 @@ ja:
               blank: "が入力されていません"
     attributes:
       user:
+        image: "ユーザイメージ"
         nickname: "ニックネーム"
         current_password: "現在のパスワード"
         email: "メールアドレス"
