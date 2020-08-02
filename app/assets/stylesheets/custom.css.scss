@@ -1,0 +1,122 @@
+@import "bootstrap";
+
+@import "reset";
+
+/* universal */
+
+div#wrapper {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+//要検討
+body {
+  font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+}
+
+
+p {
+  margin: 0;
+  line-height: 1.7em;
+}
+
+/* header */
+
+header {
+  nav {
+    .logo {
+      font-size: 1.8em;
+      letter-spacing: 3px;
+      padding-left: 30px;
+    }
+    div {
+      ul {
+        li {
+          padding-right: 30px;
+        }
+      }
+    }
+  }
+}
+
+
+
+/* container */
+
+#container {
+  padding: 20px 50px 20px 50px;
+}
+
+/* footer */
+
+footer {
+  padding: 10px 100px 15px 100px;
+  a {
+    color: white;
+    font-size: 1.8em;
+    letter-spacing: 3px;
+    &:hover{
+      color: white;
+    }
+  }
+  p {
+    color: white;
+    vertical-align: middle;
+    font-weight: lighter;
+    font-size: 0.9em;
+  }
+}
+
+
+
+
+
+/* debug */
+
+.debug_dump {
+  clear: both;
+  box-sizing: border-box;
+  margin: 45px auto 0;
+  width: 90%;
+  padding: 1.5em 1.5em;
+  background-color: whitesmoke;
+  color: #474747;
+  font-weight: 600;
+  border: solid 1px silver;
+  border-radius: 5px;
+}

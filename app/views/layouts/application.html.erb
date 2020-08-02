@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Webapp</title>
+    <title><%= document_title %></title>
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render "shared/shim" %>
   </head>
 
   <body>
-    <%= yield %>
+    <div id="wrapper">
+      <%= render "shared/header" %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <div id="container">
+        <%= yield %>
+      </div>
+      <%= render "shared/footer" %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
   </body>
 </html>
