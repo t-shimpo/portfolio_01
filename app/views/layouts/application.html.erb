@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja" dir="ltr">
   <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title><%= document_title %></title>
 
     <%= csrf_meta_tags %>
@@ -14,9 +18,8 @@
   <body>
     <div id="wrapper">
       <%= render "shared/header" %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <div id="container">
+      <%= render "shared/devise_flash" %>
+      <div id="container" class="container">
         <%= yield %>
       </div>
       <%= render "shared/footer" %>
