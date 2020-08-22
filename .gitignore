@@ -31,3 +31,5 @@
 /.DS_Store
 
 /public/uploads
+
+/spec/file
