@@ -1,3 +1,21 @@
-<% @title = "users" %>
+<% @title = "ユーザ一覧" %>
 
-<p>user controller index </p>
+<h1>ユーザ一覧</h1>
+
+<ul class = "users row" >
+<% @users.each do |user| %>
+  <li class="col-md-6 col-sm-12">
+    <div class="user-container">
+      <% if user.image.present? %>
+        <p class="img"><%= image_tag user.image_url(:thumb) %></p>
+      <% else %>
+        <p class="img"><%= image_tag 'default75.png' %></p>
+      <% end %>
+      <p class="nickname"><%= user.nickname %></p>
+      <p><%= link_to user.nickname, user %></p>
+      <p class="follow">フォロー  人  フォロワー  人</p>
+    </div>
+  </li>
+<% end %>
+</ul>
+<%= paginate @users %>

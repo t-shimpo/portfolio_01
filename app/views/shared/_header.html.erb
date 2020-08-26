@@ -6,9 +6,9 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav" >
         <ul class="nav navbar-nav ml-auto mr-auto">
-          <li class="nav-item"><%= link_to "人気ランキング", "#", class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "最新の投稿", "#", class:"nav-link" %></li>
           <li class="nav-item"><%= link_to "本を探す", "#", class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "口コミ一覧", "#", class:"nav-link" %></li>
+          <li class="nav-item"><%= link_to "ユーザ一覧", users_path, class:"nav-link" %></li>
           <% if user_signed_in? %>
             <li class="nav-item"><%= link_to "マイページ", user_path(id: current_user.id), class:"nav-link"   %></li>
             <li class="nav-item"><%= link_to "ログアウト",  logout_path, class:"nav-link" %></li>

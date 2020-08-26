@@ -57,50 +57,6 @@ RSpec.describe "UserAuthentications", type: :request do
     end
   end
 
-  describe 'GET #show' do
-    describe 'ログインしていないユーザ' do
-      context 'ユーザのページにアクセスした場合' do
-        it 'ログインページが表示されること' do
-          user.confirm
-          user_id = user.id
-          get "/users/#{user_id}" 
-          is_expected.to redirect_to new_user_session_path
-        end
-      end
-    end
-
-    describe 'ログイン済みのユーザ' do
-      before do
-        user.confirm
-        sign_in user
-      end
-      context '存在するユーザのページを表示する場合' do
-        it 'リクエストが成功すること' do
-          user_id = user.id
-          get "/users/#{user_id}"
-          expect(response.status).to eq 200
-        end
-
-        it 'エラーが発生しないこと' do
-          user_id = user.id
-          expect{ get "/users/#{user_id}" }.not_to raise_error
-        end
-
-        it 'ユーザー名が表示されていること' do
-          user_id = user.id
-          get "/users/#{user_id}"
-          expect(response.body).to include user.nickname
-        end
-
-      end
-      context '存在しないユーザのページを表示する場合' do
-        it 'エラーが発生すること' do
-          expect{ get "/users/999999" }.to raise_error ActiveRecord::RecordNotFound
-        end
-      end
-    end
-  end
-
   describe 'GET #new' do
     it 'リクエストが成功すること' do
       get new_user_registration_path
