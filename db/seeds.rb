@@ -1,7 +1,9 @@
-5.times do |n|
+100.times do |n|
+  nickname = Faker::Name.first_name
+  email = "example#{n+1}@example.com"
   User.create!(
-    nickname: "test#{n + 1}",
-    email: "test#{n+1}@example.com",
+    nickname: nickname,
+    email: email,
     password: "password",
     password_confirmation: "password",
     confirmed_at: Time.now

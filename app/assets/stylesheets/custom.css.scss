@@ -36,12 +36,12 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
+  color: #474747;
 }
 
 h1 {
-  font-size: 3em;
+  font-size: 2em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -251,6 +251,129 @@ header {
 
   }
 }
+
+
+/* Users index */
+
+.users {
+  margin: 1.5em 0;
+  list-style: none;
+  li {
+    padding-right: 8px;
+    padding-left: 8px;
+    background-color: transparent;
+    .user-container {
+      color: rgb(112, 112, 112);
+      padding: 0.8em 0.7em;
+      margin: 0.6em 0;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.25);
+      position: relative;
+      transition: all 0.3s ease 0s;
+      z-index: 1;
+      pointer-events: none;
+      &:hover {
+        box-shadow: 0 3px 15px rgba(0,0,0,0.45);
+          transform: translateY(-0.1875em);
+      }
+      a {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        height:100%;
+        width: 100%;
+        text-decoration: none;
+        text-indent:-999px;
+        z-index: 2;
+        pointer-events: auto;
+      }
+      .nickname {
+        position: absolute;
+        top: 10px; 
+        left: 90px;
+        font-size: 1.2em;
+        color: #2499cf;
+      }
+      .follow {
+        position: absolute;
+        bottom: 10px;
+        left: 90px;
+        font-size: 0.95em;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .users {
+    li {
+      .user-container {
+        margin: 0.4em 0;
+        padding: 0.4em;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      }
+      p {
+        //display: inline-block;
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+
+/* pagination */
+
+.pagination {
+  margin-top: 1em;
+  justify-content: center;
+  .page-item {
+    padding-right: 6px;
+  }
+  >.page-item>.page-link {
+    border: none;
+    //border: 3px solid #f2f2f2;
+    color: rgb(112, 112, 112);
+  }
+  >.page-item>.page-link:hover {
+    color: rgb(15, 15, 15);
+  }
+  >.active>.page-link {
+    background-color: #93c9ff;
+    color: white;
+  }
+  >.active>.page-link:hover {
+    background-color: #6ab3fc;
+    color: white;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .pagination {
+    .page-item {
+      padding-right: 2px;
+      .page-link {
+        padding: 0.4rem 0.6rem;
+      }
+    }
+  }
+}
+
+// /*ページネーション自体のデザイン*/
+// .pagination>li>a {          
+//   border: none;     /*枠線をなくす*/
+//   color: #696969;   /*文字の色を変える*/
+// }
+
+// /* 表示しているページ番号のデザイン */
+// .pagination>.active>a {     
+//   background: #93c9ff;     /*背景の色を変える*/
+//   border-radius: 15px;     /*角を丸くする*/
+// }
+
+// /*ホバー時のデザイン*/
+// .pagination>li>a:hover {        
+//   border-radius: 15px;    /*角を丸くする*/
+// }
 
 
 
