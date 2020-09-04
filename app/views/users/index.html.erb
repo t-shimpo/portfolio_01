@@ -7,7 +7,7 @@
   <li class="col-md-6 col-sm-12">
     <div class="user-container">
       <% if user.image.present? %>
-        <p class="img"><%= image_tag user.image_url(:thumb) %></p>
+        <p class="img"><%= image_tag user.image_url(:thumb75) %></p>
       <% else %>
         <p class="img"><%= image_tag 'default75.png' %></p>
       <% end %>

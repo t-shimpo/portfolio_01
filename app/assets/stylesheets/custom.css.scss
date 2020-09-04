@@ -162,7 +162,7 @@ header {
         &.field {
           margin-bottom: 1.1em;
         }
-        input {
+        input, select, textarea {
           display: block;
           box-sizing: border-box;
           width: 100%;
@@ -171,20 +171,49 @@ header {
          }
         input[type="text"],
         input[type="email"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="date"],
+        select,
+        textarea {
           background: #fff;
           border: 1px solid #dbdbdb;
           font-size: 1em;
           letter-spacing: 0.04em;
-          padding: .2em .3em;
+          padding: .2em .5em;
           border-radius: 2px;
-          color: #333;
+          color: #444;
         }
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
-        background: #fff
+        input[type="date"] {
+          color: #555;
+          width: 50%;
         }
+        select {
+          color: #555;
+          background-image:
+            linear-gradient(45deg, transparent 50%, gray 50%),
+            linear-gradient(135deg, gray 50%, transparent 50%),
+            linear-gradient(to right, #ccc, #ccc);
+          background-position:
+            calc(100% - 20px) calc(1em),
+            calc(100% - 15px) calc(1em),
+            calc(100% - 2.5em) 0.5em;
+          background-size:
+            5px 5px,
+            5px 5px,
+            1px 1em;
+          background-repeat: no-repeat;
+        }
+        textarea {
+          font-size: 0.8em;
+          color: #555;
+          letter-spacing: 0;
+          height: 11em;
+        }
+        // input[type="text"]:focus,
+        // input[type="email"]:focus,
+        // input[type="password"]:focus {
+        // background: whitesmoke;
+        // }
         input[type="submit"] {
           width: 50%;
           display: block;
@@ -201,7 +230,7 @@ header {
         }
         label{
           margin-bottom: 0;
-          font-size: 15px;
+          font-size: 14.5px;
           padding: 0.5px 3px;
           font-weight: 400;
           background-color: rgba(255,255,255,0);
@@ -319,6 +348,97 @@ header {
     }
   }
 }
+
+
+/* Posts index */
+
+.posts {
+  margin: 1.5em 0;
+  list-style: none;
+  li {
+    font-size: 1.1em;
+    padding-right: 15px;
+    padding-left: 15px;
+    color: rgb(80, 80, 80);
+    // width: 220px;
+    .post-container {
+      padding-top: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      background-color: #fff;
+      .post-field {
+        position: relative;
+        transition: all 0.3s ease 0s;
+        z-index: 1;
+        pointer-events: none;
+        font-weight: bolder;
+        &:hover {
+        //  box-shadow: 0 3px 15px rgba(0,0,0,0.45);
+        //   transform: translateY(-0.1875em);
+        }
+        a {
+          position: absolute;
+        top: 0px;
+        left: 0px;
+        height:100%;
+        width: 100%;
+        text-decoration: none;
+        text-indent:-99999px;
+        z-index: 2;
+        pointer-events: auto;
+        }
+        .post-img {
+          text-align: center;
+          margin: 0 auto;
+          position: relative;
+          width: 200px;
+          height: 200px;
+          img {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: auto;
+            width: auto;
+            max-height: 100%;
+            margin: auto;
+          }
+        }
+        p {
+          text-align: center;
+        }
+      }
+      .user-field {
+        // border: 1px solid rgb(161, 50, 50);
+        margin-bottom: 2em;
+        padding-bottom: 5px;
+        padding-right: 5px;
+        text-align: right;
+        letter-spacing: 0.05em;
+        p {
+          display: inline-block;
+          a {
+            color: #2499cf;
+            text-decoration: none;
+            transition: color 0.2s;
+            &:hover {
+              color : #e0714f;
+            }
+          }
+        }
+        .user_small_img {
+          img {
+            margin-left: 2px;
+            border-radius: 50%;
+            border: 1px solid rgba(204, 204, 204, 0.555);
+          }
+        }
+      }
+    }
+  }
+}
+
+
 
 
 /* pagination */

@@ -2,14 +2,22 @@ ja:
   activerecord:
     errors:
       models:
-        user:
+        user: 
           attributes:
             nickname:
-              blank: "が入力されていません"
+              blank: "を入力してください"
             email:
-              blank: "が入力されていません"
+              blank: "を入力してください"
             password:
-              blank: "が入力されていません"
+              blank: "を入力してください"
+        post:
+          attributes:
+            title:
+              blank: "を入力してください"
+            author:
+              blank: "を入力してください"
+            user_id:
+              blank: 'ユーザIDを取得できませんでした'
     attributes:
       user:
         image: "ユーザイメージ"
@@ -19,8 +27,18 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         remember_me: "次回から自動でログインする"
+      post:
+        title: "タイトル"
+        author: "著者"
+        publisher: "出版社"
+        genre: "ジャンル"
+        rating: "評価"
+        hours: "読むのにかかった時間"
+        purchase_date: "購入日"
+        post_content: "感想"
     models:
       user: "ユーザ"
+      post: "投稿"
   devise:
     confirmations:
       new:
@@ -79,3 +97,38 @@ ja:
     unlocks:
       new:
         resend_unlock_instructions: "アカウントの凍結解除方法を再送する"
+  enums:
+    post:
+      genre:
+        not_select: '-----'
+        novel: '小説・文学'
+        business: '自己啓発・ビジネス'
+        education: '教育・教養'
+        art_ent: 'アート・エンタメ'
+        celebrity: 'タレント本'
+        hobby: '趣味'
+        geography: '旅行・地理'
+        child: 'こども向け'
+        others: 'その他'
+      rating:
+        not_select: '-----'
+        int_5: '0.5'
+        int1: '1'
+        int1_5: '1.5'
+        int2: '2'
+        int2_5: '2.5'
+        int3: '3'
+        int3_5: '3.5'
+        int4: '4'
+        int4_5: '4.5'
+        int5: '5'
+      hours:
+        not_select: '-----'
+        to10: '〜10時間'
+        to20: '10〜20時間'
+        to30: '20〜30時間'
+        to40: '30〜40時間'
+        to50: '40〜50時間'
+        to70: '50〜70時間'
+        to100: '70〜100時間'
+        from100: '100時間以上'
