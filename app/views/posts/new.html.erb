@@ -1,0 +1,60 @@
+<% @title = "投稿する" %>
+
+<div class="form-container">
+  <h1><%= @title %></h1>
+
+  <%= render "shared/error_messages", resource: @post %>   
+
+  <%= form_with model: @post, url: posts_path, id: 'new_post', class: 'new_post', local: true do |f| %>
+
+    <div class="field">
+      <%= f.label :post_image, '画像のアップロード' %>
+      <%= f.file_field :post_image %>
+    </div>
+
+    <div class="field">
+      <%= f.label :title, 'タイトル（必須）' %>
+      <%= f.text_field :title, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :author, '著者（必須）' %>
+      <%= f.text_field :author %>
+    </div>
+
+    <div class="field">
+      <%= f.label :publisher, '出版社' %>
+      <%= f.text_field :publisher %>
+    </div>
+
+    <div class="field">
+      <%= f.label :genre, 'ジャンル' %>
+      <%= f.select :genre, Post.genres.keys.map {|k| [I18n.t("enums.post.genre.#{k}"), k]} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :rating, '評価（1~5）' %>
+      <%= f.select :rating, Post.ratings.keys.map {|k| [I18n.t("enums.post.rating.#{k}"), k]} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :hours, '読むのにかかった時間' %>
+      <%= f.select :hours, Post.hours.keys.map {|k| [I18n.t("enums.post.hours.#{k}"), k]} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :purchase_date, '購入日' %>
+      <%= f.date_field :purchase_date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :post_content, '感想' %>
+      <%= f.text_area :post_content %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "投稿する", class:"btn btn-secondary" %>
+    </div>
+  <% end %>
+
+</div>

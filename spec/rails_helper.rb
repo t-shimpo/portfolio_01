@@ -78,3 +78,6 @@ RSpec.configure do |config|
   # config.extend ControllerMacros, :type => :controller
 
 end
+
+# factorybotでassociationができるようにする
+FactoryBot.use_parent_strategy = false

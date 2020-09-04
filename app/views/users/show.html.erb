@@ -2,7 +2,7 @@
 
 <h2>ユーザ情報</h2>
 <% if @user.image.present? %>
-  <p><%= image_tag @user.image_url(:thumb) %></p>
+  <p><%= image_tag @user.image_url(:thumb200) %></p>
 <% else %>
   <p><%= image_tag 'default.png' %></p>
 <% end %>

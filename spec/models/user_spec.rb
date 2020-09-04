@@ -6,11 +6,11 @@ RSpec.describe User, type: :model do
     user = FactoryBot.build(:user)
     expect(user).to be_valid
   end
-  
-  it "ニックネームがなければ無効であること" do
+
+  it "ニックネームがnilであれば無効であること" do
     user = FactoryBot.build(:user, nickname: nil)
     user.valid?
-    expect(user.errors[:nickname]).to include("が入力されていません")
+    expect(user.errors[:nickname]).to include("を入力してください")
   end
 
   it "ニックネーム50文字であれば有効であること" do
@@ -26,10 +26,10 @@ RSpec.describe User, type: :model do
     expect(user.errors[:nickname]).to include("は50文字以内で入力してください")
   end
 
-  it "メールアドレスがなければ無効であること" do
+  it "メールアドレスがnilであれば無効であること" do
     user = FactoryBot.build(:user, email: nil)
     user.valid?
-    expect(user.errors[:email]).to include("が入力されていません")
+    expect(user.errors[:email]).to include("を入力してください")
   end
   
   it "重複したメールアドレスは無効であること" do
@@ -39,10 +39,10 @@ RSpec.describe User, type: :model do
     expect(user.errors[:email]).to include("はすでに存在します")
   end
   
-  it "パスワードがなければ無効であること" do
+  it "パスワードがnilであれば無効であること" do
     user = FactoryBot.build(:user, password: nil)
     user.valid?
-    expect(user.errors[:password]).to include("が入力されていません")
+    expect(user.errors[:password]).to include("を入力してください")
   end
 
   it "パスワードが5文字以下なら無効であること" do
