@@ -1,0 +1,39 @@
+<% @title = @post.title %>
+
+<h1>投稿情報</h1>
+
+<div class="post-wrapper row">
+  <% if @post.user == current_user %>
+    <p class="edit col-12"><%= link_to "編集する", edit_post_path , class: "btn btn-info" %></p>
+  <% else %>
+    <div class="user-field col-12">
+        <p><%= link_to @post.user.nickname, @post.user %></p>
+        <% if @post.user.image.present? %>
+          <p class="user_small_img"><%= image_tag @post.user.image_url(:thumb45) %></p>
+        <% else %>
+          <p class="user_small_img"><%= image_tag 'default_small_45.png' %></p>
+        <% end %>
+      </div>
+  <% end %>
+  <p class="col-12 title-top">タイトル</p>
+  <h2 class="col-12"><%= @post.title %></h2>
+  <p class="post-image col-4">
+    <% if @post.post_image.present? %>
+      <%= image_tag @post.post_image_url(:post_thumb200) %>
+    <% else %>
+      <%= image_tag 'no_image200.png' %>
+    <% end %>
+  </p>
+  <div class="post-info col-8">
+    <p><span>著者</span><%= @post.author %></p>
+    <p><span>出版社</span><%= @post.publisher %></p>
+    <p><span>ジャンル</span><%= @post.genre_i18n %></p>
+    <p><span>評価</span><%= @post.rating_i18n %></p>
+    <p><span>読むのにかかった時間</span><%= @post.hours_i18n %></p>
+    <p><span>購入日</span><%= @post.purchase_date %></p>
+  </div>
+  <div class="post-content-container col-12">
+    <p class="post-content-top">感想</p>
+    <p class="post-content"><%= @post.post_content %></p>
+  </div>
+</div>

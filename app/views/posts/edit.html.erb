@@ -1,0 +1,73 @@
+<% @title = "投稿の編集" %>
+
+<div class="form-container">
+  <h1><%= @title %></h1>
+
+  <%= render "shared/error_messages", resource: @post %>   
+
+  <%= form_with model: @post, url: post_path, id: 'edit_new_post', class: 'edit_post', local: true do |f| %>
+
+    <div class="field">
+      <%= f.label :post_image, '画像のアップロード' %>
+      <% if @post.post_image.present? %>
+        <p><%= image_tag @post.post_image_url(:post_thumb200) %></p>
+      <% else %>
+        <p><%= image_tag 'default.png' %></p>
+      <% end %>
+      <%= f.file_field :post_image %>
+    </div>
+
+    <div class="field">
+      <%= f.label :title, 'タイトル（必須）' %>
+      <%= f.text_field :title, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :author, '著者（必須）' %>
+      <%= f.text_field :author %>
+    </div>
+
+    <div class="field">
+      <%= f.label :publisher, '出版社' %>
+      <%= f.text_field :publisher %>
+    </div>
+
+    <div class="field">
+      <%= f.label :genre, 'ジャンル' %>
+      <%= f.select :genre, Post.genres.keys.map {|k| [I18n.t("enums.post.genre.#{k}"), k]} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :rating, '評価（1~5）' %>
+      <%= f.select :rating, Post.ratings.keys.map {|k| [I18n.t("enums.post.rating.#{k}"), k]} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :hours, '読むのにかかった時間' %>
+      <%= f.select :hours, Post.hours.keys.map {|k| [I18n.t("enums.post.hours.#{k}"), k]} %>
+    </div>
+
+    <div class="field">
+      <%= f.label :purchase_date, '購入日' %>
+      <%= f.date_field :purchase_date %>
+    </div>
+
+    <div class="field">
+      <%= f.label :post_content, '感想' %>
+      <%= f.text_area :post_content %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "更新する", class:"btn btn-success" %>
+    </div>
+
+    <% if current_user == @post.user %>
+      <hr class="hr_01" />
+      <div class="delete-button">
+        <%= link_to "投稿を削除する", @post, method: :delete,data: { confirm: "投稿を削除します。本当によろしいですか?" } %>
+      </div>
+    <% end %>
+
+  <% end %>
+
+</div>
