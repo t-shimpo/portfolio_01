@@ -11,13 +11,14 @@ RSpec.describe "Users", type: :request do
 
   describe "GET #index" do
     context "ログインしていないユーザの場合" do
-      it "リクエストが失敗すること" do
+      it "リクエストに成功すること" do
         get users_path
-        expect(response).to have_http_status 302
+        expect(response).to have_http_status 200
       end
-      it "ログイン画面に遷移すること" do
+      it "ユーザー名が表示されていること" do
         get users_path
-          is_expected.to redirect_to new_user_session_path
+        expect(response.body).to include user.nickname
+        expect(response.body).to include takashi.nickname
       end
     end
 
@@ -38,10 +39,10 @@ RSpec.describe "Users", type: :request do
   end
 
   describe 'GET #show' do
-
     describe 'ログインしていないユーザのテスト' do
       it "リクエストが失敗すること" do
-        get users_path
+        user_id = user.id
+        get "/users/#{user_id}" 
         expect(response).to have_http_status 302
       end
       it 'ログインページが表示されること' do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Users-index', type: :system do
+RSpec.feature 'Users', type: :system do
 
   let!(:kenji) { create(:kenji) }
   let!(:takashi) { create(:takashi) }
