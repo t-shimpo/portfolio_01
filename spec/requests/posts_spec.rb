@@ -16,7 +16,7 @@ RSpec.describe "Posts", type: :request do
         get posts_path
         expect(response).to have_http_status 200
       end
-      it "投稿のタイトルが表示されていること" do
+      it "投稿のタイトルと画像が表示されていること" do
         get posts_path
         expect(response.body).to include jibun_nonakani_doku.title
         expect(response.body).to include hibana.title
@@ -31,7 +31,7 @@ RSpec.describe "Posts", type: :request do
         get posts_path
         expect(response).to have_http_status 200
       end
-      it "投稿のタイトルが表示されていること" do
+      it "投稿のタイトルと画像が表示されていること" do
         get posts_path
         expect(response.body).to include jibun_nonakani_doku.title
         expect(response.body).to include hibana.title
@@ -49,6 +49,7 @@ RSpec.describe "Posts", type: :request do
         get new_post_path
         is_expected.to redirect_to new_user_session_path
       end
+      
     end
 
     context "ログインしているユーザの場合" do
@@ -65,13 +66,11 @@ RSpec.describe "Posts", type: :request do
   describe 'GET #show' do
     describe 'ログインしていないユーザのテスト' do
       it "リクエストが失敗すること" do
-        post_id = hibana.id
-        get "/posts/#{post_id}" 
+        get post_path hibana 
         expect(response).to have_http_status 302
       end
       it 'ログインページが表示されること' do
-        post_id = hibana.id
-        get "/posts/#{post_id}" 
+        get post_path hibana
         is_expected.to redirect_to new_user_session_path
       end
     end
@@ -80,21 +79,38 @@ RSpec.describe "Posts", type: :request do
       before do
         sign_in takashi
       end
-      context '存在する投稿の詳細を表示する場合' do
+      context '自身の投稿の詳細を表示する場合' do
         it 'リクエストが成功すること' do
-          post_id = hibana.id
-          get "/posts/#{post_id}" 
+          get post_path jibun_nonakani_doku
           expect(response.status).to eq 200
         end
         it '投稿の詳細が表示されていること' do
-          post_id = hibana.id
-          get "/posts/#{post_id}" 
+          get post_path jibun_nonakani_doku
+          expect(response.body).to include jibun_nonakani_doku.title
+          expect(response.body).to include jibun_nonakani_doku.author
+          expect(response.body).to include jibun_nonakani_doku.publisher
+        end
+        it '編集ボタンが表示されていること' do
+          get post_path jibun_nonakani_doku
+          expect(response.body).to include '編集'
+        end
+      end
+      context '他者の投稿の詳細を表示する場合' do
+        it 'リクエストが成功すること' do
+          get post_path hibana
+          expect(response.status).to eq 200
+        end
+        it '投稿の詳細が表示されていること' do
+          get post_path hibana
           expect(response.body).to include hibana.title
           expect(response.body).to include hibana.author
           expect(response.body).to include hibana.publisher
         end
+        it '編集ボタンが表示されていないこと' do
+          get post_path hibana
+          expect(response.body).to_not include '編集'
+        end
       end
-
       context '存在しない投稿の詳細を表示する場合' do
         it 'エラーが発生すること' do
           expect{ get "/posts/999999" }.to raise_error ActiveRecord::RecordNotFound
@@ -106,13 +122,11 @@ RSpec.describe "Posts", type: :request do
   describe 'GET #edit' do
     describe "ログインしていないユーザのテスト" do
       it "リクエストが失敗すること" do
-        post_id = hibana.id
-        get "/posts/#{post_id}/edit" 
+        get edit_post_path hibana
         expect(response).to have_http_status 302
       end
       it "ログインページが表示されること" do
-        post_id = hibana.id
-        get "/posts/#{post_id}/edit" 
+        get edit_post_path hibana
         is_expected.to redirect_to new_user_session_path
       end
     end
@@ -123,13 +137,11 @@ RSpec.describe "Posts", type: :request do
           sign_in michael
         end
         it "リクエストが成功すること" do
-          post_id = hibana.id
-        get "/posts/#{post_id}/edit" 
+          get edit_post_path hibana
           expect(response).to have_http_status 200
         end
         it "投稿のタイトル・著者が表示されていること" do
-          post_id = hibana.id
-          get "/posts/#{post_id}/edit" 
+          get edit_post_path hibana
           expect(response.body).to include hibana.title
           expect(response.body).to include hibana.author
         end
@@ -140,8 +152,7 @@ RSpec.describe "Posts", type: :request do
           sign_in takashi
         end
         it "リクエストが失敗すること" do
-          post_id = hibana.id
-          get "/posts/#{post_id}/edit" 
+          get edit_post_path hibana
           expect(response).to have_http_status 302
         end
       end

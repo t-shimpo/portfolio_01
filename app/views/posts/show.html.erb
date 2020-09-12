@@ -11,18 +11,17 @@
         <% if @post.user.image.present? %>
           <p class="user_small_img"><%= image_tag @post.user.image_url(:thumb45) %></p>
         <% else %>
-          <p class="user_small_img"><%= image_tag 'default_small_45.png' %></p>
+          <p class="user_small_img default-user-image"><%= image_tag 'default_small_45.png' %></p>
         <% end %>
       </div>
   <% end %>
   <p class="col-12 title-top">タイトル</p>
   <h2 class="col-12"><%= @post.title %></h2>
-  <p class="post-image col-4">
-    <% if @post.post_image.present? %>
-      <%= image_tag @post.post_image_url(:post_thumb200) %>
-    <% else %>
-      <%= image_tag 'no_image200.png' %>
-    <% end %>
+  <% if @post.post_image.present? %>
+    <p class="post-image col-4"><%= image_tag @post.post_image_url(:post_thumb200) %></p>
+  <% else %>
+    <p class="post-image col-4 default-post-image"><%= image_tag 'no_image200.png' %></p>
+  <% end %>
   </p>
   <div class="post-info col-8">
     <p><span>著者</span><%= @post.author %></p>

@@ -41,13 +41,11 @@ RSpec.describe "Users", type: :request do
   describe 'GET #show' do
     describe 'ログインしていないユーザのテスト' do
       it "リクエストが失敗すること" do
-        user_id = user.id
-        get "/users/#{user_id}" 
+        get user_path user
         expect(response).to have_http_status 302
       end
       it 'ログインページが表示されること' do
-        user_id = user.id
-        get "/users/#{user_id}" 
+        get user_path user
         is_expected.to redirect_to new_user_session_path
       end
     end
@@ -56,17 +54,33 @@ RSpec.describe "Users", type: :request do
       before do
         sign_in user
       end
-
-      context '存在するユーザのページを表示する場合' do
+      context '自身のページを表示する場合' do
         it 'リクエストが成功すること' do
-          user_id = user.id
-          get "/users/#{user_id}"
+          get user_path user
           expect(response.status).to eq 200
         end
-        it 'ユーザー名が表示されていること' do
-          user_id = user.id
-          get "/users/#{user_id}"
+        it '自身のユーザー名が表示されていること' do
+          get user_path user
           expect(response.body).to include user.nickname
+        end
+        it '編集ボタンが表示されていること' do
+          get user_path user
+          expect(response.body).to include '編集'
+        end
+      end
+
+      context '他者のページを表示する場合' do
+        it 'リクエストが成功すること' do
+          get user_path takashi
+          expect(response.status).to eq 200
+        end
+        it '他者のユーザー名が表示されていること' do
+          get user_path takashi
+          expect(response.body).to include takashi.nickname
+        end
+        it '編集ボタンが表示されていないこと' do
+          get user_path takashi
+          expect(response.body).to_not include '編集'
         end
       end
 

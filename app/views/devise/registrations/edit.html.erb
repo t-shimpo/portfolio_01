@@ -11,7 +11,7 @@
       <% if @user.image.present? %>
         <p><%= image_tag @user.image_url(:thumb) %></p>
       <% else %>
-        <p><%= image_tag 'default.png' %></p>
+        <p class="default-user-image"><%= image_tag 'default.png' %></p>
       <% end %>
       <%= f.file_field :image %>
     </div>
