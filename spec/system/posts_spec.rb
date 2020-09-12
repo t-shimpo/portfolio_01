@@ -8,7 +8,13 @@ RSpec.feature 'Posts', type: :system do
     login kenji
   end 
 
+  #--------------------#
+  #      投稿する      #
+  #--------------------#
+
   describe "ユーザは投稿する" do
+
+    #  -----  有効な値  -----  #
     context "有効な値を入力する場合" do
       before do
         visit new_post_path
@@ -60,31 +66,69 @@ RSpec.feature 'Posts', type: :system do
         expect(page).to have_xpath"//input[@id='post_purchase_date'][@value='2019-02-21']"
         expect(page).to have_field '感想', with: '正しい生き方は何か、考えさせられました。'
       end
+      it "画像をアップロードしなかった場合、デフォルトの画像が表示される" do
+        visit new_post_path
+        fill_in 'post_title', with: '逆ソクラテス'
+        fill_in 'post_author', with: '伊坂幸太郎'
+        click_button '投稿する'
+        visit posts_path
+        expect(page).to have_css '.default-post-image'
+        expect(page).to have_content '逆ソクラテス' 
+        click_link '逆ソクラテス' 
+        expect(page).to have_css '.default-post-image'
+        click_link '編集する'
+        expect(page).to have_css '.default-post-image'
+      end
     end
 
+    #  -----  無効な値  -----  #
     context '無効な値を入力する場合' do
-      before do
-        visit new_post_path
+      before { visit new_post_path }
+      it "値が空の場合、エラーメッセージが表示される" do
         fill_in 'post_title', with: ''
         fill_in 'post_author', with: ''
-        fill_in 'post_publisher', with: '東京創元社'
         click_button '投稿する'
-      end
-      it "エラーメッセージが表示される" do
-        expect(page).to have_content '2件のエラーが発生したため投稿は保存されませんでした。'
+        expect(page).to have_content '投稿は保存されませんでした。'
         expect(page).to have_content 'タイトルを入力してください'
         expect(page).to have_content '著者を入力してください'
-        expect(page).to have_xpath"//input[@id='post_publisher'][@value='東京創元社']"
       end
-      it "投稿に失敗し、投稿一覧に表示されない" do
-        visit posts_path
-        expect(page).to_not have_content '流浪の月' 
-        expect(page).to_not have_content 'けんじ' 
+      it "タイトルが201文字以上の場合、エラーメッセージが表示される" do
+        char201 = 'a' * 201
+        fill_in 'post_title', with: char201
+        click_button '投稿する'
+        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content 'タイトルは200文字以内で入力してください'
+      end
+      it "著者が101文字以上の場合、エラーメッセージが表示される" do
+        char101 = 'a' * 101
+        fill_in 'post_author', with: char101
+        click_button '投稿する'
+        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '著者は100文字以内で入力してください'
+      end
+      it "出版社が101文字以上の場合、エラーメッセージが表示される" do
+        char101 = 'a' * 101
+        fill_in 'post_publisher', with: char101
+        click_button '投稿する'
+        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '出版社は100文字以内で入力してください'
+      end
+      it "感想が1001文字以上の場合、エラーメッセージが表示される" do
+        char1001 = 'a' * 1001
+        fill_in 'post_post_content', with: char1001
+        click_button '投稿する'
+        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '感想は1000文字以内で入力してください'
       end
     end
   end
 
+  #--------------------#
+  #    投稿の更新      #
+  #--------------------#
+
   describe "ユーザは投稿後、投稿を更新する" do
+    #  -----  有効な値  -----  #
     context "有効な値を入力する場合" do
       before do
         visit new_post_path
@@ -147,6 +191,7 @@ RSpec.feature 'Posts', type: :system do
       end
     end
 
+    #  -----  無効な値  -----  #
     context "無効な値を入力する場合" do
       before do
         visit new_post_path
@@ -156,34 +201,88 @@ RSpec.feature 'Posts', type: :system do
         visit posts_path
         click_link '流浪の月' 
         click_link '編集する'
+      end
+      it "値が空の場合、エラーメッセージが表示される" do
         fill_in 'post_title', with: ''
         fill_in 'post_author', with: ''
         click_button '更新する'
-      end
-      it "エラーメッセージが表示される" do
-        expect(page).to have_content '2件のエラーが発生したため投稿は保存されませんでした。'
+        expect(page).to have_content '投稿は保存されませんでした。'
         expect(page).to have_content 'タイトルを入力してください'
         expect(page).to have_content '著者を入力してください'
       end
-      it " 更新に失敗し、投稿一覧の情報も更新されない" do
-        visit posts_path
-        expect(page).to have_content '流浪の月' 
-        expect(page).to have_content 'けんじ' 
+      it "タイトルが201文字以上の場合、エラーメッセージが表示される" do
+        char201 = 'a' * 201
+        fill_in 'post_title', with: char201
+        click_button '更新する'
+        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content 'タイトルは200文字以内で入力してください'
+      end
+      it "著者が101文字以上の場合、エラーメッセージが表示される" do
+        char101 = 'a' * 101
+        fill_in 'post_author', with: char101
+        click_button '更新する'
+        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '著者は100文字以内で入力してください'
+      end
+      it "出版社が101文字以上の場合、エラーメッセージが表示される" do
+        char101 = 'a' * 101
+        fill_in 'post_publisher', with: char101
+        click_button '更新する'
+        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '出版社は100文字以内で入力してください'
+      end
+      it "感想が1001文字以上の場合、エラーメッセージが表示される" do
+        char1001 = 'a' * 1001
+        fill_in 'post_post_content', with: char1001
+        click_button '更新する'
+        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '感想は1000文字以内で入力してください'
       end
     end
   end
 
+  describe "ユーザはログインしなければ、投稿や投稿の編集をできない" do
+    before do
+      visit new_post_path
+      fill_in 'post_title', with: '流浪の月'
+      fill_in 'post_author', with: '凪良ゆう'
+      click_button '投稿する'
+      logout
+    end
+    it "ログアウトすると、投稿ページが表示できず、エラーメッセージが表示される" do
+      visit new_post_path
+      expect(page).to have_content 'アカウント登録もしくはログインしてください。'
+      expect(current_path).to eq new_user_session_path
+    end
+    it "ログアウトすると、投稿の詳細が表示できず、エラーメッセージが表示される" do
+      visit posts_path
+      click_link '流浪の月' 
+      expect(page).to have_content 'アカウント登録もしくはログインしてください。'
+      expect(current_path).to eq new_user_session_path
+    end
+    it "ログアウトすると、投稿編集ページ表示できず、エラーメッセージが表示される" do
+      post = Post.last
+      visit edit_post_path post
+      expect(page).to have_content 'アカウント登録もしくはログインしてください。'
+      expect(current_path).to eq new_user_session_path
+    end
+  end
+
+  #--------------------#
+  #        削除        #
+  #--------------------#
+
   describe "ユーザは投稿後、投稿を削除する", js: true do
     before do
       visit new_post_path
-        fill_in 'post_title', with: '流浪の月'
-        fill_in 'post_author', with: '凪良ゆう'
-        click_button '投稿する'
-        visit posts_path
-        click_link '流浪の月' 
-        click_link '編集する'
-        click_link '投稿を削除する'
-        page.driver.browser.switch_to.alert.accept
+      fill_in 'post_title', with: '流浪の月'
+      fill_in 'post_author', with: '凪良ゆう'
+      click_button '投稿する'
+      visit posts_path
+      click_link '流浪の月' 
+      click_link '編集する'
+      click_link '投稿を削除する'
+      page.driver.browser.switch_to.alert.accept
     end
     it "削除に成功したメッセージが表示される" do
       expect(page).to have_content '投稿は削除されました。'
@@ -192,7 +291,6 @@ RSpec.feature 'Posts', type: :system do
     it "削除した投稿が投稿一覧に表示されていない" do
       visit posts_path
       expect(page).to_not have_content '流浪の月' 
-      expect(page).to_not have_content 'けんじ' 
     end
   end
 

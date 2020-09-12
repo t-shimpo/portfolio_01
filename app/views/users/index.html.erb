@@ -9,7 +9,7 @@
       <% if user.image.present? %>
         <p class="img"><%= image_tag user.image_url(:thumb75) %></p>
       <% else %>
-        <p class="img"><%= image_tag 'default75.png' %></p>
+        <p class="img default-user-image"><%= image_tag 'default75.png' %></p>
       <% end %>
       <p class="nickname"><%= user.nickname %></p>
       <p><%= link_to user.nickname, user %></p>

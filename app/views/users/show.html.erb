@@ -4,7 +4,7 @@
 <% if @user.image.present? %>
   <p><%= image_tag @user.image_url(:thumb200) %></p>
 <% else %>
-  <p><%= image_tag 'default.png' %></p>
+  <p class="default-user-image"><%= image_tag 'default.png' %></p>
 <% end %>
 <p><%= @user.nickname %></p>
 <% if @user == current_user %>
