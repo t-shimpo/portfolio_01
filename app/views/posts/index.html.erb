@@ -19,9 +19,9 @@
       <div class="bottom-field">
         <p><%= link_to post.user.nickname, post.user %></p>
         <% if post.user.image.present? %>
-          <p class="user_small_img"><%= image_tag post.user.image_url(:thumb45) %></p>
+          <p class="user_small_img"><%= image_tag post.user.image_url(:thumb300) %></p>
         <% else %>
-          <p class="user_small_img default-user-image"><%= image_tag 'default_small_45.png' %></p>
+          <p class="user_small_img default-user-image"><%= image_tag 'default.png' %></p>
         <% end %>
       </div>
     </div>

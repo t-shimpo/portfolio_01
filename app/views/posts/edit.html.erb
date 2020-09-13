@@ -10,9 +10,9 @@
     <div class="field">
       <%= f.label :post_image, '画像のアップロード' %>
       <% if @post.post_image.present? %>
-        <p><%= image_tag @post.post_image_url(:post_thumb200) %></p>
+        <p class="post-img"><%= image_tag @post.post_image_url(:post_thumb400) %></p>
       <% else %>
-        <p class="default-post-image"><%= image_tag 'no_image200.png' %></p>
+        <p class="default-post-image post-img"><%= image_tag 'no_image200.png' %></p>
       <% end %>
       <%= f.file_field :post_image %>
     </div>

@@ -1,12 +1,14 @@
 <% @title = @user.nickname %>
 
 <h2>ユーザ情報</h2>
-<% if @user.image.present? %>
-  <p><%= image_tag @user.image_url(:thumb200) %></p>
-<% else %>
-  <p class="default-user-image"><%= image_tag 'default.png' %></p>
-<% end %>
-<p><%= @user.nickname %></p>
-<% if @user == current_user %>
-  <%= link_to "編集", edit_user_registration_path %> 
-<% end %>
+<div class="user-info">
+  <% if @user.image.present? %>
+    <p><%= image_tag @user.image_url(:thumb300) %></p>
+  <% else %>
+    <p class="default-user-image"><%= image_tag 'default.png' %></p>
+  <% end %>
+  <p><%= @user.nickname %></p>
+  <% if @user == current_user %>
+    <%= link_to "編集", edit_user_registration_path %> 
+  <% end %>
+</div>
