@@ -9,7 +9,7 @@
     <div class="field">
       <%= f.label :image %>
       <% if @user.image.present? %>
-        <p><%= image_tag @user.image_url(:thumb) %></p>
+        <p><%= image_tag @user.image_url(:thumb200) %></p>
       <% else %>
         <p class="default-user-image"><%= image_tag 'default.png' %></p>
       <% end %>
