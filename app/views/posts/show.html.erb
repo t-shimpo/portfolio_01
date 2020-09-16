@@ -1,6 +1,6 @@
 <% @title = @post.title %>
 
-<h1>投稿情報</h1>
+<h1>投稿詳細</h1>
 
 <div class="post-wrapper row">
   <% if @post.user == current_user %>
@@ -36,3 +36,19 @@
     <p class="post-content"><%= @post.post_content %></p>
   </div>
 </div>
+
+<div class="comment-wrapper row">
+  <h2 class="col-12">－コメント一覧－</h2>
+  <div id="comments_area" class="col-12">
+    <%= render partial: 'comments/index', locals: { comments: @comments } %>
+  </div>
+  <hr>
+  <div class="comment-form col-12">
+    <h2>コメントを書く</h2>
+    <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
+  </div>
+</div>
+
+
+
+

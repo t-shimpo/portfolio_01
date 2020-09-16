@@ -1,0 +1,8 @@
+<%= form_with(model: [post, comment], url: post_comments_path(@post) ) do |f| %>
+  <div class="field">
+    <%= f.text_area :comment_content %>
+  </div>
+  <div class="actions">
+    <%= f.submit "送信", class: "btn btn-success" %>
+  </div>
+<% end %>
