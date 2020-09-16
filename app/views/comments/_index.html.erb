@@ -1,0 +1,62 @@
+<!-----コメント3件----->
+<% if comments.count == 0 %>
+  <h3>コメントはまだありません。</h3>
+<% else %>
+  <h3><%= comments.count %>件コメント</h3>
+  <h4 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h4>
+  <% comments.first(3).each do |comment| %>
+    <% unless comment.id.nil? %>
+      <div class="comment-container row">
+        <!--⬇️クラス名変更した方がいいかも-->
+        <div class="comment-left col-2">
+          <% if comment.user.image.present? %>
+            <p class="comment_user_img"><%= image_tag comment.user.image_url(:thumb200) %></p>
+          <% else %>
+            <p class="comment_user_img default-user-image"><%= image_tag 'default.png' %></p>
+          <% end %>
+          <p class="comment_user_nickname"><%= link_to comment.user.nickname, comment.user %></p>
+        </div>
+        <div class="comment-right col-10">
+          <div><%= comment.comment_content %></div>
+          <% if comment.user == current_user %>
+          <!--⬇️編集ボタンも追加-->
+            <%= link_to "削除", post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-secondary" %>
+          <% end %>
+          <span class="comment-date">
+            <%= comment.updated_at.strftime('%Y/%m/%d %H:%M') %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  
+  
+  <!-----コメント4件目以降----->
+  <div class="collapse" id="collapseExample">
+    <% comments.offset(3).each do |comment| %>
+      <% unless comment.id.nil? %>
+        <div class="comment-container row">
+          <!--⬇️クラス名変更した方がいいかも-->
+          <div class="comment-left col-2">
+            <% if comment.user.image.present? %>
+              <p class="comment_user_img"><%= image_tag comment.user.image_url(:thumb200) %></p>
+            <% else %>
+              <p class="comment_user_img default-user-image"><%= image_tag 'default.png' %></p>
+            <% end %>
+            <p class="comment_user_nickname"><%= link_to comment.user.nickname, comment.user %></p>
+          </div>
+          <div class="comment-right col-10">
+            <div><%= comment.comment_content %></div>
+            <% if comment.user == current_user %>
+            <!--⬇️編集ボタンも追加-->
+              <%= link_to "削除", post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-secondary" %>
+            <% end %>
+            <span class="comment-date">
+              <%= comment.updated_at.strftime('%Y/%m/%d %H:%M') %>
+            </span>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

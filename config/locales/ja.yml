@@ -18,6 +18,10 @@ ja:
               blank: "を入力してください"
             user_id:
               blank: 'ユーザIDを取得できませんでした'
+        comment:
+          attributes:
+            comment_content:
+              blank: "を入力してください"
     attributes:
       user:
         image: "ユーザイメージ"

@@ -267,7 +267,7 @@ RSpec.describe "Posts", type: :request do
         delete post_path hibana
         expect(response.status).to eq 302
       end
-      it '投稿が削除されない' do
+      it '投稿が削除されないこと' do
         expect do
           delete post_path hibana
         end.to_not change(Post, :count)
