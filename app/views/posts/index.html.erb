@@ -16,6 +16,9 @@
         <p class="title"><%= post.title %></p>
         <p><%= link_to post.title, post %></p>
       </div>
+      <div class="like" id="index_like_<%= post.id %>">
+        <%= render 'likes/like', post: post %>
+      </div>
       <div class="bottom-field">
         <p><%= link_to post.user.nickname, post.user %></p>
         <% if post.user.image.present? %>

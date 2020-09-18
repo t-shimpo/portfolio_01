@@ -15,8 +15,11 @@
         <% end %>
       </div>
   <% end %>
-  <p class="col-12 title-top">タイトル</p>
-  <h2 class="col-12"><%= @post.title %></h2>
+  <p class="col-11 title-top">タイトル</p>
+  <h2 class="col-11"><%= @post.title %></h2>
+  <div class="like normal" id="show_like_<%= @post.id %>">
+    <%= render 'likes/like', post: @post %>
+  </div>
   <% if @post.post_image.present? %>
     <p class="post-image col-4"><%= image_tag @post.post_image_url %></p>
   <% else %>
