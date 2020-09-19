@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Comments', type: :system do
+RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
   let!(:takashi) { create(:takashi) }
   let!(:michael) { create(:michael) }
   before do
@@ -13,7 +13,7 @@ RSpec.feature 'Comments', type: :system do
   #    コメント送信    
   #--------------------
 
-  describe "ユーザはコメントをする", js: true  do
+  describe "ユーザはコメントをする"  do
     before do
       login takashi
       visit post_path hibana
@@ -27,11 +27,16 @@ RSpec.feature 'Comments', type: :system do
         end
       end
       context 'コメント送信後' do
-        before do
-          fill_in 'comment_comment_content', with: '参考になります。'
-          click_button '送信'
+        before { fill_in 'comment_comment_content', with: '参考になります。' }
+        it 'コメントが増える' do
+          expect {
+            click_button '送信'
+            wait_for_ajax
+          }.to change{ hibana.comments.count }.by(1)
         end
         it '送信したコメントがコメント一覧に表示されること' do
+          click_button '送信'
+          wait_for_ajax
           expect(page).to have_content '1件コメント' 
           expect(page).to have_content 'たかし' 
           expect(page).to have_content '参考になります。' 
@@ -56,6 +61,7 @@ RSpec.feature 'Comments', type: :system do
         end
         it 'もっと見る...をクリックすると、4件のコメントがコメント一覧に表示されること' do
           find('.more', :text => 'もっと見る....').click
+          wait_for_ajax
           expect(page).to have_content '参考になります。' 
           expect(page).to have_content '私も読みました' 
           expect(page).to have_content 'おもしろそうです。' 
@@ -86,7 +92,7 @@ RSpec.feature 'Comments', type: :system do
   #    コメント削除    
   #--------------------
 
-  describe "ユーザはコメントを削除する", js: true  do
+  describe "ユーザはコメントを削除する" do
     #たかしでコメントする
     before do
       login takashi
@@ -100,9 +106,17 @@ RSpec.feature 'Comments', type: :system do
         expect(page).to have_content 'たかし' 
         expect(page).to have_content '削除' 
       end
+      it 'コメントの削除に成功する' do
+        expect {
+          click_link '削除'
+          page.driver.browser.switch_to.alert.accept
+          wait_for_ajax
+        }.to change{ hibana.comments.count }.by(-1)
+      end
       it '削除すると一覧に表示されないこと' do
         click_link '削除'
         page.driver.browser.switch_to.alert.accept
+        wait_for_ajax
         expect(page).to have_content 'コメントはまだありません' 
         expect(page).to_not have_content 'たかし' 
       end
