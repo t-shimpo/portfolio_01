@@ -88,7 +88,7 @@ RSpec.feature 'Posts', type: :system do
         fill_in 'post_title', with: ''
         fill_in 'post_author', with: ''
         click_button '投稿する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content 'タイトルを入力してください'
         expect(page).to have_content '著者を入力してください'
       end
@@ -96,28 +96,28 @@ RSpec.feature 'Posts', type: :system do
         char201 = 'a' * 201
         fill_in 'post_title', with: char201
         click_button '投稿する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content 'タイトルは200文字以内で入力してください'
       end
       it "著者が101文字以上の場合、エラーメッセージが表示される" do
         char101 = 'a' * 101
         fill_in 'post_author', with: char101
         click_button '投稿する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content '著者は100文字以内で入力してください'
       end
       it "出版社が101文字以上の場合、エラーメッセージが表示される" do
         char101 = 'a' * 101
         fill_in 'post_publisher', with: char101
         click_button '投稿する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content '出版社は100文字以内で入力してください'
       end
       it "感想が1001文字以上の場合、エラーメッセージが表示される" do
         char1001 = 'a' * 1001
         fill_in 'post_post_content', with: char1001
         click_button '投稿する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content '感想は1000文字以内で入力してください'
       end
     end
@@ -206,7 +206,7 @@ RSpec.feature 'Posts', type: :system do
         fill_in 'post_title', with: ''
         fill_in 'post_author', with: ''
         click_button '更新する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content 'タイトルを入力してください'
         expect(page).to have_content '著者を入力してください'
       end
@@ -214,28 +214,28 @@ RSpec.feature 'Posts', type: :system do
         char201 = 'a' * 201
         fill_in 'post_title', with: char201
         click_button '更新する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content 'タイトルは200文字以内で入力してください'
       end
       it "著者が101文字以上の場合、エラーメッセージが表示される" do
         char101 = 'a' * 101
         fill_in 'post_author', with: char101
         click_button '更新する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content '著者は100文字以内で入力してください'
       end
       it "出版社が101文字以上の場合、エラーメッセージが表示される" do
         char101 = 'a' * 101
         fill_in 'post_publisher', with: char101
         click_button '更新する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content '出版社は100文字以内で入力してください'
       end
       it "感想が1001文字以上の場合、エラーメッセージが表示される" do
         char1001 = 'a' * 1001
         fill_in 'post_post_content', with: char1001
         click_button '更新する'
-        expect(page).to have_content '投稿は保存されませんでした。'
+        expect(page).to have_content '投稿 は保存されませんでした。'
         expect(page).to have_content '感想は1000文字以内で入力してください'
       end
     end
