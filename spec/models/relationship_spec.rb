@@ -4,10 +4,6 @@ RSpec.describe Relationship, type: :model do
 
   let!(:user) { create(:user) }
   let!(:takashi) { create(:takashi) }
-  before do
-    user.confirm
-    takashi.confirm
-  end
 
   it 'following_idとfollower_idがあれば有効であること' do
     relationship = Relationship.new(follower_id: user.id, following_id: takashi.id)

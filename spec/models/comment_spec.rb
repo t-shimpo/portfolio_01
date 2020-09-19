@@ -6,6 +6,16 @@ RSpec.describe Comment, type: :model do
     expect(comment).to be_valid
   end
 
+  it 'post_idがnilであれば無効であること' do
+    comment = FactoryBot.build(:comment, post_id: nil)
+    expect(comment).to_not be_valid
+  end
+
+  it 'user_idがnilであれば無効であること' do
+    comment = FactoryBot.build(:comment, user_id: nil)
+    expect(comment).to_not be_valid
+  end
+
   it "コメント文がnilであれば無効であること" do
     comment = FactoryBot.build(:comment, comment_content: nil)
     comment.valid?
@@ -24,4 +34,5 @@ RSpec.describe Comment, type: :model do
     comment.valid?
     expect(comment.errors[:comment_content]).to include("は300文字以内で入力してください")
   end
+  
 end
