@@ -1,0 +1,3 @@
+<%= link_to following_user_path(@user.id) do %>
+  <p>フォロー <span><%= @user.following.count %></span></p>
+<% end %>
