@@ -11,10 +11,15 @@ Rails.application.routes.draw do
     get "signup", :to => "users/registrations#new"
   end
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    member do
+      get :following, :followers
+    end
+  end
   resources :posts do
     resources :comments, only: [:create, :edit, :update, :destroy]
     resource :likes, only: [:create, :destroy]
   end
+  resources :relationships, only: [:create, :destroy]
 
 end
