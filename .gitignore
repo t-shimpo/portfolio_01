@@ -33,3 +33,6 @@
 /public/uploads
 
 /spec/file
+
+/db/user_image
+/db/post_image
