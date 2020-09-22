@@ -15,11 +15,8 @@
           <%else%>
             <li class="nav-item"><%= link_to "新規登録", signup_path, class:"nav-link" %></li>
             <li class="nav-item"><%= link_to "ログイン", login_path, class:"nav-link" %></li>
-            <li class="nav-item">
-              <form class="form-inline">
-                <button class="btn btn-info" type="button">テストログイン</button>
-              </form>
-            </li>
+            <li class="nav-item"><%= link_to "ゲストログイン", users_guest_login_path, method: :post, class:"nav-link btn btn-info" %></li>
+            
           <% end %>
         </ul>
       </div>

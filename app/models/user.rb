@@ -17,6 +17,12 @@ class User < ApplicationRecord
 
   validates :nickname, presence: true, length: { maximum: 50 }
 
+  def self.guest
+    find_or_create_by(email: 'guestuser@example.com') do |user|
+      user.password = Rails.application.credentials.guest_user_password
+    end
+  end
+
   def already_liked?(post)
     self.likes.exists?(post_id: post.id)
   end
