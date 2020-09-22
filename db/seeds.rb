@@ -3,18 +3,27 @@
 # --------------
 User.create!(
   image: open("#{Rails.root}/db/user_image/user_image1.jpg"),
-  nickname: 'ダイイチ',
+  nickname: 'ダイチ',
   email: 'firstuser@example.com',
   password: 'password',
   password_confirmation: 'password',
   confirmed_at: 30.day.ago
 )
 
-14.times do |n|
+User.create!(
+  image: open("#{Rails.root}/db/user_image/user_image2.jpg"),
+  nickname: 'ゲストユーザ',
+  email: 'guestuser@example.com',
+  password: Rails.application.credentials.guest_user_password,
+  password_confirmation: Rails.application.credentials.guest_user_password,
+  confirmed_at: 30.day.ago
+)
+
+13.times do |n|
   nickname = Faker::Name.first_name
-  email = "example#{n+1}@example.com"
+  email = "example#{n+2}@example.com"
   User.create!(
-    image: open("#{Rails.root}/db/user_image/user_image#{n+2}.jpg"),
+    image: open("#{Rails.root}/db/user_image/user_image#{n+3}.jpg"),
     nickname: nickname,
     email: email,
     password: 'password',
@@ -405,9 +414,9 @@ end
 end
 
 5.times do |n|
-  postid = 20 - n
+  postid = 15 - n
   Comment.create!(
-    user_id: 6,
+    user_id: 2,
     post_id: postid,
     comment_content: '面白そうですね！感想参考になりました。ありがとうございます。',
     created_at: Time.zone.now,
@@ -478,6 +487,13 @@ end
   postid = 19 - (n * 2)
   Like.create!(
     user_id: 1,
+    post_id: postid,
+  )
+end
+3.times do |n|
+  postid = 20 - (n * 2)
+  Like.create!(
+    user_id: 2,
     post_id: postid,
   )
 end

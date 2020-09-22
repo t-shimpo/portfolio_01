@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
+  before_action :check_guest, only: :create
+
   # GET /resource/password/new
   # def new
   #   super
@@ -22,6 +24,7 @@ class Users::PasswordsController < Devise::PasswordsController
   # end
 
   # protected
+
 
   # def after_resetting_password_path_for(resource)
   #   super(resource)
