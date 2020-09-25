@@ -11,8 +11,9 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
 
   describe 'ユーザは投稿にいいねをする' do
     context 'ログインユーザの場合' do
+      # michaelでログインする
       before { login michael }
-      it '投稿一覧でのいいねが成功し、いいねの数が増える' do
+      it '投稿一覧でハートのアイコンをクリックすると、いいねの数が増える' do
         visit posts_path
         expect {
           find('.fa-heart').click
@@ -24,7 +25,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         expect(find(".fa-heart")).to have_content "1"
         expect(page).to have_css('.like-red')
       end
-      it '投稿詳細でのいいねが成功し、いいねの数が増える' do
+      it '投稿詳細でハートのアイコンをクリックすると、いいねの数が増える' do
         visit post_path hibana
         expect {
           find('.fa-heart').click
@@ -35,6 +36,24 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         visit posts_path
         expect(find(".fa-heart")).to have_content "1"
         expect(page).to have_css('.like-red')
+      end
+      it '投稿一覧でいいねした投稿がマイページのいいねした投稿ページに表示される' do
+        visit posts_path
+        find('.fa-heart').click
+        wait_for_ajax
+        visit user_path michael
+        click_link 'いいね'
+        expect(page).to have_content 'いいねした投稿 1 件'
+        expect(page).to have_content '火花'
+      end
+      it '投稿詳細でいいねした投稿がマイページのいいねした投稿ページに表示される' do
+        visit post_path hibana
+        find('.fa-heart').click
+        wait_for_ajax
+        visit user_path michael
+        click_link 'いいね'
+        expect(page).to have_content 'いいねした投稿 1 件'
+        expect(page).to have_content '火花'
       end
     end
     context 'ログイしていないユーザの場合' do
@@ -58,7 +77,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
       wait_for_ajax
     end
     context 'ログインユーザの場合' do
-      it '投稿一覧でのいいねの取り消しが成功し、いいねの数が減る' do
+      it '投稿一覧でハートのアイコンをクリックすると、いいねの数が減る' do
         expect(find(".fa-heart")).to have_content "1"
         expect(page).to have_css('.like-red')
         visit posts_path
@@ -72,7 +91,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         expect(find(".fa-heart")).to have_content "0"
         expect(page).to_not have_css('.like-red')
       end
-      it '投稿詳細でのいいねの取り消しが成功し、いいねの数が減る' do
+      it '投稿詳細でハートのアイコンをクリックすると、いいねの数が減る' do
         visit post_path hibana
         expect(find(".fa-heart")).to have_content "1"
         expect(page).to have_css('.like-red')
@@ -85,6 +104,24 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         visit posts_path
         expect(find(".fa-heart")).to have_content "0"
         expect(page).to_not have_css('.like-red')
+      end
+      it '投稿一覧でいいねを取り消した投稿がマイページのいいねした投稿ページに表示されない' do
+        visit posts_path
+        find('.fa-heart').click
+        wait_for_ajax
+        visit user_path michael
+        click_link 'いいね'
+        expect(page).to have_content 'いいねした投稿 0 件'
+        expect(page).to_not have_content '火花'
+      end
+      it '投稿詳細でいいねを取り消した投稿がマイページのいいねした投稿ページに表示されない' do
+        visit post_path hibana
+        find('.fa-heart').click
+        wait_for_ajax
+        visit user_path michael
+        click_link 'いいね'
+        expect(page).to have_content 'いいねした投稿 0 件'
+        expect(page).to_not have_content '火花'
       end
     end
     context 'ログインしていないユーザの場合' do

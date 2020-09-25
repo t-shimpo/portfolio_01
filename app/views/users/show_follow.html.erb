@@ -1,1 +1,12 @@
-<p>フォローshowページです</p>
+<% @title = "#{@user.nickname} フォロー" %>
+<% @current = 'follow' %>
+
+<%= render partial: 'user_tab' %>
+<%= render partial: 'user_info' %>
+
+<h4 class="user-show-title">フォロー <%= @user.following.count %> 人</h4>
+<ul class = "users user-show-users row" >
+  <%= render partial: 'users' %>
+</ul>
+<%= paginate @users %>
+

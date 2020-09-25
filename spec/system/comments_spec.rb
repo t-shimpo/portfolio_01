@@ -14,6 +14,7 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
   #--------------------
 
   describe "ユーザはコメントをする"  do
+    # たかしでログインする
     before do
       login takashi
       visit post_path hibana
@@ -41,8 +42,16 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_content 'たかし' 
           expect(page).to have_content '参考になります。' 
         end
+        it 'コメントを送信した投稿が、マイページのコメントした投稿に表示されること' do
+          click_button '送信'
+          wait_for_ajax
+          visit comments_user_path takashi
+          expect(page).to have_content 'コメントした投稿 1 件' 
+          expect(page).to have_content '火花' 
+          expect(page).to have_content 'michael' 
+        end
       end
-      context 'コメント3件以上送信後' do
+      context 'コメント4件送信後' do
         before do
           fill_in 'comment_comment_content', with: '参考になります。'
           click_button '送信'
@@ -66,6 +75,12 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_content '私も読みました' 
           expect(page).to have_content 'おもしろそうです。' 
           expect(page).to have_content 'お気に入りに追加しました。' 
+        end
+        it 'コメントを送信した投稿が、マイページのコメントした投稿に表示されること' do
+          visit comments_user_path takashi
+          expect(page).to have_content 'コメントした投稿 4 件' 
+          expect(page).to have_content '火花' 
+          expect(page).to have_content 'michael' 
         end
       end
     end
@@ -113,12 +128,21 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           wait_for_ajax
         }.to change{ hibana.comments.count }.by(-1)
       end
-      it '削除すると一覧に表示されないこと' do
+      it 'コメントを削除すると一覧に表示されないこと' do
         click_link '削除'
         page.driver.browser.switch_to.alert.accept
         wait_for_ajax
         expect(page).to have_content 'コメントはまだありません' 
         expect(page).to_not have_content 'たかし' 
+      end
+      it 'コメントを削除すると、マイページのコメントした投稿に表示されないこと' do
+        click_link '削除'
+        page.driver.browser.switch_to.alert.accept
+        wait_for_ajax
+        visit comments_user_path takashi
+        expect(page).to have_content 'コメントした投稿 0 件' 
+        expect(page).to_not have_content '火花' 
+        expect(page).to_not have_content 'michael' 
       end
     end
 

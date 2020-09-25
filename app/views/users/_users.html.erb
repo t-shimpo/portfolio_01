@@ -1,0 +1,15 @@
+<% @users.each do |user| %>
+  <li class="col-md-6 col-sm-12">
+    <div class="user-container">
+      <% if user.image.present? %>
+        <p class="img"><%= image_tag user.image_url(:thumb200) %></p>
+      <% else %>
+        <p class="img default-user-image"><%= image_tag 'default.png' %></p>
+      <% end %>
+      <p class="nickname"><%= user.nickname %></p>
+      <p><%= link_to user.nickname, user %></p>
+      <p class="follow">フォロー <span class="pad-r10"><%= user.following.count %></span> フォロワー <span><%= user.followers.count %></span></p>
+      <p class="post">投稿 <span><%= user.posts.count %></span> 件</p>
+    </div>
+  </li>
+<% end %>

@@ -1,0 +1,8 @@
+<% @title = "#{@user.nickname} 投稿一覧" %>
+<% @current = 'posts' %>
+
+<%= render partial: 'user_tab' %>
+<%= render partial: 'user_info' %>
+
+<h4 class="user-show-title">投稿一覧 <%= @user.posts.count %> 件</h4>
+<%= render partial: 'user_show_posts' %>

@@ -6,7 +6,9 @@
 
 $button: rgba(156, 206, 94, 0.78);
 
+/*************/
 /* universal */
+/*************/
 
 div#wrapper {
   position: relative;
@@ -22,7 +24,9 @@ div#wrapper {
   }
 }
 
+/**************/
 /* typography */
+/**************/
 
 //要検討
 body {
@@ -32,7 +36,7 @@ body {
     "Hiragino Sans",
     Meiryo,
     sans-serif;
-  background-color: #ecececfd;
+  background-color: #e9e9e9;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -62,7 +66,9 @@ p {
 
 em { font-style: normal }
 
-/* header */
+/*************/
+/*  header  */
+/************/
 
 header {
   width: 100%;
@@ -85,7 +91,9 @@ header {
   }
 }
 
-/* flash */
+/***********/
+/*  flash  */
+/***********/
 
 .notice {
   padding: 0.6rem 0.4rem;
@@ -107,14 +115,16 @@ header {
   border-radius: 0;
 }
 
-
+/*************/
 /* container */
+/*************/
 
 #container {
   padding: 2em 0;
 
-
-/* form */
+/**********/
+/*  form  */
+/**********/
 
   .form-container {
     background: #fff;
@@ -312,12 +322,14 @@ header {
   }
 }
 
-
+/***************/
 /* Users index */
+/***************/
 
 .users {
-  margin: 1.5em 0;
+  margin: 1.5em auto;
   list-style: none;
+  max-width: 1050px;
   li {
     padding-right: 8px;
     padding-left: 8px;
@@ -347,22 +359,39 @@ header {
         height:100%;
         width: 100%;
         text-decoration: none;
-        text-indent:-999px;
+        text-indent:-9999px;
         z-index: 2;
         pointer-events: auto;
       }
       .nickname {
         position: absolute;
         top: 10px; 
-        left: 90px;
+        left: 100px;
         font-size: 1.2em;
         color: #2499cf;
       }
       .follow {
         position: absolute;
-        bottom: 10px;
-        left: 90px;
+        bottom: 30px;
+        left: 100px;
         font-size: 0.95em;
+        span {
+          font-size: 1.1em;
+          font-weight: 400;
+          &.pad-r10 {
+            padding-right: 10px;
+          }
+        }
+      }
+      .post {
+        position: absolute;
+        bottom: 8px;
+        left: 100px;
+        font-size: 0.95em;
+        span {
+          font-size: 1.1em;
+          font-weight: 400;
+        }
       }
     }
   }
@@ -384,20 +413,9 @@ header {
   }
 }
 
-
-/* Users show */
-
-.user-info {
-  p {
-    img {
-      width: 170px;
-      height: 170px;
-    }
-  }
-}
-
-
+/***************/
 /* Posts index */
+/***************/
 
 .posts {
   margin: 1.5em 0;
@@ -496,7 +514,10 @@ header {
   }
 }
 
+/***************/
 /* いいねボタン*/
+/***************/
+
 .like {
   text-align: right;
   padding-right: 7px;
@@ -521,13 +542,133 @@ header {
   font-size: 1.3em;
 }
 
+/**************/
+/* Users show */
+/**************/
+
+.user-show-info {
+  margin: .7em auto;
+  max-width: 830px;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  padding: 1em 1.8em 2em;
+  font-size: 18px;
+  .user-image, .default-user-image {
+    margin-top: 1em;
+    img {
+      width: 180px;
+      height: 180px;
+    }
+  }
+  a {
+    text-decoration: none;
+  }
+  .user-right {
+    padding-left: 3em;
+    .button {
+      text-align: right;
+    }
+    .follow {
+      margin-bottom: 1.2em;
+      #follow_users {
+        padding-right: 1.5em;
+      }
+      #follow_users, #follower_users {
+        display: inline-block;
+        a {
+          color: #2499cf;
+          transition: color 0.1s;
+          &:hover {
+            color : #e0714f;
+          }
+        }
+      }
+    }
+    .post_like {
+      a {
+        margin-bottom: .2em;
+        color: rgb(80, 80, 80);
+        position: relative;
+        display: inline-block;
+        &::after {
+          position: absolute;
+          bottom: -1px;
+          left: 0;
+          content: '';
+          width: 100%;
+          height: 1px;
+          background: rgb(80, 80, 80);
+          transform: scale(0, 1);
+          transform-origin: right top;
+          transition: transform .4s;
+        }
+        &:hover::after {
+          transform-origin: left top;
+          transform: scale(1, 1);
+        }
+      }
+    }
+    h4 {
+      font-size: 25px;
+      margin-bottom: 0.7em;
+    }
+  }
+}
 
 
 
+.user-tab {
+  margin: 0 auto .4em;
+  max-width: 830px;
+    justify-content: space-between;
+    list-style: none;
+    li {
+      font-size: 17px;
+      margin-bottom: 1em;
+      float: left;
+      text-align: center;
+      // box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      a {
+        color: rgb(80, 80, 80);
+        display: block;
+        border: 2px solid rgb(124, 124, 124);
+        border-radius: 2px;
+        &:hover {
+          color: #fff;
+          background: #2499cf;
+          border: 2px solid  #2499cf;
+        }
+        &.current {
+          color: #fff;
+          background: #2499cf;
+          border: 2px solid  #2499cf;
+        }
+      }
+  }
+}
+.user-show-title {
+  margin: 1em auto;
+  max-width: 830px;
+  padding-left: .5em;
+}
+
+.user-show-posts {
+  margin: 1em auto;
+  max-width: 830px;
+}
+
+.user-show-users {
+  margin: 1em auto;
+  max-width: 830px;
+}
+
+
+/**************/
 /* posts#show */
+/**************/
 
 .post-wrapper {
-  max-width: 700px;
+  max-width: 760px;
   margin: 1.8em auto;
   .user-field {
     margin: 0;
@@ -598,7 +739,7 @@ header {
   }
   .post-info {
     margin-top: 5px;;
-    padding-left: 3.8em;
+    padding-left: 3.5em;
     p {
       border-bottom: 1px solid #c2c2c2c5;
       line-height: 2.4em;
@@ -637,7 +778,9 @@ header {
   }
 }
 
+/************/
 /* Comments */
+/************/
 
 .comment-wrapper {
   color: #444;
@@ -735,8 +878,9 @@ header {
 }
 
 
-
+/**************/
 /* pagination */
+/**************/
 
 .pagination {
   margin-top: 1em;
@@ -791,8 +935,9 @@ header {
 // }
 
 
-
-/* footer */
+/************/
+/*  footer  */
+/************/
 
 footer {
   padding: 10px 0 15px 0;
@@ -814,8 +959,9 @@ footer {
   }
 }
 
-
-/* debug */
+/***********/
+/*  debug  */
+/***********/
 
 .debug_dump {
   clear: both;

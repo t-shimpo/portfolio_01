@@ -6,28 +6,7 @@
 
 <% @posts.each do |post| %>
   <li class="col-lg-3 col-md-6 col-sm-6 justify-content-around">
-    <div class="post-container">
-      <div class="post-field">
-        <% if post.post_image.present? %>
-          <p class="post-img"><%= image_tag post.post_image_url %></p>
-        <% else %>
-          <p class="post-img default-post-image"><%= image_tag 'no_image200.png' %></p>
-        <% end %>
-        <p class="title"><%= post.title %></p>
-        <p><%= link_to post.title, post %></p>
-      </div>
-      <div class="like" id="index_like_<%= post.id %>">
-        <%= render 'likes/like', post: post %>
-      </div>
-      <div class="bottom-field">
-        <p><%= link_to post.user.nickname, post.user %></p>
-        <% if post.user.image.present? %>
-          <p class="user_small_img"><%= image_tag post.user.image_url(:thumb300) %></p>
-        <% else %>
-          <p class="user_small_img default-user-image"><%= image_tag 'default.png' %></p>
-        <% end %>
-      </div>
-    </div>
+    <%= render partial: 'shared/posts',locals: { post: post } %>
   </li>
 <% end %>
 
