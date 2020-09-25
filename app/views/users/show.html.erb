@@ -1,40 +1,8 @@
 <% @title = @user.nickname %>
+<% @current = 'top' %>
 
-<h2>ユーザ情報</h2>
-<div class="user-info">
-  <% if @user.image.present? %>
-    <p><%= image_tag @user.image_url(:thumb300) %></p>
-  <% else %>
-    <p class="default-user-image"><%= image_tag 'default.png' %></p>
-  <% end %>
-  <% if @user == current_user %>
-    <%= link_to "編集", edit_user_registration_path %> 
-  <% else %>
-    <%= render "follow_form" %>
-  <% end %>
-  <p><%= @user.nickname %></p>
-  <div id="follow_users">
-    <%= render "follow_users" %>
-  </div>
-  <div id="follower_users">
-    <%= render "follower_users" %>
-  </div>
+<%= render partial: 'user_tab' %>
+<%= render partial: 'user_info' %>
 
-
-  <%
-=begin%>
- <div id="follow_users">
-    <%= link_to following_user_path(@user.id) do %>
-      <p>フォロー<span><%= @user.following.count %></span></p>
-    <% end %>
-  </div>
-  <div class="follower_users">
-    <%= link_to followers_user_path(@user.id) do %>
-      <p>フォロワー<span><%= @user.followers.count %></span></p>
-    <% end %>
-  </div> 
-<%
-=end%>
-
-
-</div>
+<h4 class="user-show-title">最新の投稿</h4>
+<%= render partial: 'user_show_posts' %>

@@ -1,0 +1,10 @@
+<ul class = "posts user-show-posts row" >
+  <% @posts.each do |post| %>
+    <li class="col-lg-4 col-md-6 col-sm-6 justify-content-around">
+      <%= render partial: 'shared/posts',locals: { post: post } %>
+    </li>
+  <% end %>
+</ul>
+<% if @current != 'top' %>
+  <%= paginate @posts %> 
+<% end %>

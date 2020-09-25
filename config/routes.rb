@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     :passwords => 'users/passwords'
   } 
 
+
   devise_scope :user do
     get 'login', :to => 'users/sessions#new'
     get 'logout', :to => 'users/sessions#destroy' 
@@ -15,7 +16,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :show] do
     member do
-      get :following, :followers
+      get :posts, :comments, :following, :followers, :likes
     end
   end
   resources :posts do

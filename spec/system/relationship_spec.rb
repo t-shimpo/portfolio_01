@@ -38,20 +38,28 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
       visit user_path michael
       expect(page).to have_content 'フォロー 1'
     end
-    xit 'ユーザ一覧ページのフォロー・フォロワー数の表示が変わること' do
+    it 'ユーザ一覧ページのフォロー・フォロワー数の表示が変わること' do
       click_button 'フォローする'
       wait_for_ajax
-
+      visit users_path
+      expect(page).to have_content 'フォロー 1 フォロワー 0'
+      expect(page).to have_content 'フォロー 0 フォロワー 1'
     end
-    xit 'michaelのフォロー一覧に、たかしが表示されること' do
+    it 'michaelのフォロー一覧に、たかしが表示されること' do
       click_button 'フォローする'
       wait_for_ajax
-
+      visit user_path michael
+      click_link 'フォロー'
+      expect(page).to have_content 'フォロー 1 人'
+      expect(page).to have_content 'たかし'
     end
-    xit 'たかしのフォロー一覧に、michaelが表示されること' do
+    it 'たかしのフォロー一覧に、michaelが表示されること' do
       click_button 'フォローする'
       wait_for_ajax
-
+      visit user_path takashi
+      click_link 'フォロワー'
+      expect(page).to have_content 'フォロワー 1 人'
+      expect(page).to have_content 'michael'
     end
   end
 
@@ -87,21 +95,28 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
       visit user_path michael
       expect(page).to have_content 'フォロー 0'
     end
-
-    xit 'ユーザ一覧ページのフォロワー数の表示が変わること' do
+    it 'ユーザ一覧ページのフォロワー数の表示が変わること' do
       click_button 'フォロー中'
       wait_for_ajax
-
+      visit users_path
+      expect(page).to have_content 'フォロー 0 フォロワー 0'
+      expect(page).to have_content 'フォロー 0 フォロワー 0'
     end
-    xit 'michaelのフォロー一覧に、たかしが表示されないこと' do
+    it 'michaelのフォロー一覧に、たかしが表示されないこと' do
       click_button 'フォロー中'
       wait_for_ajax
-
+      visit user_path michael
+      click_link 'フォロー'
+      expect(page).to have_content 'フォロー 0 人'
+      expect(page).to_not have_content 'たかし'
     end
-    xit 'たかしのフォロー一覧に、michaelが表示されないこと' do
+    it 'たかしのフォロー一覧に、michaelが表示されないこと' do
       click_button 'フォロー中'
       wait_for_ajax
-
+      visit user_path takashi
+      click_link 'フォロワー'
+      expect(page).to have_content 'フォロワー 0 人'
+      expect(page).to_not have_content 'michael'
     end
   end
 

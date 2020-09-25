@@ -1,0 +1,34 @@
+<div class="user-show-info row">
+  <% if @user.image.present? %>
+    <p class="user-image col-4"><%= image_tag @user.image_url(:thumb300) %></p>
+  <% else %>
+    <p class="default-user-image col-4"><%= image_tag 'default.png' %></p>
+  <% end %>
+  <div class="user-right col-8">
+    <div class="button">
+      <% if @user == current_user %>
+        <%= link_to "編集", edit_user_registration_path, class: "btn btn-info" %> 
+      <% else %>
+        <%= render "follow_form" %>
+      <% end %>
+    </div>
+    <h4><%= @user.nickname %></h4>
+    <div class="follow">
+      <div id="follow_users">
+        <%= render "follow_users" %>
+      </div>
+      <div id="follower_users">
+        <%= render "follower_users" %>
+      </div>
+    </div>
+    <div class="post_like">
+      <%= link_to posts_user_path(@user.id) do %>
+        投稿 <%= @user.posts.count %> 件
+      <% end %>
+      <br>
+      <%= link_to likes_user_path(@user.id) do %>
+        いいねした投稿 <%= @user.liked_posts.count %> 件
+      <% end %>
+    </div>
+  </div>
+</div>

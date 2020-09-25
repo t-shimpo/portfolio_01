@@ -1,0 +1,8 @@
+<% @title = "#{@user.nickname} いいね一覧" %>
+<% @current = 'likes' %>
+
+<%= render partial: 'user_tab' %>
+<%= render partial: 'user_info' %>
+
+<h4 class="user-show-title">いいねした投稿 <%= @user.liked_posts.count %> 件</h4>
+<%= render partial: 'user_show_posts' %>

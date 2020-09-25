@@ -5,6 +5,7 @@ RSpec.feature 'Posts', type: :system do
   let!(:kenji) { create(:kenji) }
   before do
     kenji.confirm
+    # けんじでログインする
     login kenji
   end 
 
@@ -39,11 +40,22 @@ RSpec.feature 'Posts', type: :system do
         expect(page).to have_content '投稿されました。'
         expect(current_path).to eq new_post_path
       end
-      it "投稿が、投稿一覧に表示されること" do
+      it "投稿が、本を探すの投稿一覧に表示されること" do
         click_button '投稿する'
         visit posts_path
         expect(page).to have_content '流浪の月' 
         expect(page).to have_content 'けんじ' 
+      end
+      it "投稿が、マイページの最新の投稿に表示されること" do
+        click_button '投稿する'
+        visit user_path kenji
+        expect(page).to have_content '流浪の月'
+      end
+      it "投稿が、マイページの投稿一覧に表示されること" do
+        click_button '投稿する'
+        visit  posts_user_path kenji
+        expect(page).to have_content '投稿一覧 1 件'
+        expect(page).to have_content '流浪の月'
       end
       it "投稿した情報が、投稿の詳細ページに表示されること" do
         click_button '投稿する'
@@ -166,12 +178,23 @@ RSpec.feature 'Posts', type: :system do
         expect(page).to have_content '投稿は更新されました。'
         expect(current_path).to eq post_path kenji.posts.last
       end
-      it "更新したタイトルが投稿一覧に表示されること" do
+      it "更新したタイトルが本を探すの投稿一覧に表示されること" do
         click_button '更新する'
         visit posts_path
         expect(page).to have_content '逆ソクラテス' 
         expect(page).to_not have_content '流浪の月' 
         expect(page).to have_content 'けんじ' 
+      end
+      it "更新した投稿が、マイページの最新の投稿に表示されること" do
+        click_button '更新する'
+        visit user_path kenji
+        expect(page).to have_content '逆ソクラテス'
+      end
+      it "更新した投稿が、マイページの投稿一覧に表示されること" do
+        click_button '更新する'
+        visit  posts_user_path kenji
+        expect(page).to have_content '投稿一覧 1 件'
+        expect(page).to have_content '逆ソクラテス'
       end
       it "更新した情報が、投稿の詳細ページに表示されること" do
         click_button '更新する'
@@ -312,11 +335,26 @@ RSpec.feature 'Posts', type: :system do
       expect(page).to have_content '投稿は削除されました。'
       expect(current_path).to eq user_path kenji
     end
-    it "削除した投稿が投稿一覧に表示されていないこと" do
+    it "削除した投稿が本を探すの投稿一覧に表示されないこと" do
       click_link '投稿を削除する'
       page.driver.browser.switch_to.alert.accept
       visit posts_path
       expect(page).to_not have_content '流浪の月' 
+    end
+    it "削除した投稿が、マイページの最新の投稿に表示されないこと" do
+      click_link '投稿を削除する'
+      page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
+      visit user_path kenji
+      expect(page).to_not have_content '逆ソクラテス'
+    end
+    it "削除した投稿が、マイページの投稿一覧に表示されないこと" do
+      click_link '投稿を削除する'
+      page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
+      visit  posts_user_path kenji
+      expect(page).to have_content '投稿一覧 0 件'
+      expect(page).to_not have_content '逆ソクラテス'
     end
   end
 
