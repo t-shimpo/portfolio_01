@@ -8,9 +8,9 @@ class Post < ApplicationRecord
 
   default_scope -> { order(created_at: :desc) }
 
-  validates :title, presence: true, length: { maximum: 200 }
-  validates :author, presence: true, length: { maximum: 100 }
-  validates :publisher, length: { maximum: 100 }
+  validates :title, presence: true, length: { maximum: 100 }
+  validates :author, presence: true, length: { maximum: 60 }
+  validates :publisher, length: { maximum: 60 }
   validates :genre, inclusion: {
     in: %w(not_select novel business education art_ent celebrity hobby geography child others)
   }

@@ -37,7 +37,7 @@ ja:
         publisher: "出版社"
         genre: "ジャンル"
         rating: "評価"
-        hours: "読むのにかかった時間"
+        hours: "読書時間"
         purchase_date: "購入日"
         post_content: "感想"
     models:

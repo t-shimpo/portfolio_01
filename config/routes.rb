@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     :passwords => 'users/passwords'
   } 
 
-
   devise_scope :user do
     get 'login', :to => 'users/sessions#new'
     get 'logout', :to => 'users/sessions#destroy' 
@@ -22,6 +21,9 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :edit, :update, :destroy]
     resource :likes, only: [:create, :destroy]
+    member do
+      get :liked_users
+    end
   end
   resources :relationships, only: [:create, :destroy]
 

@@ -13,17 +13,17 @@ RSpec.describe Post, type: :model do
     expect(post.errors[:title]).to include("を入力してください")
   end
 
-  it "タイトルが200文字以内であれば有効であること" do
-    char200 = "a" * 200
-    post = FactoryBot.build(:post, title: char200)
+  it "タイトルが100文字以内であれば有効であること" do
+    char100 = "a" * 100
+    post = FactoryBot.build(:post, title: char100)
     expect(post).to be_valid
   end
 
-  it "タイトルが201文字以上であれば無効であること" do
-    char201 = "a" * 201
-    post = FactoryBot.build(:post, title: char201)
+  it "タイトルが101文字以上であれば無効であること" do
+    char101 = "a" * 101
+    post = FactoryBot.build(:post, title: char101)
     post.valid?
-    expect(post.errors[:title]).to include("は200文字以内で入力してください")
+    expect(post.errors[:title]).to include("は100文字以内で入力してください")
   end
   
   it "著者がnilであれば無効であること" do
@@ -32,30 +32,30 @@ RSpec.describe Post, type: :model do
     expect(post.errors[:author]).to include("を入力してください")
   end
 
-  it "著者が100文字以内であれば有効であること" do
-    char100 = "a" * 100
-    post = FactoryBot.build(:post, author: char100)
+  it "著者が60文字以内であれば有効であること" do
+    char60 = "a" * 60
+    post = FactoryBot.build(:post, author: char60)
     expect(post).to be_valid
   end
 
-  it "著者が101文字以上であれば無効であること" do
-    char101 = "a" * 101
-    post = FactoryBot.build(:post, author: char101)
+  it "著者が61文字以上であれば無効であること" do
+    char61 = "a" * 61
+    post = FactoryBot.build(:post, author: char61)
     post.valid?
-    expect(post.errors[:author]).to include("は100文字以内で入力してください")
+    expect(post.errors[:author]).to include("は60文字以内で入力してください")
   end
 
-  it "出版社が100文字以内であれば有効であること" do
-    char100 = "a" * 100
-    post = FactoryBot.build(:post, publisher: char100)
+  it "出版社が60文字以内であれば有効であること" do
+    char60 = "a" * 60
+    post = FactoryBot.build(:post, publisher: char60)
     expect(post).to be_valid
   end
 
-  it "出版社が101文字以上であれば無効であること" do
-    char101 = "a" * 101
-    post = FactoryBot.build(:post, publisher: char101)
+  it "出版社が61文字以上であれば無効であること" do
+    char61 = "a" * 61
+    post = FactoryBot.build(:post, publisher: char61)
     post.valid?
-    expect(post.errors[:publisher]).to include("は100文字以内で入力してください")
+    expect(post.errors[:publisher]).to include("は60文字以内で入力してください")
   end
 
   it "ジャンルがnilであれば無効であること" do
@@ -165,48 +165,48 @@ RSpec.describe Post, type: :model do
     expect(post).to be_valid
   end
 
-  it "読むのにかかった時間がnilであれば無効であること" do
+  it "読書時間がnilであれば無効であること" do
     post = FactoryBot.build(:post, hours: nil)
     post.valid?
     expect(post.errors[:hours]).to include("は一覧にありません")
   end
 
-  it "読むのにかかった時間が〜10時間であれば有効であること" do
+  it "読書時間が〜10時間であれば有効であること" do
     post = FactoryBot.build(:post, hours:"to10" )
     expect(post).to be_valid
   end
 
-  it "読むのにかかった時間が10〜20時間であれば有効であること" do
+  it "読書時間が10〜20時間であれば有効であること" do
     post = FactoryBot.build(:post, hours:"to20" )
     expect(post).to be_valid
   end
 
-  it "読むのにかかった時間が20〜30時間であれば有効であること" do
+  it "読書時間が20〜30時間であれば有効であること" do
     post = FactoryBot.build(:post, hours:"to30" )
     expect(post).to be_valid
   end
 
-  it "読むのにかかった時間が30〜40時間であれば有効であること" do
+  it "読書時間が30〜40時間であれば有効であること" do
     post = FactoryBot.build(:post, hours:"to40" )
     expect(post).to be_valid
   end
 
-  it "読むのにかかった時間が40〜50時間であれば有効であること" do
+  it "読書時間が40〜50時間であれば有効であること" do
     post = FactoryBot.build(:post, hours:"to50" )
     expect(post).to be_valid
   end
 
-  it "読むのにかかった時間が50〜70時間であれば有効であること" do
+  it "読書時間が50〜70時間であれば有効であること" do
     post = FactoryBot.build(:post, hours:"to70" )
     expect(post).to be_valid
   end
 
-  it "読むのにかかった時間が70〜100時間であれば有効であること" do
+  it "読書時間が70〜100時間であれば有効であること" do
     post = FactoryBot.build(:post, hours:"to100" )
     expect(post).to be_valid
   end
 
-  it "読むのにかかった時間が100時間以上であれば有効であること" do
+  it "読書時間が100時間以上であれば有効であること" do
     post = FactoryBot.build(:post, hours:"from100" )
     expect(post).to be_valid
   end

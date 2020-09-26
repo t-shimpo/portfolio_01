@@ -194,7 +194,7 @@ RSpec.describe "Posts", type: :request do
       end
       it 'エラーが表示されること' do
         post posts_url, params: { post: FactoryBot.attributes_for(:post, title: "") }
-        expect(response.body).to include '投稿は保存されませんでした。'
+        expect(response.body).to include '投稿 は保存されませんでした。'
       end
     end
   end
@@ -234,7 +234,7 @@ RSpec.describe "Posts", type: :request do
       end
       it 'エラーが表示されること' do
         put post_path hibana, params: { post: FactoryBot.attributes_for(:post, title: "") }
-        expect(response.body).to include '投稿は保存されませんでした。'
+        expect(response.body).to include '投稿 は保存されませんでした。'
       end
     end
 
@@ -271,6 +271,62 @@ RSpec.describe "Posts", type: :request do
         expect do
           delete post_path hibana
         end.to_not change(Post, :count)
+      end
+    end
+  end
+
+  describe 'GET #liked_users' do
+    describe 'ログインしていないユーザのテスト' do
+      it "リクエストが失敗すること" do
+        get liked_users_post_path hibana 
+        expect(response).to have_http_status 302
+      end
+      it 'ログインページが表示されること' do
+        get liked_users_post_path hibana
+        is_expected.to redirect_to new_user_session_path
+      end
+    end
+
+    describe 'ログイン済みのユーザのテスト' do
+      before do
+        sign_in takashi
+      end
+      context '自身の投稿のいいねしたユーザを表示する場合' do
+        it 'リクエストが成功すること' do
+          get liked_users_post_path jibun_nonakani_doku
+          expect(response.status).to eq 200
+        end
+        it 'タイトルが表示されていること' do
+          get liked_users_post_path jibun_nonakani_doku
+          expect(response.body).to include 'いいねしたユーザ 0 人'
+        end
+        it '投稿の内容が表示されていること' do
+          get liked_users_post_path jibun_nonakani_doku
+          expect(response.body).to include 'たかし'
+          expect(response.body).to include jibun_nonakani_doku.title
+          expect(response.body).to include jibun_nonakani_doku.author
+        end
+      end
+      context '他者の投稿のいいねしたユーザを表示する場合' do
+        it 'リクエストが成功すること' do
+          get liked_users_post_path hibana
+          expect(response.status).to eq 200
+        end
+        it 'タイトルが表示されていること' do
+          get liked_users_post_path jibun_nonakani_doku
+          expect(response.body).to include 'いいねしたユーザ 0 人'
+        end
+        it '投稿の内容が表示されていること' do
+          get liked_users_post_path jibun_nonakani_doku
+          expect(response.body).to include 'たかし'
+          expect(response.body).to include jibun_nonakani_doku.title
+          expect(response.body).to include jibun_nonakani_doku.author
+        end
+      end
+      context '存在しない投稿の詳細を表示する場合' do
+        it 'エラーが発生すること' do
+          expect{ get "/posts/999999/liked_users" }.to raise_error ActiveRecord::RecordNotFound
+        end
       end
     end
   end
