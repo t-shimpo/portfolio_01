@@ -1,0 +1,26 @@
+<% @current_page = 'liked_users'   %>
+
+<div class="show-liked-users row">
+  <div class="post-field col-3">
+    <% if @post.user.image.present? %>
+          <p class="user_small_img"><%= image_tag @post.user.image_url(:thumb200) %></p>
+        <% else %>
+          <p class="user_small_img default-user-image"><%= image_tag 'default.png' %></p>
+        <% end %>
+    <p class="user-name"><%= link_to @post.user.nickname, @post.user %></p>
+    <h5><%= @post.title %></h5>
+    <p class="author">著) <%= @post.author %></p>
+    <% if @post.post_image.present? %>
+      <p class="post-image"><%= image_tag @post.post_image_url %></p>
+    <% else %>
+      <p class="post-image default-post-image"><%= image_tag 'no_image200.png' %></p>
+    <% end %>
+  </div>
+  <div class="liked-users-field col-9">
+    <h4>いいねしたユーザ <%= @post.liked_users.count %> 人</h4>
+    <ul class = "users user-show-users row" >
+  <%= render partial: 'users/users' %>
+</ul>
+<%= paginate @users %>
+  </div>
+</div>

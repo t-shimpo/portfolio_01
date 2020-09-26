@@ -15,25 +15,29 @@
         <% end %>
       </div>
   <% end %>
-  <p class="col-11 title-top">タイトル</p>
-  <h2 class="col-11"><%= @post.title %></h2>
-  <div class="like normal" id="show_like_<%= @post.id %>">
-    <%= render 'likes/like', post: @post %>
+  <div class="post-title col-md-11 col-10">
+    <p class="title-top">タイトル</p>
+    <h2><%= @post.title %></h2>
   </div>
+  <div class="post-show-like col-md-1 col-2">
+    <div class="like normal" id="show_like_<%= @post.id %>">
+      <%= render 'likes/like', post: @post %>
+    </div>
+  </div>
+  <p class="liked_users col-12"><%= link_to "いいねしたユーザ", liked_users_post_path(@post) %></p>
   <% if @post.post_image.present? %>
     <p class="post-image col-4"><%= image_tag @post.post_image_url %></p>
   <% else %>
     <p class="post-image col-4 default-post-image"><%= image_tag 'no_image200.png' %></p>
   <% end %>
-  </p>
-  <div class="post-info col-8">
-    <p><span>著者</span><%= @post.author %></p>
-    <p><span>出版社</span><%= @post.publisher %></p>
-    <p><span>ジャンル</span><%= @post.genre_i18n %></p>
-    <p><span>評価</span><%= @post.rating_i18n %></p>
-    <p><span>読むのにかかった時間</span><%= @post.hours_i18n %></p>
-    <p><span>購入日</span><%= @post.purchase_date %></p>
-  </div>
+  <table class="post-info col-8">
+    <tr><th>著者</th><td><%= @post.author %></td></tr>
+    <tr><th>出版社</th><td><%= @post.publisher %></td></tr>
+    <tr><th>ジャンル</th><td><%= @post.genre_i18n %></td></tr>
+    <tr><th>評価</th><td><%= @post.rating_i18n %></td></tr>
+    <tr><th>読書時間</th><td><%= @post.hours_i18n %></td></tr>
+    <tr><th>購入日</th><td><%= @post.purchase_date %></td></tr>
+  </table>
   <div class="post-content-container col-12">
     <p class="post-content-top">感想</p>
     <p class="post-content"><%= @post.post_content %></p>

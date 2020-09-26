@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_post, only: [:show, :edit, :update]
+  before_action :set_post, only: [:show, :edit, :update, :liked_users]
   before_action :correct_user, only: [:edit, :update, :destroy]
 
   def index
@@ -42,6 +42,11 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:notice] = "投稿は削除されました。"
     redirect_to @post.user
+  end
+
+  def liked_users
+    @users = @post.liked_users.page(params[:page]).per(20)
+    render 'posts/liked_users'
   end
 
 

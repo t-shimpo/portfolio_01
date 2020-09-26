@@ -11,8 +11,8 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
 
   describe 'ユーザは投稿にいいねをする' do
     context 'ログインユーザの場合' do
-      # michaelでログインする
-      before { login michael }
+      # たかしでログインする
+      before { login takashi }
       it '投稿一覧でハートのアイコンをクリックすると、いいねの数が増える' do
         visit posts_path
         expect {
@@ -41,7 +41,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         visit posts_path
         find('.fa-heart').click
         wait_for_ajax
-        visit user_path michael
+        visit user_path takashi
         click_link 'いいね'
         expect(page).to have_content 'いいねした投稿 1 件'
         expect(page).to have_content '火花'
@@ -50,10 +50,21 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         visit post_path hibana
         find('.fa-heart').click
         wait_for_ajax
-        visit user_path michael
+        visit user_path takashi
         click_link 'いいね'
         expect(page).to have_content 'いいねした投稿 1 件'
         expect(page).to have_content '火花'
+      end
+      it 'いいねをしたユーザが、いいねしたユーザページに表示される' do
+        visit post_path hibana
+        find('.fa-heart').click
+        wait_for_ajax
+        click_link 'いいねしたユーザ'
+        expect(page).to have_content 'michael'
+        expect(page).to have_content '火花'
+        expect(page).to have_content '又吉直樹'
+        expect(page).to have_content 'いいねしたユーザ 1 人'
+        expect(page).to have_content 'たかし'
       end
     end
     context 'ログイしていないユーザの場合' do
@@ -70,6 +81,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
   end
 
   describe 'ユーザは投稿へのいいね取り消す' do
+    # たかしでログイン
     before do
       login takashi
       visit posts_path
@@ -122,6 +134,17 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         click_link 'いいね'
         expect(page).to have_content 'いいねした投稿 0 件'
         expect(page).to_not have_content '火花'
+      end
+      it 'いいねを取り消したユーザが、いいねしたユーザページに表示されない' do
+        visit post_path hibana
+        find('.fa-heart').click
+        wait_for_ajax
+        click_link 'いいねしたユーザ'
+        expect(page).to have_content 'michael'
+        expect(page).to have_content '火花'
+        expect(page).to have_content '又吉直樹'
+        expect(page).to have_content 'いいねしたユーザ 0 人'
+        expect(page).to_not have_content 'たかし'
       end
     end
     context 'ログインしていないユーザの場合' do
