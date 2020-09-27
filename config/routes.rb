@@ -18,13 +18,24 @@ Rails.application.routes.draw do
       get :posts, :comments, :following, :followers, :likes
     end
   end
+
   resources :posts do
     resources :comments, only: [:create, :edit, :update, :destroy]
     resource :likes, only: [:create, :destroy]
     member do
       get :liked_users
     end
+    collection do
+      get :novel, :business, :education, :art_ent, :celebrity, :hobby, :geography, :child, :others
+    end
   end
+
+  resources :following_posts, only: :index do
+    collection do
+      get :novel, :business, :education, :art_ent, :celebrity, :hobby, :geography, :child, :others
+    end
+  end
+
   resources :relationships, only: [:create, :destroy]
 
 end

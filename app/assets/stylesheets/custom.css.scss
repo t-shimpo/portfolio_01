@@ -616,8 +616,11 @@ header {
 }
 
 
+/**************/
+/*    tabs    */
+/**************/
 
-.user-tab {
+.tabs {
   margin: 0 auto .4em;
   max-width: 830px;
     justify-content: space-between;
@@ -881,6 +884,132 @@ header {
     }
   }
 }
+
+/****************/
+/* genre-button */
+/****************/
+
+.genre-button{
+  margin: 1.5em auto 0;
+  padding: 0 1em;
+  // max-width: 830px;
+    justify-content: space-between;
+    list-style: none;
+    li {
+      width: 90px;
+      font-size: 15px;
+      margin-bottom: 1em;
+      float: left;
+      text-align: center;
+      // box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      a {
+        color: #fff;
+        display: block;
+        border-radius: 100vh;
+        position: relative;
+        &.current::after {
+          position: absolute;
+          content: " ";
+          display: block;
+          border-bottom: solid 2px #be32be;
+          bottom: -7px;
+          left: 25%;
+          width: 50%;
+        }
+        &.all {
+          background: #adadad;
+          &:hover {
+            background: #5e5e5e;
+          }
+          &.current {
+            background: #5e5e5e;
+          }
+        }
+        &.novel {
+          background: #fcc594;
+          &:hover {
+            background: #F4A460;
+          }
+          &.current {
+            background: #F4A460;
+          }
+        }
+        &.business {
+          background: #b29fd8;
+          &:hover {
+            background: #9370DB;
+          }
+          &.current {
+            background: #9370DB;
+          }
+        }
+        &.education {
+          background: #faeda4;
+          &:hover {
+            background: #FFD700;
+          }
+          &.current {
+            background: #FFD700;
+          }
+        }
+        &.art_ent {
+          background: #e9b0b0;
+          &:hover {
+            background: #F08080;
+          }
+          &.current {
+            background: #F08080;
+          }
+        }
+        &.celebrity {
+          background: #a6c9b5;
+          &:hover {
+            background: #3CB371;
+          }
+          &.current {
+            background: #3CB371;
+          }
+        }
+        &.hobby {
+          background: #98bac5;
+          &:hover {
+            background: #008BBB;
+          }
+          &.current {
+            background: #008BBB;
+          }
+        }
+        &.geography {
+          background: #a8d8c8;
+          &:hover {
+            background: #66CDAA;
+          }
+          &.current {
+            background: #66CDAA;
+          }
+        }
+        &.child {
+          background: #dac590;
+          &:hover {
+            background: #DAA520;
+          }
+          &.current {
+            background: #DAA520;
+          }
+        }
+        &.others {
+          background: #adadad;
+          &:hover {
+            background: #6e6e6e;
+          }
+          &.current {
+            background: #6e6e6e;
+          }
+        }
+      }
+  }
+}
+
 
 
 
