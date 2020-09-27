@@ -10,16 +10,31 @@ RSpec.describe "Posts", type: :request do
   let!(:jibun_nonakani_doku) { create(:jibun_nonakani_doku, user_id: takashi.id) }
   let!(:hibana) { create(:hibana, user_id: michael.id) }
 
+  let!(:education) { create(:post, genre: 'education') }
+  let!(:art_ent) { create(:post, genre: 'art_ent') }
+  let!(:celebrity) { create(:post, genre: 'celebrity') }
+  let!(:hobby) { create(:post, genre: 'hobby') }
+  let!(:geography) { create(:post, genre: 'geography') }
+  let!(:child) { create(:post, genre: 'child') }
+  let!(:others) { create(:post, genre: 'others') }
+
   describe "GET #index" do
     context "ログインしていないユーザの場合" do
       it "リクエストが成功すること" do
         get posts_path
         expect(response).to have_http_status 200
       end
-      it "投稿のタイトルと画像が表示されていること" do
+      it "投稿のタイトルが表示されていること" do
         get posts_path
         expect(response.body).to include jibun_nonakani_doku.title
         expect(response.body).to include hibana.title
+        expect(response.body).to include education.title
+        expect(response.body).to include art_ent.title
+        expect(response.body).to include celebrity.title
+        expect(response.body).to include hobby.title
+        expect(response.body).to include geography.title
+        expect(response.body).to include child.title
+        expect(response.body).to include others.title
       end
     end
 
@@ -31,7 +46,7 @@ RSpec.describe "Posts", type: :request do
         get posts_path
         expect(response).to have_http_status 200
       end
-      it "投稿のタイトルと画像が表示されていること" do
+      it "投稿のタイトルが表示されていること" do
         get posts_path
         expect(response.body).to include jibun_nonakani_doku.title
         expect(response.body).to include hibana.title
@@ -49,7 +64,6 @@ RSpec.describe "Posts", type: :request do
         get new_post_path
         is_expected.to redirect_to new_user_session_path
       end
-      
     end
 
     context "ログインしているユーザの場合" do
@@ -237,7 +251,6 @@ RSpec.describe "Posts", type: :request do
         expect(response.body).to include '投稿 は保存されませんでした。'
       end
     end
-
   end
 
   describe 'DELETE #destroy' do
@@ -331,4 +344,240 @@ RSpec.describe "Posts", type: :request do
     end
   end
 
+  describe "GET #novel" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get novel_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get novel_posts_path
+        expect(response.body).to include hibana.title
+      end
+    end
+
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get novel_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get novel_posts_path
+        expect(response.body).to include hibana.title
+      end
+    end
+  end
+
+  describe "GET #business" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get business_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get business_posts_path
+        expect(response.body).to include jibun_nonakani_doku.title
+      end
+    end
+
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get business_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get business_posts_path
+        expect(response.body).to include jibun_nonakani_doku.title
+      end
+    end
+  end
+  
+  describe "GET #education" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get education_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get education_posts_path
+        expect(response.body).to include education.title
+      end
+    end
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get education_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get education_posts_path
+        expect(response.body).to include education.title
+      end
+    end
+  end
+  
+  describe "GET #art_ent" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get art_ent_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get art_ent_posts_path
+        expect(response.body).to include art_ent.title
+      end
+    end
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get art_ent_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get art_ent_posts_path
+        expect(response.body).to include art_ent.title
+      end
+    end
+  end
+  
+  describe "GET #celebrity" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get celebrity_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get celebrity_posts_path
+        expect(response.body).to include celebrity.title
+      end
+    end
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get celebrity_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get celebrity_posts_path
+        expect(response.body).to include celebrity.title
+      end
+    end
+  end
+  
+  describe "GET #hobby" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get hobby_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get hobby_posts_path
+        expect(response.body).to include hobby.title
+      end
+    end
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get hobby_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get hobby_posts_path
+        expect(response.body).to include hobby.title
+      end
+    end
+  end
+  
+  describe "GET #geography" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get geography_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get geography_posts_path
+        expect(response.body).to include geography.title
+      end
+    end
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get geography_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get geography_posts_path
+        expect(response.body).to include geography.title
+      end
+    end
+  end
+  
+  describe "GET #child" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get child_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get child_posts_path
+        expect(response.body).to include child.title
+      end
+    end
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get child_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get child_posts_path
+        expect(response.body).to include child.title
+      end
+    end
+  end
+  
+  describe "GET #others" do
+    context "ログインしていないユーザの場合" do
+      it "リクエストが成功すること" do
+        get others_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get others_posts_path
+        expect(response.body).to include others.title
+      end
+    end
+    context "ログインしているユーザの場合" do
+      before do
+        sign_in takashi
+      end
+      it "リクエストが成功すること" do
+        get others_posts_path
+        expect(response).to have_http_status 200
+      end
+      it "投稿のタイトルが表示されていること" do
+        get others_posts_path
+        expect(response.body).to include others.title
+      end
+    end
+  end
+  
 end

@@ -39,4 +39,9 @@ class User < ApplicationRecord
   def unfollow(other_user)
     following_relationships.find_by(following_id: other_user.id).destroy
   end
+
+  def feed
+    Post.where("user_id IN (?)", following_ids)
+  end
+
 end

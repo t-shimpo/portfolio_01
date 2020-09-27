@@ -8,6 +8,7 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
     takashi.confirm
     michael.confirm
   end
+  let!(:jibun_nonakani_doku) { create(:jibun_nonakani_doku, user_id: takashi.id) }
 
   describe 'ユーザは他のユーザをフォローする' do
     before do
