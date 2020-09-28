@@ -45,6 +45,8 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         click_link 'いいね'
         expect(page).to have_content 'いいねした投稿 1 件'
         expect(page).to have_content '火花'
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: 'いいね'
       end
       it '投稿詳細でいいねした投稿がマイページのいいねした投稿ページに表示される' do
         visit post_path hibana
@@ -54,6 +56,8 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         click_link 'いいね'
         expect(page).to have_content 'いいねした投稿 1 件'
         expect(page).to have_content '火花'
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: 'いいね'
       end
       it 'いいねをしたユーザが、いいねしたユーザページに表示される' do
         visit post_path hibana
@@ -125,6 +129,8 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         click_link 'いいね'
         expect(page).to have_content 'いいねした投稿 0 件'
         expect(page).to_not have_content '火花'
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: 'いいね'
       end
       it '投稿詳細でいいねを取り消した投稿がマイページのいいねした投稿ページに表示されない' do
         visit post_path hibana
@@ -134,6 +140,8 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         click_link 'いいね'
         expect(page).to have_content 'いいねした投稿 0 件'
         expect(page).to_not have_content '火花'
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: 'いいね'
       end
       it 'いいねを取り消したユーザが、いいねしたユーザページに表示されない' do
         visit post_path hibana

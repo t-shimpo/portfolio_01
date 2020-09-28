@@ -53,6 +53,8 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_content 'コメントした投稿 1 件' 
           expect(page).to have_content '火花' 
           expect(page).to have_content 'michael' 
+          expect(page).to have_css('.current',count: 1)
+          expect(page).to have_selector '.current', text: 'コメントした投稿'
         end
         it '投稿一覧ページにコメントマークとコメント数が表示されること' do
           click_button '送信'
@@ -92,6 +94,8 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_content 'コメントした投稿 4 件' 
           expect(page).to have_content '火花' 
           expect(page).to have_content 'michael' 
+          expect(page).to have_css('.current',count: 1)
+          expect(page).to have_selector '.current', text: 'コメントした投稿'
         end
         it '投稿一覧ページにコメントマークとコメント数が表示されること' do
           visit posts_path
@@ -159,6 +163,8 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
         expect(page).to have_content 'コメントした投稿 0 件' 
         expect(page).to_not have_content '火花' 
         expect(page).to_not have_content 'michael' 
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: 'コメントした投稿'
       end
       it '削除後、投稿一覧ページにコメントマークとコメント数が表示されていないこと' do
         click_link '削除'
