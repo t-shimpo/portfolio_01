@@ -26,6 +26,10 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_content 'コメントはまだありません' 
           expect(page).to have_css "textarea#comment_comment_content"
         end
+        it '投稿一覧ページにコメントマークとコメント数が表示されていないこと' do
+          visit posts_path
+          expect(page).to have_css('.fa-comment-alt',count: 0)
+        end
       end
       context 'コメント送信後' do
         before { fill_in 'comment_comment_content', with: '参考になります。' }
@@ -49,6 +53,13 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_content 'コメントした投稿 1 件' 
           expect(page).to have_content '火花' 
           expect(page).to have_content 'michael' 
+        end
+        it '投稿一覧ページにコメントマークとコメント数が表示されること' do
+          click_button '送信'
+          wait_for_ajax
+          visit posts_path
+          expect(page).to have_css('.fa-comment-alt',count: 1)
+          expect(page).to have_selector '.fa-comment-alt', text: '1'
         end
       end
       context 'コメント4件送信後' do
@@ -81,6 +92,11 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_content 'コメントした投稿 4 件' 
           expect(page).to have_content '火花' 
           expect(page).to have_content 'michael' 
+        end
+        it '投稿一覧ページにコメントマークとコメント数が表示されること' do
+          visit posts_path
+          expect(page).to have_css('.fa-comment-alt',count: 1)
+          expect(page).to have_selector '.fa-comment-alt', text: '4'
         end
       end
     end
@@ -143,6 +159,13 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
         expect(page).to have_content 'コメントした投稿 0 件' 
         expect(page).to_not have_content '火花' 
         expect(page).to_not have_content 'michael' 
+      end
+      it '削除後、投稿一覧ページにコメントマークとコメント数が表示されていないこと' do
+        click_link '削除'
+        page.driver.browser.switch_to.alert.accept
+        wait_for_ajax
+        visit posts_path
+        expect(page).to have_css('.fa-comment-alt',count: 0)
       end
     end
 

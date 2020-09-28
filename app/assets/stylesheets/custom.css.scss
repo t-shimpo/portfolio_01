@@ -479,6 +479,20 @@ header {
           text-align: center;
         }
       }
+      .comment-icon {
+        float: left;
+        padding-left: 1em;
+        color: rgb(110, 110, 110);
+        span {
+          font-size: 18px;
+          font-weight: 600;
+        }
+        .far {
+        }
+        .comment-size {
+          font-size: 1.2em;
+        }
+      }
       .bottom-field {
         // border: 1px solid rgb(161, 50, 50);
         margin-top: .2em;
@@ -499,7 +513,6 @@ header {
           }
         }
         .user_small_img {
-          
           // height: 50px;
           img {
             width: 55px;
@@ -534,7 +547,7 @@ header {
   }
   &.normal {
     .fa-heart {
-      vertical-align: baseline;
+      // vertical-align: baseline;
     }
   }
 }
@@ -903,7 +916,6 @@ header {
       text-align: center;
       // box-shadow: 0 0 10px rgba(0,0,0,0.15);
       a {
-        color: #fff;
         display: block;
         border-radius: 100vh;
         position: relative;
@@ -917,93 +929,123 @@ header {
           width: 50%;
         }
         &.all {
-          background: #adadad;
+          color: #5e5e5e;
+          border: solid 2px #5e5e5e;
           &:hover {
+            color: #fff;
             background: #5e5e5e;
           }
           &.current {
+            color: #fff;
             background: #5e5e5e;
           }
         }
         &.novel {
-          background: #fcc594;
+          color: #f59948;
+          border: solid 2px #f59948;
           &:hover {
-            background: #F4A460;
+            color: #fff;
+            background: #f59948;
           }
           &.current {
-            background: #F4A460;
+            color: #fff;
+            background: #f59948;
           }
         }
         &.business {
-          background: #b29fd8;
+          color: #9370DB;
+          border: solid 2px #9370DB;
           &:hover {
+            color: #fff;
             background: #9370DB;
           }
           &.current {
+            color: #fff;
             background: #9370DB;
           }
         }
         &.education {
-          background: #faeda4;
+          color: #05d1df;
+          border: solid 2px #05d1df;
           &:hover {
-            background: #FFD700;
+            color: #fff;
+            background: #05d1df;
           }
           &.current {
-            background: #FFD700;
+            color: #fff;
+            background: #05d1df;
           }
         }
         &.art_ent {
-          background: #e9b0b0;
+          color: #F08080;
+          border: solid 2px #F08080;
           &:hover {
+            color: #fff;
             background: #F08080;
           }
           &.current {
+            color: #fff;
             background: #F08080;
           }
         }
         &.celebrity {
-          background: #a6c9b5;
+          color: #3CB371;
+          border: solid 2px #3CB371;
           &:hover {
+            color: #fff;
             background: #3CB371;
           }
           &.current {
+            color: #fff;
             background: #3CB371;
           }
         }
         &.hobby {
-          background: #98bac5;
+          color: #008BBB;
+          border: solid 2px #008BBB;
           &:hover {
+            color: #fff;
             background: #008BBB;
           }
           &.current {
+            color: #fff;
             background: #008BBB;
           }
         }
         &.geography {
-          background: #a8d8c8;
+          color: #66CDAA;
+          border: solid 2px #66CDAA;
           &:hover {
+            color: #fff;
             background: #66CDAA;
           }
           &.current {
+            color: #fff;
             background: #66CDAA;
           }
         }
         &.child {
-          background: #dac590;
+          color: #DAA520;
+          border: solid 2px #DAA520;
           &:hover {
+            color: #fff;
             background: #DAA520;
           }
           &.current {
+            color: #fff;
             background: #DAA520;
           }
         }
         &.others {
-          background: #adadad;
+          color: #5e5e5e;
+          border: solid 2px #5e5e5e;
           &:hover {
-            background: #6e6e6e;
+            color: #fff;
+            background: #5e5e5e;
           }
           &.current {
-            background: #6e6e6e;
+            color: #fff;
+            background: #5e5e5e;
           }
         }
       }
