@@ -1,51 +1,51 @@
 <ul class="row posts-genre-button genre-button">
   <% if @genre == 'all' %>
-    <li><%= link_to "全て表示", posts_path, class: "btn btn-sm all current" %></li>
+    <li><%= link_to "全て表示", posts_path, class: "btn btn-sm all current current-genre" %></li>
   <% else %>
     <li><%= link_to "全て表示", posts_path, class: "btn btn-sm all" %></li>
   <% end %>
   <% if @genre == 'novel' %>
-    <li><%= link_to "小説", novel_posts_path, class: "btn btn-sm novel current" %></li>
+    <li><%= link_to "小説", novel_posts_path, class: "btn btn-sm novel current current-genre" %></li>
   <% else %>
     <li><%= link_to "小説", novel_posts_path, class: "btn btn-sm novel" %></li>
   <% end %>
   <% if @genre == 'business' %>
-    <li><%= link_to "ビジネス", business_posts_path, class: "btn btn-sm business current" %></li>
+    <li><%= link_to "ビジネス", business_posts_path, class: "btn btn-sm business current current-genre" %></li>
   <% else %>
     <li><%= link_to "ビジネス", business_posts_path, class: "btn btn-sm business" %></li>
   <% end %>
   <% if @genre == 'education' %>
-    <li><%= link_to "教育", education_posts_path, class: "btn btn-sm education current" %></li>
+    <li><%= link_to "教育", education_posts_path, class: "btn btn-sm education current current-genre" %></li>
   <% else %>
     <li><%= link_to "教育", education_posts_path, class: "btn btn-sm education" %></li>
   <% end %>
   <% if @genre == 'art_ent' %>
-    <li><%= link_to "エンタメ", art_ent_posts_path, class: "btn btn-sm art_ent current" %></li>
+    <li><%= link_to "エンタメ", art_ent_posts_path, class: "btn btn-sm art_ent current current-genre" %></li>
   <% else %>
     <li><%= link_to "エンタメ", art_ent_posts_path, class: "btn btn-sm art_ent" %></li>
   <% end %>
   <% if @genre == 'celebrity' %>
-    <li><%= link_to "タレント本", celebrity_posts_path, class: "btn btn-sm celebrity current" %></li>
+    <li><%= link_to "タレント本", celebrity_posts_path, class: "btn btn-sm celebrity current current-genre" %></li>
   <% else %>
     <li><%= link_to "タレント本", celebrity_posts_path, class: "btn btn-sm celebrity" %></li>
   <% end %>
   <% if @genre == 'hobby' %>
-    <li><%= link_to "趣味", hobby_posts_path, class: "btn btn-sm hobby current" %></li>
+    <li><%= link_to "趣味", hobby_posts_path, class: "btn btn-sm hobby current current-genre" %></li>
   <% else %>
     <li><%= link_to "趣味", hobby_posts_path, class: "btn btn-sm hobby" %></li>
   <% end %>
   <% if @genre == 'geography' %>
-    <li><%= link_to "旅行・地理", geography_posts_path, class: "btn btn-sm geography current" %></li>
+    <li><%= link_to "旅行・地理", geography_posts_path, class: "btn btn-sm geography current current-genre" %></li>
   <% else %>
     <li><%= link_to "旅行・地理", geography_posts_path, class: "btn btn-sm geography" %></li>
   <% end %>
   <% if @genre == 'child' %>
-    <li><%= link_to "子ども", child_posts_path, class: "btn btn-sm child current" %></li>
+    <li><%= link_to "子ども", child_posts_path, class: "btn btn-sm child current current-genre" %></li>
   <% else %>
     <li><%= link_to "子ども", child_posts_path, class: "btn btn-sm child" %></li>
   <% end %>
   <% if @genre == 'others' %>
-    <li><%= link_to "その他", others_posts_path, class: "btn btn-sm others current" %></li>
+    <li><%= link_to "その他", others_posts_path, class: "btn btn-sm others current current-genre" %></li>
   <% else %>
     <li><%= link_to "その他", others_posts_path, class: "btn btn-sm others" %></li>
   <% end %>

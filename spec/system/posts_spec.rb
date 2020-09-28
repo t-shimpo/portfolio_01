@@ -50,12 +50,16 @@ RSpec.feature 'Posts', type: :system do
         click_button '投稿する'
         visit user_path kenji
         expect(page).to have_content '流浪の月'
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: 'トップ'
       end
       it "投稿が、マイページの投稿一覧に表示されること" do
         click_button '投稿する'
         visit  posts_user_path kenji
         expect(page).to have_content '投稿一覧 1 件'
         expect(page).to have_content '流浪の月'
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: '投稿一覧'
       end
       it "投稿した情報が、投稿の詳細ページに表示されること" do
         click_button '投稿する'
@@ -189,12 +193,16 @@ RSpec.feature 'Posts', type: :system do
         click_button '更新する'
         visit user_path kenji
         expect(page).to have_content '逆ソクラテス'
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: 'トップ'
       end
       it "更新した投稿が、マイページの投稿一覧に表示されること" do
         click_button '更新する'
         visit  posts_user_path kenji
         expect(page).to have_content '投稿一覧 1 件'
         expect(page).to have_content '逆ソクラテス'
+        expect(page).to have_css('.current',count: 1)
+        expect(page).to have_selector '.current', text: '投稿一覧'
       end
       it "更新した情報が、投稿の詳細ページに表示されること" do
         click_button '更新する'
@@ -347,6 +355,8 @@ RSpec.feature 'Posts', type: :system do
       wait_for_ajax
       visit user_path kenji
       expect(page).to_not have_content '逆ソクラテス'
+      expect(page).to have_css('.current',count: 1)
+      expect(page).to have_selector '.current', text: 'トップ'
     end
     it "削除した投稿が、マイページの投稿一覧に表示されないこと" do
       click_link '投稿を削除する'
@@ -355,6 +365,8 @@ RSpec.feature 'Posts', type: :system do
       visit  posts_user_path kenji
       expect(page).to have_content '投稿一覧 0 件'
       expect(page).to_not have_content '逆ソクラテス'
+      expect(page).to have_css('.current',count: 1)
+      expect(page).to have_selector '.current', text: '投稿一覧'
     end
   end
 
