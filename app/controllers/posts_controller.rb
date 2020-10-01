@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :set_layout, only: [:index, :novel, :business, :education, :art_ent, :celebrity, :hobby, :geography, :child, :others]
 
   def index
-    @posts = Post.all.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def create
@@ -50,39 +50,39 @@ class PostsController < ApplicationController
   end
 
   def novel
-    @posts = Post.all.genre_novel.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_novel.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def business
-    @posts = Post.all.genre_business.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_business.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def education
-    @posts = Post.all.genre_education.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_education.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def art_ent
-    @posts = Post.all.genre_art_ent.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_art_ent.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def celebrity
-    @posts = Post.all.genre_celebrity.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_celebrity.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def hobby
-    @posts = Post.all.genre_hobby.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_hobby.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def geography
-    @posts = Post.all.genre_geography.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_geography.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def child
-    @posts = Post.all.genre_child.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_child.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   def others
-    @posts = Post.all.genre_others.page(params[:page]).per(16).order('updated_at DESC')
+    @posts = Post.search(params[:search]).genre_others.page(params[:page]).per(16).order('updated_at DESC')
   end
 
   private

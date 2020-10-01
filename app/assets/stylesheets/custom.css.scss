@@ -1053,6 +1053,48 @@ header {
 }
 
 
+/****************/
+/*    Search    */
+/****************/
+
+.user_search, .post_search {
+  margin: 1.5em auto 0;
+}
+.search-form {
+  position: relative;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: block;
+  padding: 2px 18px 4px;
+  color: #474747;
+  font-size: 1em;
+  border-radius: 20px;
+  height: 2.3em;
+  width: 285px;
+  // border: 1px solid #444d53;
+  background: #fff;
+  overflow: hidden;
+  input[type="text"] {
+    border: none;
+    height: 2.0em;
+    width: 180px;
+    &:focus {
+      outline:0;
+    }
+  }
+  button {
+    border: none;
+    background: #444d53;
+    color: #fff;
+    position: absolute;
+    width: 4.8em;
+    height: 3.0em;
+    right:0px;
+    top: -6px;
+    outline : none;
+  }
+}
+
 
 
 /************/

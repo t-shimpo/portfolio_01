@@ -1,0 +1,73 @@
+<div class="post_search">
+  <% if @genre == 'all' %>
+    <%= form_with url: posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'novel' %>
+    <%= form_with url: novel_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'business' %>
+    <%= form_with url: business_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'education' %>
+    <%= form_with url: education_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'art_ent' %>
+    <%= form_with url: art_ent_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'celebrity' %>
+    <%= form_with url: celebrity_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'hobby' %>
+    <%= form_with url: hobby_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'geography' %>
+    <%= form_with url: geography_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'child' %>
+    <%= form_with url: child_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% elsif @genre == 'others' %>
+    <%= form_with url: others_posts_path, method: :get, class: 'search-form', local: true do |f| %>
+      <%= f.text_field :search, placeholder: '投稿検索' %>
+      <%= f.button :type => "submit" do %>
+        <i class='fa fa-search'>検索</i>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

@@ -44,4 +44,12 @@ class User < ApplicationRecord
     Post.where("user_id IN (?)", following_ids)
   end
 
+  def self.search(search)
+    if search
+      where(['nickname LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
+
 end
