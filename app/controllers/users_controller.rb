@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, except: :index
 
   def index
-    @users = User.all.page(params[:page]).per(10)
+    @users = User.search(params[:search]).page(params[:page]).per(10)
   end
 
   def show

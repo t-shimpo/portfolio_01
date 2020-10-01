@@ -1,8 +1,10 @@
 <%= render partial: 'shared/posts_tab' %>
 <h1><%= @title %></h1>
 <% if @layout == 'following_posts' %>
+  <%= render partial: 'following_posts/search_form' %>
   <%= render partial: 'following_posts/genre_button' %>
 <% else %>
+  <%= render partial: 'posts/search_form' %>
   <%= render partial: 'posts/genre_button' %>
 <% end %>
 <ul class = "posts row" >

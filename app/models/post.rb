@@ -61,5 +61,14 @@ class Post < ApplicationRecord
     to100: 7,
     from100: 8
   }, _prefix: true
+
+  def self.search(search)
+    if search
+      where(['title LIKE ? OR author LIKE ? OR publisher LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%"])
+      # where(['title LIKE ?', "%#{search}%"])
+    else
+      all
+    end
+  end
   
 end
