@@ -11,6 +11,11 @@
           <li class="nav-item"><%= link_to "ユーザ一覧", users_path, class:"nav-link" %></li>
           <% if user_signed_in? %>
             <li class="nav-item"><%= link_to "マイページ", user_path(id: current_user.id), class:"nav-link"   %></li>
+            <% if unchecked_notifications.any? %>
+              <li  class="nav-item nav-notification"><i class="fa fa-circle"></i><%= link_to "通知", notifications_path, class:"nav-link" %></li>
+            <% else %>
+              <li class="nav-item"><%= link_to "通知", notifications_path, class:"nav-link" %></li>
+            <% end %>
             <li class="nav-item"><%= link_to "ログアウト",  logout_path, class:"nav-link" %></li>
           <%else%>
             <li class="nav-item"><%= link_to "新規登録", signup_path, class:"nav-link" %></li>
