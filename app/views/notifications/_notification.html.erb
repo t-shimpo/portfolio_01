@@ -1,0 +1,33 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<div  class="notification">
+  <div>
+    <%= link_to user_path(visitor) do %>
+      <% if visitor.image.present? %>
+        <p class="user_small_img"><%= image_tag visitor.image_url(:thumb300) %></p>
+      <% else %>
+        <p class="user_small_img default-user-image"><%= image_tag 'default.png' %></p>
+      <% end %>
+    <% end %>
+    <%= link_to visitor.nickname, visitor %>
+    さんが
+    <% case notification.action %>
+    <% when 'follow' then %>
+      あなたをフォローしました
+    <% when 'like' then %>
+      <%= link_to 'あなたの投稿', notification.post %>にいいねしました
+    <% when 'comment' then %>
+      <% if notification.post.user_id == visited.id %>
+        <%= link_to 'あなたの投稿', notification.post %>にコメントしました
+      <% else %>
+        <%= link_to notification.post  do %>
+          <%= notification.post.user.nickname %>さんの投稿
+        <% end %>
+        にコメントしました
+      <% end %>
+        <p class="comment-text"><%= notification.comment.comment_content %></p>
+    <% end %>
+  </div>
+  <p class="action_ago"><%= time_ago_in_words(notification.created_at) %>前</p>
+</div>
+<hr>

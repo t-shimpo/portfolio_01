@@ -1,0 +1,19 @@
+<% @title = "通知" %>
+
+<div class="notifications-container">
+<h1>通知一覧</h1>
+<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
+<% if notifications.exists? %>
+  <%= link_to notifications_path, method: :delete, data: { confirm: "通知を削除します。本当によろしいですか?" } do %>
+    <i class="fas fa-trash">全削除</i>
+    <hr>
+  <% end %>
+  <%= render notifications %>
+  <%= paginate notifications %>
+<% else %>
+  <hr>
+  <p>通知はありません</p>
+<% end %>
+
+
+</div>

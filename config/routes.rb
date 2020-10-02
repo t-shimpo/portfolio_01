@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-    resources :comments, only: [:create, :edit, :update, :destroy]
+    resources :comments, only: [:create, :destroy]
     resource :likes, only: [:create, :destroy]
     member do
       get :liked_users
@@ -37,5 +37,8 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
+
+  resources :notifications, only: :index
+  delete 'notifications' => 'notifications#destroy_all'
 
 end
