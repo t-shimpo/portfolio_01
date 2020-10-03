@@ -25,6 +25,8 @@
     </div>
   <% end %>
 
+  <div class="guest-login"><%= link_to "ゲストログイン", users_guest_login_path, method: :post, class:"btn btn-info" %></div>
+
   <p class="center"><%= link_to "パスワードを忘れた場合", new_password_path(resource_name) %></p>
   <hr class="hr_01" />
   <p class="center">はじめての方はこちらから</p>

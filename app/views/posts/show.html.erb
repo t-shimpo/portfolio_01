@@ -8,10 +8,12 @@
   <% else %>
     <div class="user-field col-12">
         <p><%= link_to @post.user.nickname, @post.user %></p>
-        <% if @post.user.image.present? %>
-          <p class="user_small_img"><%= image_tag @post.user.image_url(:thumb200) %></p>
-        <% else %>
-          <p class="user_small_img default-user-image"><%= image_tag 'default.png' %></p>
+        <%= link_to user_path(@post.user) do %>
+          <% if @post.user.image.present? %>
+            <p class="user_small_img"><%= image_tag @post.user.image_url(:thumb200) %></p>
+          <% else %>
+            <p class="user_small_img default-user-image"><%= image_tag 'default.png' %></p>
+          <% end %>
         <% end %>
       </div>
   <% end %>
