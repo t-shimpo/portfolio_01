@@ -1,10 +1,20 @@
 @import "bootstrap";
-
 @import "reset";
 
-.like-red { color: #FF6666;}
+/**************/
+/*   Colors   */
+/**************/
 
-$button: rgba(156, 206, 94, 0.78);
+$text-gray: #474747;
+$my-light-gray: #8a969c;
+$my-off-white: #F6F2E9;
+$my-charcoal: #dbd7cb;
+$my-orange: #f8b967;
+$my-dark-green: #339999;
+
+
+
+.like-red { color: #FF6666;}
 
 /*************/
 /* universal */
@@ -42,7 +52,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
-  color: #474747;
+  color: $text-gray;
 }
 
 h1 {
@@ -53,7 +63,7 @@ h1 {
     font-size: 26px;
     vertical-align: 20%;
     padding-right: 2px;
-    color: #008BBB;
+    color: $my-dark-green;
   }
 }
 
@@ -80,8 +90,6 @@ header {
   width: 100%;
     nav {
       margin: 0 auto;
-      // max-width: 960px;
-
       .logo {
         font-size: 1.8em;
         letter-spacing: 2px;
@@ -95,10 +103,36 @@ header {
             }
           }
         }
-      
     }
   }
 }
+
+@media screen and (max-width: 1199px) {
+  header {
+      nav {
+        .logo {
+          font-size: 1.8em;
+          letter-spacing: 2px;
+        }
+        div {
+          ul {
+            li {
+              padding-right: 1.6em;
+              i {
+                padding-right: 2px;
+              }
+              .guest-login {
+                display: inline-block;
+                color: #fff;
+              }
+            }
+          }
+      }
+    }
+  }
+}
+
+
 
 /**************/
 /*    tabs    */
@@ -109,9 +143,10 @@ header {
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   .tabs {
     margin: 0 auto 2em;
+    padding: 2px 0;
     max-width: 830px;
     justify-content: center;
     list-style: none;
@@ -128,7 +163,7 @@ header {
       text-align: center;
       // box-shadow: 0 0 10px rgba(0,0,0,0.15);
       a {
-        color: rgb(80, 80, 80);
+        color: $text-gray;
         display: block;
         padding: .2em .7em;
         text-decoration: none;
@@ -137,12 +172,12 @@ header {
         border-radius: 2px;
         &:hover {
           color: #fff;
-          background: #2499cf;
+          background: $my-dark-green;
           // border: 2px solid  #2499cf;
         }
         &.current {
           color: #fff;
-          background: #2499cf;
+          background: $my-dark-green;
           // border: 2px solid  #2499cf;
         }
       }
@@ -198,6 +233,14 @@ header {
     margin: 2em auto 0;
     box-shadow: 0 0 0.5em #c0c0c0;
     border-radius: 2px;
+    .guest-login {
+      text-align: center;
+      margin-top: 1.5em;
+      margin-bottom: 1em;
+      a {
+        width: 50%;
+      }
+    }
     h1 {
       font-size:1.8em;
       color:darken(#e5e5e5, 56%);
@@ -507,7 +550,7 @@ header {
         pointer-events : none;
         transition : all 0.3s ease-in-out;
         &:hover {
-          background-color: #fffcd3;
+          background-color: $my-charcoal;
 
         }
         .title {
@@ -551,8 +594,8 @@ header {
         }
       }
       .middle-field {
-        margin-top: 7px;
-        margin-bottom: 1px;
+        margin-top: 11px;
+        margin-bottom: 5px;
         .comment-icon {
           display: inline-block;
           padding-right: 12px;
@@ -708,13 +751,14 @@ header {
 
 
 .user-show-title {
-  margin: 1em auto;
+  margin: 1.5em auto 1em;
   max-width: 830px;
   padding-left: .8em;
+  font-size: 26px;
   span {
     font-size: 20px;
     vertical-align: 20%;
-    color: #008BBB;
+    color: $my-dark-green;
   }
 }
 
@@ -949,7 +993,7 @@ header {
 /****************/
 
 .genre-button{
-  margin: 1.5em auto 0;
+  margin: 1.8em auto 1em;
   padding: 0 1em;
   // max-width: 830px;
     justify-content: space-between;
@@ -960,16 +1004,17 @@ header {
       margin-bottom: 1em;
       float: left;
       text-align: center;
+      // background-color: #fff;
       // box-shadow: 0 0 10px rgba(0,0,0,0.15);
       a {
         display: block;
-        border-radius: 100vh;
+        // border-radius: 100vh;
         position: relative;
         &.current::after {
           position: absolute;
           content: " ";
           display: block;
-          border-bottom: solid 2px #be32be;
+          border-bottom: solid 2px $my-orange;
           bottom: -7px;
           left: 25%;
           width: 50%;
@@ -1107,12 +1152,13 @@ header {
   margin: 1.5em auto 0;
 }
 .search-form {
+  box-shadow: 0 0 8px rgba(0,0,0,0.10);
   position: relative;
   box-sizing: border-box;
   margin: 0 auto;
   display: block;
   padding: 0px 18px 4px;
-  color: #474747;
+  // color: #474747;
   font-size: 1em;
   border-radius: 20px;
   height: 2.1em;
@@ -1267,7 +1313,7 @@ header {
   background: #fff;
   padding: 2em 3em;
   max-width: 600px;
-  margin: 0 auto;
+  margin: 2em auto 0;
   box-shadow: 0 0 0.5em #c0c0c0;
   border-radius: 2px;
   color: #474747;
@@ -1330,18 +1376,18 @@ header {
   }
   >.page-item>.page-link {
     border: none;
-    //border: 3px solid #f2f2f2;
     color: rgb(112, 112, 112);
   }
   >.page-item>.page-link:hover {
     color: rgb(15, 15, 15);
+    background-color: $my-light-gray;
   }
   >.active>.page-link {
-    background-color: #93c9ff;
+    background-color: $my-dark-green;
     color: white;
   }
   >.active>.page-link:hover {
-    background-color: #6ab3fc;
+    background-color: $my-dark-green;
     color: white;
   }
 }
@@ -1357,22 +1403,6 @@ header {
   }
 }
 
-// /*ページネーション自体のデザイン*/
-// .pagination>li>a {          
-//   border: none;     /*枠線をなくす*/
-//   color: #696969;   /*文字の色を変える*/
-// }
-
-// /* 表示しているページ番号のデザイン */
-// .pagination>.active>a {     
-//   background: #93c9ff;     /*背景の色を変える*/
-//   border-radius: 15px;     /*角を丸くする*/
-// }
-
-// /*ホバー時のデザイン*/
-// .pagination>li>a:hover {        
-//   border-radius: 15px;    /*角を丸くする*/
-// }
 
 
 /************/
