@@ -40,6 +40,8 @@ ja:
         hours: "読書時間"
         purchase_date: "購入日"
         post_content: "感想"
+      comment:
+        comment_content: 'コメント文'
     models:
       user: "ユーザ"
       post: "投稿"

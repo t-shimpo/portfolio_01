@@ -107,17 +107,25 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
 
     #  -----  無効な値  -----  #
     context '無効な値を入力する場合' do
-      it '値が空の場合、コメントが投稿されないこと' do
+      it '値が空の場合、コメントが投稿されず、エラーメッセージが表示されること' do
         fill_in 'comment_comment_content', with: ''
-        click_button '送信'
+        expect {
+          click_button '送信'
+          wait_for_ajax
+        }.to change{ hibana.comments.count }.by(0)
         expect(page).to have_content 'コメントはまだありません' 
+        expect(page).to have_content 'コメント文を入力してください' 
         expect(page).to_not have_content 'たかし' 
       end
-      it '301文字以上の場合、コメントが投稿されないこと' do
-        char301 = 'a' * 301
-        fill_in 'comment_comment_content', with: char301
-        click_button '送信'
+      it '251文字以上の場合、コメントが投稿されず、エラーメッセージが表示されること' do
+        char251 = 'a' * 251
+        fill_in 'comment_comment_content', with: char251
+        expect {
+          click_button '送信'
+          wait_for_ajax
+        }.to change{ hibana.comments.count }.by(0)
         expect(page).to have_content 'コメントはまだありません' 
+        expect(page).to have_content 'コメント文は250文字以内で入力してください' 
         expect(page).to_not have_content 'たかし' 
       end
     end

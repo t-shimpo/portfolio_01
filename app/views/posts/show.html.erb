@@ -52,6 +52,7 @@
   <hr>
   <div class="comment-form col-12">
     <h2>コメントを書く</h2>
+    <div id="error_explanation"></div>
     <%= render partial: 'comments/form', locals: { comment: @comment, post: @post } %>
   </div>
 </div>

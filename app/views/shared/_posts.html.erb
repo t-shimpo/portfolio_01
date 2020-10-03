@@ -8,15 +8,17 @@
     <p class="title"><%= post.title %></p>
     <p><%= link_to post.title, post %></p>
   </div>
-  <% if post.comments.present? %>
-    <div class="comment-icon">
-    <i class="far fa-comment-alt comment-size">
-      <span><%= post.comments.count %></span>
-    </i>
+  <div class="middle-field">
+    <% if post.comments.present? %>
+      <div class="comment-icon">
+      <i class="far fa-comment-alt comment-size">
+        <span><%= post.comments.count %></span>
+      </i>
+      </div>
+    <% end %>
+    <div class="like" id="index_like_<%= post.id %>">
+      <%= render 'likes/like', post: post %>
     </div>
-  <% end %>
-  <div class="like" id="index_like_<%= post.id %>">
-    <%= render 'likes/like', post: post %>
   </div>
   <div class="bottom-field">
     <p><%= link_to post.user.nickname, post.user %></p>
