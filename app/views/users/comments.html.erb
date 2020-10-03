@@ -4,5 +4,5 @@
 <%= render partial: 'user_tab' %>
 <%= render partial: 'user_info' %>
 
-<h4 class="user-show-title">コメントした投稿 <%= @user.commented_posts.count %> 件</h4>
+<h4 class="user-show-title"><span>|| </span>コメントした投稿 <%= @user.commented_posts.count %> 件</h4>
 <%= render partial: 'user_show_posts' %>

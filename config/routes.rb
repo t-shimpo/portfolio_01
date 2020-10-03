@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'top_pages#index'
+  root 'posts#index'
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
     :sessions => 'users/sessions',

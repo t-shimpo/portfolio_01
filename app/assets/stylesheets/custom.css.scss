@@ -49,6 +49,12 @@ h1 {
   font-size: 2em;
   letter-spacing: -2px;
   text-align: center;
+  span {
+    font-size: 26px;
+    vertical-align: 20%;
+    padding-right: 2px;
+    color: #008BBB;
+  }
 }
 
 h2 {
@@ -78,17 +84,71 @@ header {
 
       .logo {
         font-size: 1.8em;
-        letter-spacing: 3px;
+        letter-spacing: 2px;
       }
       div {
         ul {
           li {
             padding-right: 2em;
+            i {
+              padding-right: 2px;
+            }
           }
         }
       
     }
   }
+}
+
+/**************/
+/*    tabs    */
+/**************/
+
+.fluid-box {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  .tabs {
+    margin: 0 auto 2em;
+    max-width: 830px;
+    justify-content: center;
+    list-style: none;
+    span {
+      font-size: 18px;
+      margin: .7em 0;
+      padding:  0;
+      font-weight: 400;
+    }
+    li {
+      font-size: 16px;
+      margin: .7em 0;
+      float: left;
+      text-align: center;
+      // box-shadow: 0 0 10px rgba(0,0,0,0.15);
+      a {
+        color: rgb(80, 80, 80);
+        display: block;
+        padding: .2em .7em;
+        text-decoration: none;
+        margin: 0 .6em;
+        // border: 2px solid rgb(124, 124, 124);
+        border-radius: 2px;
+        &:hover {
+          color: #fff;
+          background: #2499cf;
+          // border: 2px solid  #2499cf;
+        }
+        &.current {
+          color: #fff;
+          background: #2499cf;
+          // border: 2px solid  #2499cf;
+        }
+      }
+    }
+  }
+
 }
 
 /***********/
@@ -120,7 +180,12 @@ header {
 /*************/
 
 #container {
-  padding: 2em 0;
+  padding: 0 0 2em;
+}
+
+#container > h1 {
+  margin-top: 1em;
+}
 
 /**********/
 /*  form  */
@@ -130,7 +195,7 @@ header {
     background: #fff;
     padding: 2em 3em;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 2em auto 0;
     box-shadow: 0 0 0.5em #c0c0c0;
     border-radius: 2px;
     h1 {
@@ -320,7 +385,7 @@ header {
       }
     }
   }
-}
+
 
 /***************/
 /* Users index */
@@ -554,11 +619,6 @@ header {
       font-weight: 600;
     }
   }
-  &.normal {
-    .fa-heart {
-      // vertical-align: baseline;
-    }
-  }
 }
 .like-size {
   font-size: 1.3em;
@@ -573,13 +633,13 @@ header {
   max-width: 830px;
   background-color: white;
   box-shadow: 0 0 10px rgba(0,0,0,0.15);
-  padding: 1em 1.8em 2em;
+  padding: .8em 1.8em 1.8em;
   font-size: 18px;
   .user-image, .default-user-image {
     margin-top: 1em;
     img {
-      width: 180px;
-      height: 180px;
+      width: 175px;
+      height: 175px;
     }
   }
   a {
@@ -638,43 +698,15 @@ header {
 }
 
 
-/**************/
-/*    tabs    */
-/**************/
-
-.tabs {
-  margin: 0 auto .4em;
-  max-width: 830px;
-    justify-content: space-between;
-    list-style: none;
-    li {
-      font-size: 17px;
-      margin-bottom: 1em;
-      float: left;
-      text-align: center;
-      // box-shadow: 0 0 10px rgba(0,0,0,0.15);
-      a {
-        color: rgb(80, 80, 80);
-        display: block;
-        border: 2px solid rgb(124, 124, 124);
-        border-radius: 2px;
-        &:hover {
-          color: #fff;
-          background: #2499cf;
-          border: 2px solid  #2499cf;
-        }
-        &.current {
-          color: #fff;
-          background: #2499cf;
-          border: 2px solid  #2499cf;
-        }
-      }
-  }
-}
 .user-show-title {
   margin: 1em auto;
   max-width: 830px;
-  padding-left: .5em;
+  padding-left: .8em;
+  span {
+    font-size: 20px;
+    vertical-align: 20%;
+    color: #008BBB;
+  }
 }
 
 .user-show-posts {
@@ -1327,7 +1359,7 @@ footer {
     display: inline-block;
     color: white;
     font-size: 1.4em;
-    letter-spacing: .1em;
+    letter-spacing: .05em;
     text-decoration: none;
     &:hover{
       color: white;

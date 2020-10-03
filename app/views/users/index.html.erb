@@ -1,6 +1,6 @@
 <% @title = "ユーザ一覧" %>
 
-<h1>ユーザ一覧</h1>
+<h1><span>|| </span>ユーザ一覧</h1>
 <div class="user_search">
   <%= form_with url: users_path, method: :get, class: 'search-form', local: true do |f| %>
     <%= f.text_field :search, placeholder: 'ユーザ検索' %>
