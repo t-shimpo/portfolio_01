@@ -22,17 +22,17 @@ RSpec.describe Comment, type: :model do
     expect(comment.errors[:comment_content]).to include("を入力してください")
   end
 
-  it "コメント文が300文字以内であれば有効であること" do
-    char300 = "a" * 300
-    comment = FactoryBot.build(:comment, comment_content: char300)
+  it "コメント文が250文字以内であれば有効であること" do
+    char250 = "a" * 250
+    comment = FactoryBot.build(:comment, comment_content: char250)
     expect(comment).to be_valid
   end
 
-  it "コメント文が301文字以上であれば無効であること" do
-    char301 = "a" * 301
-    comment = FactoryBot.build(:comment, comment_content: char301)
+  it "コメント文が251文字以上であれば無効であること" do
+    char251 = "a" * 251
+    comment = FactoryBot.build(:comment, comment_content: char251)
     comment.valid?
-    expect(comment.errors[:comment_content]).to include("は300文字以内で入力してください")
+    expect(comment.errors[:comment_content]).to include("は250文字以内で入力してください")
   end
   
 end

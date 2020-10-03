@@ -1,9 +1,9 @@
 <!-----コメント3件----->
 <% if comments.count == 0 %>
-  <h3>コメントはまだありません。</h3>
+  <h4>コメントはまだありません。</h4>
 <% else %>
   <h3><%= comments.count %>件コメント</h3>
-  <h4 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h4>
+  <h4 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-caret-down"></i>もっと見る....</h4>
   <% comments.first(3).each do |comment| %>
     <% unless comment.id.nil? %>
       <div class="comment-container row">

@@ -1,3 +1,13 @@
+<% if comment.errors.any? %>
+      <div id="error_explanation">
+        <ul>
+          <% comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
+
 <%= form_with(model: [post, comment], url: post_comments_path(@post) ) do |f| %>
   <div class="field">
     <%= f.text_area :comment_content %>

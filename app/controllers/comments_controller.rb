@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
       @post.create_notification_comment!(current_user, @comment.id)
       render :index
     else
-      render 'posts/show'
+      render :error
     end
   end
 
