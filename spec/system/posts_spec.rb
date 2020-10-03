@@ -111,6 +111,13 @@ RSpec.feature 'Posts', type: :system do
 
     context '無効な値を入力する場合' do
       before { visit new_post_path }
+      it "投稿されないこと" do
+        fill_in 'post_title', with: ''
+        fill_in 'post_author', with: ''
+        expect {
+          click_button '投稿する'
+        }.to change{ Post.count }.by(0)
+      end 
       it "値が空の場合、エラーメッセージが表示されること" do
         fill_in 'post_title', with: ''
         fill_in 'post_author', with: ''
