@@ -1,7 +1,7 @@
 <% @title="ユーザ情報編集" %>
 
 <div class="form-container">
-  <h1><%= @title %></h1>
+  <h1><span>|| </span><%= @title %></h1>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>

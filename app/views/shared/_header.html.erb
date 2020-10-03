@@ -1,27 +1,51 @@
 <header class="bg-dark">
   <nav class="navbar navbar-expand-lg navbar-dark container">
-      <%= link_to "webpp", root_path, class:"navbar-brand logo"  %>
+      <%= link_to "MyBooks", root_path, class:"navbar-brand logo"  %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav" >
         <ul class="nav navbar-nav ml-auto mr-auto">
-          <li class="nav-item"><%= link_to "本を探す", posts_path, class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "投稿する", new_post_path, class:"nav-link" %></li>
-          <li class="nav-item"><%= link_to "ユーザ一覧", users_path, class:"nav-link" %></li>
+          <li class="nav-item">
+            <%= link_to posts_path, class:"nav-link" do %>
+              <i class="fas fa-search-plus"></i>本を探す
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to new_post_path, class:"nav-link" do %>
+              <i class="fas fa-pen-square"></i>投稿する
+            <% end %>
+          </li>
+          <li class="nav-item">
+            <%= link_to users_path, class:"nav-link" do %>
+              <i class="fas fa-users"></i>ユーザ一覧
+            <% end %>
+          </li>
           <% if user_signed_in? %>
-            <li class="nav-item"><%= link_to "マイページ", user_path(id: current_user.id), class:"nav-link"   %></li>
+            <li class="nav-item">
+              <%= link_to user_path(id: current_user.id), class:"nav-link" do %>
+                <i class="fas fa-user-circle"></i>マイページ
+              <% end %>
+            </li>
             <% if unchecked_notifications.any? %>
-              <li  class="nav-item nav-notification"><i class="fa fa-circle"></i><%= link_to "通知", notifications_path, class:"nav-link" %></li>
+              <li  class="nav-item nav-notification">
+                <i class="fa fa-circle"></i>
+                <%= link_to notifications_path, class:"nav-link" do %>
+                  <i class="fas fa-bell"></i>通知
+                <% end %>
+              </li>
             <% else %>
-              <li class="nav-item"><%= link_to "通知", notifications_path, class:"nav-link" %></li>
+              <li class="nav-item">
+                <%= link_to notifications_path, class:"nav-link" do %>
+                  <i class="fas fa-bell"></i>通知
+                <% end %>
+              </li>
             <% end %>
             <li class="nav-item"><%= link_to "ログアウト",  logout_path, class:"nav-link" %></li>
           <%else%>
             <li class="nav-item"><%= link_to "新規登録", signup_path, class:"nav-link" %></li>
             <li class="nav-item"><%= link_to "ログイン", login_path, class:"nav-link" %></li>
             <li class="nav-item"><%= link_to "ゲストログイン", users_guest_login_path, method: :post, class:"nav-link btn btn-info" %></li>
-            
           <% end %>
         </ul>
       </div>

@@ -1,32 +1,39 @@
-<ul class="row tabs">
-  <% if @current == 'top' %>
-    <li><%= link_to "トップ", user_path(@user.id), class: "btn current" %></li>
-  <% else %>
-    <li><%= link_to "トップ", user_path(@user.id), class: "btn" %></li>
-  <% end %>
-  <% if @current == 'posts' %>
-    <li><%= link_to "投稿一覧", posts_user_path(@user.id), class: "btn current" %></li>
-  <% else %>
-    <li><%= link_to "投稿一覧", posts_user_path(@user.id), class: "btn" %></li>
-  <% end %>
-  <% if @current == 'follow' %>
-    <li><%= link_to "フォロー", following_user_path(@user.id), class: "btn current" %></li>
-  <% else %>
-    <li><%= link_to "フォロー", following_user_path(@user.id), class: "btn" %></li>
-  <% end %>
-  <% if @current == 'followers' %>
-    <li><%= link_to "フォロワー", followers_user_path(@user.id), class: "btn current" %></li>
-  <% else %>
-    <li><%= link_to "フォロワー", followers_user_path(@user.id), class: "btn" %></li>
-  <% end %>
-  <% if @current == 'likes' %>
-    <li><%= link_to "いいね", likes_user_path(@user.id), class: "btn current" %></li>
-  <% else %>
-    <li><%= link_to "いいね", likes_user_path(@user.id), class: "btn" %></li>
-  <% end %>
-  <% if @current == 'comments' %>
-    <li><%= link_to "コメントした投稿", comments_user_path(@user.id), class: "btn current" %></li>
-  <% else %>
-    <li><%= link_to "コメントした投稿", comments_user_path(@user.id), class: "btn" %></li>
-  <% end %>
-</ul>
+<div class="fluid-box">
+  <ul class="row tabs container fluid-box-inner">
+    <% if @current == 'top' %>
+      <li><%= link_to "トップ", user_path(@user.id), class: "current" %></li>
+    <% else %>
+      <li><%= link_to "トップ", user_path(@user.id), class: "" %></li>
+    <% end %>
+    <span>/</span>
+    <% if @current == 'posts' %>
+      <li><%= link_to "投稿一覧", posts_user_path(@user.id), class: "current" %></li>
+    <% else %>
+      <li><%= link_to "投稿一覧", posts_user_path(@user.id), class: "" %></li>
+    <% end %>
+    <span>/</span>
+    <% if @current == 'follow' %>
+      <li><%= link_to "フォロー", following_user_path(@user.id), class: "current" %></li>
+    <% else %>
+      <li><%= link_to "フォロー", following_user_path(@user.id), class: "" %></li>
+    <% end %>
+    <span>/</span>
+    <% if @current == 'followers' %>
+      <li><%= link_to "フォロワー", followers_user_path(@user.id), class: "current" %></li>
+    <% else %>
+      <li><%= link_to "フォロワー", followers_user_path(@user.id), class: "" %></li>
+    <% end %>
+    <span>/</span>
+    <% if @current == 'likes' %>
+      <li><%= link_to "いいね", likes_user_path(@user.id), class: "current" %></li>
+    <% else %>
+      <li><%= link_to "いいね", likes_user_path(@user.id), class: "" %></li>
+    <% end %>
+    <span>/</span>
+    <% if @current == 'comments' %>
+      <li><%= link_to "コメントした投稿", comments_user_path(@user.id), class: "current" %></li>
+    <% else %>
+      <li><%= link_to "コメントした投稿", comments_user_path(@user.id), class: "" %></li>
+    <% end %>
+  </ul>
+</div>

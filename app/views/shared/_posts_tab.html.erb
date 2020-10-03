@@ -1,14 +1,17 @@
-<ul class="row tabs">
-  <% if @current == 'index' %>
-    <li><%= link_to "投稿一覧", posts_path, class: "btn current current-tab" %></li>
-  <% else %>
-    <li><%= link_to "投稿一覧", posts_path, class: "btn" %></li>
-  <% end %>
-  <% if @current == 'following_posts' %>
-    <li><%= link_to "フォローユーザの投稿", following_posts_path, class: "btn current current-tab" %></li>
-  <% else %>
-    <li><%= link_to "フォローユーザの投稿", following_posts_path, class: "btn" %></li>
-  <% end %>
-  <li><%= link_to "いいねランキング(仮)", '#', class: "btn" %></li>
-  <li><%= link_to "検索フォーム", '#', class: "btn" %></li>
-</ul>
+<div class="fluid-box">
+  <ul class="row tabs container fluid-box-inner">
+    <% if @current == 'index' %>
+      <li><%= link_to "投稿一覧", posts_path, class: "btn current current-tab" %></li>
+    <% else %>
+      <li><%= link_to "投稿一覧", posts_path, class: "btn" %></li>
+    <% end %>
+    <span>/</span>
+    <% if @current == 'following_posts' %>
+      <li><%= link_to "フォローユーザの投稿", following_posts_path, class: "btn current current-tab" %></li>
+    <% else %>
+      <li><%= link_to "フォローユーザの投稿", following_posts_path, class: "btn" %></li>
+    <% end %>
+    <span>/</span>
+    <li><%= link_to "いいねランキング", '#', class: "btn" %></li>
+  </ul>
+</div>

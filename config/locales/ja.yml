@@ -49,12 +49,10 @@ ja:
         resend_confirmation_instructions: "アカウント確認メール再送"
     mailer:
       confirmation_instructions:
-        subject: "【】登録URLをお送りします。"
+        subject: "【MyBooks】登録URLをお送りします。"
         action: "アカウント確認"
-        greeting: "ようこそ、%{recipient}さん!"
-        instruction: "次のリンクでメールアドレスの確認が完了します:"
       reset_password_instructions:
-        subject: "【】パスワード再設定URLをお送りします。"
+        subject: "【MyBooks】パスワード再設定URLをお送りします。"
         action: "パスワード変更"
         # greeting: "こんにちは、%{recipient}さん!"
         # instruction: "誰かがパスワードの再設定を希望しました。次のリンクでパスワードの再設定が出来ます。"
