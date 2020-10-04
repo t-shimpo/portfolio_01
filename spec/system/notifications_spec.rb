@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'Notifications', type: :system, js: true do
-
   let!(:takashi) { create(:takashi) }
   let!(:michael) { create(:michael) }
   let!(:kenji) { create(:kenji) }
@@ -12,7 +11,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
     login takashi
   end
   let!(:hibana) { create(:hibana, user_id: michael.id) }
-  
+
   describe 'フォロー・いいね・コメントをされると通知される' do
     context 'フォローの場合' do
       # michaelをいいねする
@@ -22,7 +21,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
           click_button 'フォローする'
           wait_for_ajax
           wait_for_ajax
-        }.to change{ Notification.count }.by(1)
+        }.to change { Notification.count }.by(1)
       end
       it 'フォローされたユーザに1件通知が表示される' do
         click_button 'フォローする'
@@ -30,7 +29,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
         logout
         login michael
         click_link '通知'
-        expect(page).to have_css('.notification',count: 1)
+        expect(page).to have_css('.notification', count: 1)
         expect(page).to have_content 'たかし さんが あなたをフォローしました'
         click_link 'たかし'
         expect(current_path).to eq user_path takashi
@@ -45,7 +44,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
         logout
         login michael
         click_link '通知'
-        expect(page).to have_css('.notification',count: 1)
+        expect(page).to have_css('.notification', count: 1)
         expect(page).to have_content 'たかし さんが あなたをフォローしました'
         click_link 'たかし'
         expect(current_path).to eq user_path takashi
@@ -55,9 +54,9 @@ RSpec.feature 'Notifications', type: :system, js: true do
         wait_for_ajax
         logout
         login michael
-        expect(page).to have_css('.fa-circle',count: 1)
+        expect(page).to have_css('.fa-circle', count: 1)
         click_link '通知'
-        expect(page).to have_css('.fa-circle',count: 0)
+        expect(page).to have_css('.fa-circle', count: 0)
       end
     end
     context 'いいねの場合' do
@@ -67,7 +66,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
         expect {
           find('.fa-heart').click
           wait_for_ajax
-        }.to change{ Notification.count }.by(1)
+        }.to change { Notification.count }.by(1)
       end
       it '投稿にいいねされたユーザに1件通知が表示される' do
         find('.fa-heart').click
@@ -75,7 +74,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
         logout
         login michael
         click_link '通知'
-        expect(page).to have_css('.notification',count: 1)
+        expect(page).to have_css('.notification', count: 1)
         expect(page).to have_content 'たかし さんが あなたの投稿にいいねしました'
         click_link 'たかし'
         expect(current_path).to eq user_path takashi
@@ -88,9 +87,9 @@ RSpec.feature 'Notifications', type: :system, js: true do
         wait_for_ajax
         logout
         login michael
-        expect(page).to have_css('.fa-circle',count: 1)
+        expect(page).to have_css('.fa-circle', count: 1)
         click_link '通知'
-        expect(page).to have_css('.fa-circle',count: 0)
+        expect(page).to have_css('.fa-circle', count: 0)
       end
       it 'いいねし、いいねを解除し、再度いいねしても1件のみ通知が表示される' do
         find('.fa-heart').click
@@ -102,7 +101,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
         logout
         login michael
         click_link '通知'
-        expect(page).to have_css('.notification',count: 1)
+        expect(page).to have_css('.notification', count: 1)
         expect(page).to have_content 'たかし さんが あなたの投稿にいいねしました'
         click_link 'たかし'
         expect(current_path).to eq user_path takashi
@@ -114,7 +113,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
     context 'コメントの場合' do
       context '投稿にコメントされた場合' do
         # michaelの投稿「火花」にコメントする
-        before do 
+        before do
           visit post_path hibana
           fill_in 'comment_comment_content', with: '参考になります。'
         end
@@ -122,7 +121,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
           expect {
             click_button '送信'
             wait_for_ajax
-          }.to change{ Notification.count }.by(1)
+          }.to change { Notification.count }.by(1)
         end
         it '投稿ユーザに1件通知が表示される' do
           click_button '送信'
@@ -130,7 +129,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
           logout
           login michael
           click_link '通知'
-          expect(page).to have_css('.notification',count: 1)
+          expect(page).to have_css('.notification', count: 1)
           expect(page).to have_content 'たかし さんが あなたの投稿にコメントしました'
           expect(page).to have_content '参考になります。'
           click_link 'たかし'
@@ -144,9 +143,9 @@ RSpec.feature 'Notifications', type: :system, js: true do
           wait_for_ajax
           logout
           login michael
-          expect(page).to have_css('.fa-circle',count: 1)
+          expect(page).to have_css('.fa-circle', count: 1)
           click_link '通知'
-          expect(page).to have_css('.fa-circle',count: 0)
+          expect(page).to have_css('.fa-circle', count: 0)
         end
         it '2件コメントされた場合2件通知が表示される' do
           click_button '送信'
@@ -157,7 +156,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
           logout
           login michael
           click_link '通知'
-          expect(page).to have_css('.notification',count: 2)
+          expect(page).to have_css('.notification', count: 2)
           expect(page).to have_content 'たかし さんが あなたの投稿にコメントしました'
           expect(page).to have_content '参考になります。'
           expect(page).to have_content '面白かったです！'
@@ -183,7 +182,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
           logout
           login michael
           click_link '通知'
-          expect(page).to have_css('.notification',count: 2)
+          expect(page).to have_css('.notification', count: 2)
           expect(page).to have_content 'たかし さんが あなたの投稿にコメントしました'
           expect(page).to have_content 'けんじ さんが あなたの投稿にコメントしました'
           expect(page).to have_content '参考になります。'
@@ -192,9 +191,9 @@ RSpec.feature 'Notifications', type: :system, js: true do
         it 'はじめに投稿にコメントしたユーザに1件通知が表示される' do
           logout
           login takashi
-          expect(page).to have_css('.fa-circle',count: 1)
+          expect(page).to have_css('.fa-circle', count: 1)
           click_link '通知'
-          expect(page).to have_css('.notification',count: 1)
+          expect(page).to have_css('.notification', count: 1)
           expect(page).to have_content 'けんじ さんが michaelさんの投稿 にコメントしました'
           expect(page).to have_content '面白いですね！'
           click_link 'けんじ'
@@ -220,11 +219,11 @@ RSpec.feature 'Notifications', type: :system, js: true do
       click_link '通知'
     end
     it '表示されている通知が表示されなくなる' do
-      expect(page).to have_css('.notification',count: 2)
+      expect(page).to have_css('.notification', count: 2)
       click_link '全削除'
       page.driver.browser.switch_to.alert.accept
       wait_for_ajax
-      expect(page).to have_css('.notification',count: 0)
+      expect(page).to have_css('.notification', count: 0)
     end
     it '削除ボタンが表示されなくなる' do
       expect(page).to have_content '全削除'
@@ -234,5 +233,4 @@ RSpec.feature 'Notifications', type: :system, js: true do
       expect(page).to_not have_content '全削除'
     end
   end
-
 end

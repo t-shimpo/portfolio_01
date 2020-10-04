@@ -1,0 +1,92 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+
+AsciiComments:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - "db/schema.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/environments/development.rb'
+    - 'config/routes.rb'
+
+HashSyntax:
+  EnforcedStyle: ruby19
+
+Security/Open:
+  Exclude:
+    - 'db/seeds.rb'
+
+Rails/Validation:
+  Exclude:
+    - 'app/models/like.rb'
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+Style/BlockDelimiters:
+  Exclude:
+    - 'spec/system/*'
+
+GuardClause:
+  MinBodyLength: 6
+
+IfUnlessModifier:
+  Enabled: false
+
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 16
+
+Rails/ActiveRecordAliases:
+  Exclude:
+    - 'app/controllers/notifications_controller.rb'
+    - 'app/controllers/posts_controller.rb'
+
+Rails/BulkChangeTable:
+  Exclude:
+    - 'db/migrate/20200724022712_devise_create_users.rb'
+    - 'db/migrate/20200919011407_create_relationships.rb'
+    - 'db/migrate/20201002014902_create_notifications.rb'
+
+Rails/FilePath:
+  Exclude:
+    - 'config/application.rb'
+    - 'config/environments/development.rb'
+    - 'db/seeds.rb'
+    - 'spec/rails_helper.rb'
+
+Rails/HelperInstanceVariable:
+  Exclude:
+    - 'app/helpers/application_helper.rb'
+    - 'app/helpers/notifications_helper.rb'
+
+Rails/InverseOf:
+  Exclude:
+    - 'app/models/notification.rb'
+    - 'app/models/user.rb'
+
+Rails/RedundantForeignKey:
+  Exclude:
+    - 'app/models/notification.rb'
+
+Style/MixinUsage:
+  Exclude:
+    - 'bin/setup'
+    - 'bin/update'

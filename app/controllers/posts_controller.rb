@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new, :show, :edit, :update, :destroy, :liked_users]
-  before_action :set_post, only: [:show, :edit, :update, :liked_users]
-  before_action :correct_user, only: [:edit, :update, :destroy]
-  before_action :set_layout, only: [:index, :novel, :business, :education, :art_ent, :celebrity, :hobby, :geography, :child, :others]
+  before_action :authenticate_user!, only: %i[create new show edit update destroy liked_users]
+  before_action :set_post, only: %i[show edit update liked_users]
+  before_action :correct_user, only: %i[edit update destroy]
+  before_action :set_layout, only: %i[index novel business education art_ent celebrity hobby geography child others]
 
   def index
     @posts = Post.search(params[:search]).page(params[:page]).per(16).order('updated_at DESC')
@@ -11,7 +11,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      flash[:notice] = "投稿されました。"
+      flash[:notice] = '投稿されました。'
       redirect_to new_post_path
     else
       render 'posts/new'
@@ -27,12 +27,11 @@ class PostsController < ApplicationController
     @comments = @post.comments
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update_attributes(post_params)
-      flash[:notice] = "投稿は更新されました。"
+      flash[:notice] = '投稿は更新されました。'
       redirect_to @post
     else
       render 'posts/edit'
@@ -41,7 +40,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    flash[:notice] = "投稿は削除されました。"
+    flash[:notice] = '投稿は削除されました。'
     redirect_to @post.user
   end
 
@@ -87,31 +86,30 @@ class PostsController < ApplicationController
 
   private
 
-    def post_params
-     params.require(:post).permit(
-       :post_image,
-       :title,
-       :author,
-       :publisher,
-       :genre,
-       :rating,
-       :hours,
-       :purchase_date,
-       :post_content
-     ).merge(user_id: current_user.id)
-    end
+  def post_params
+    params.require(:post).permit(
+      :post_image,
+      :title,
+      :author,
+      :publisher,
+      :genre,
+      :rating,
+      :hours,
+      :purchase_date,
+      :post_content
+    ).merge(user_id: current_user.id)
+  end
 
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    def correct_user
-      @post = current_user.posts.find_by(id: params[:id])
-      redirect_to posts_url if @post.nil?
-    end
+  def correct_user
+    @post = current_user.posts.find_by(id: params[:id])
+    redirect_to posts_url if @post.nil?
+  end
 
-    def set_layout
-      @current = 'index'
-    end
-
+  def set_layout
+    @current = 'index'
+  end
 end

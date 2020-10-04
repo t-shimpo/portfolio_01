@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Relationship, type: :model do
-
   let!(:user) { create(:user) }
   let!(:takashi) { create(:takashi) }
 
@@ -19,6 +18,4 @@ RSpec.describe Relationship, type: :model do
     relationship = Relationship.new(follower_id: user.id, following_id: nil)
     expect(relationship).to_not be_valid
   end
-
-
 end

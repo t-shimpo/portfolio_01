@@ -7,7 +7,7 @@ User.create!(
   email: 'firstuser@example.com',
   password: 'password',
   password_confirmation: 'password',
-  confirmed_at: 30.day.ago
+  confirmed_at: 30.days.ago
 )
 
 User.create!(
@@ -16,31 +16,31 @@ User.create!(
   email: 'guestuser@example.com',
   password: Rails.application.credentials.guest_user_password,
   password_confirmation: Rails.application.credentials.guest_user_password,
-  confirmed_at: 30.day.ago
+  confirmed_at: 30.days.ago
 )
 
 13.times do |n|
   nickname = Faker::Name.first_name
-  email = "example#{n+2}@example.com"
+  email = "example#{n + 2}@example.com"
   User.create!(
-    image: open("#{Rails.root}/db/user_image/user_image#{n+3}.jpg"),
+    image: open("#{Rails.root}/db/user_image/user_image#{n + 3}.jpg"),
     nickname: nickname,
     email: email,
     password: 'password',
     password_confirmation: 'password',
-    confirmed_at: 30.day.ago
+    confirmed_at: 30.days.ago
   )
 end
 
 15.times do |n|
   nickname = Faker::Name.first_name
-  email = "example#{n+15}@example.com"
+  email = "example#{n + 15}@example.com"
   User.create!(
     nickname: nickname,
     email: email,
     password: 'password',
     password_confirmation: 'password',
-    confirmed_at: 30.day.ago
+    confirmed_at: 30.days.ago
   )
 end
 
@@ -58,8 +58,8 @@ Post.create!(
   purchase_date: '2019-10-15',
   post_content: '面白かったです。',
   user_id: 1,
-  created_at: 19.day.ago,
-  updated_at: 19.day.ago
+  created_at: 19.days.ago,
+  updated_at: 19.days.ago
 )
 
 Post.create!(
@@ -73,8 +73,8 @@ Post.create!(
   purchase_date: '2020-5-20',
   post_content: '”“海外のイノベーション教育プログラム”“学術の先端領域”を数多くの事例とともに一冊に凝縮',
   user_id: 2,
-  created_at: 18.day.ago,
-  updated_at: 18.day.ago
+  created_at: 18.days.ago,
+  updated_at: 18.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image3.jpg"),
@@ -87,8 +87,8 @@ Post.create!(
   purchase_date: '2020-9-19',
   post_content: 'わが子、次世代の若者に、変化に対応して生き延びる知恵をつけさせるには、どうしたらいいのか、それが書かれています。',
   user_id: 3,
-  created_at: 17.day.ago,
-  updated_at: 17.day.ago
+  created_at: 17.days.ago,
+  updated_at: 17.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image4.jpg"),
@@ -101,8 +101,8 @@ Post.create!(
   purchase_date: '2018-7-19',
   post_content: 'タイポグラフィとデザインからSFを分析する、面白い本です。',
   user_id: 4,
-  created_at: 16.day.ago,
-  updated_at: 16.day.ago
+  created_at: 16.days.ago,
+  updated_at: 16.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image5.jpg"),
@@ -115,8 +115,8 @@ Post.create!(
   purchase_date: '2019-5-5',
   post_content: '面白かったです。kemioのイメージが変わりました。',
   user_id: 5,
-  created_at: 15.day.ago,
-  updated_at: 15.day.ago
+  created_at: 15.days.ago,
+  updated_at: 15.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image6.jpg"),
@@ -129,8 +129,8 @@ Post.create!(
   purchase_date: '2020-9-5',
   post_content: 'どんでん返しの展開です。',
   user_id: 6,
-  created_at: 14.day.ago,
-  updated_at: 14.day.ago
+  created_at: 14.days.ago,
+  updated_at: 14.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image7.jpg"),
@@ -143,8 +143,8 @@ Post.create!(
   purchase_date: '2020-8-22',
   post_content: '非常にためになりました。これを読むと苦悩に感じていたことも前向きに捉えられそうです。読み返して、書かれていることを実践していきたいと思いました。',
   user_id: 7,
-  created_at: 13.day.ago,
-  updated_at: 13.day.ago
+  created_at: 13.days.ago,
+  updated_at: 13.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image8.jpg"),
@@ -158,8 +158,8 @@ Post.create!(
   post_content: '子どもの貧困率が日本の4倍近い50%という状況にあるアメリカでは、長年にわたってさまざまな取り組みがなされている。数々の事例と、そこから得られた最新の知見が本書にある。
   本書は子どもに関わる全ての大人に読んで頂きたい。いや、読まなくてはいけない。',
   user_id: 8,
-  created_at: 12.day.ago,
-  updated_at: 12.day.ago
+  created_at: 12.days.ago,
+  updated_at: 12.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image9.jpg"),
@@ -172,8 +172,8 @@ Post.create!(
   purchase_date: '2020-8-20',
   post_content: '現代アートが成立する背景が詳しく書かれていました。',
   user_id: 1,
-  created_at: 11.day.ago,
-  updated_at: 11.day.ago
+  created_at: 11.days.ago,
+  updated_at: 11.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image10.jpg"),
@@ -186,8 +186,8 @@ Post.create!(
   purchase_date: '2020-7-23',
   post_content: 'これからの時代の指針になるような本でした。',
   user_id: 2,
-  created_at: 10.day.ago,
-  updated_at: 10.day.ago
+  created_at: 10.days.ago,
+  updated_at: 10.days.ago
 )
 
 Post.create!(
@@ -201,8 +201,8 @@ Post.create!(
   purchase_date: '2020-9-16',
   post_content: '見やすく、作る意欲が湧きます。',
   user_id: 3,
-  created_at: 9.day.ago,
-  updated_at: 9.day.ago
+  created_at: 9.days.ago,
+  updated_at: 9.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image12.jpg"),
@@ -216,8 +216,8 @@ Post.create!(
   post_content: 'いじめがどのような犯罪にあたるかが分かりやすく書かれています。絵も多く、漢字には振り仮名も付けられて子供向けなのも好印象です。
   いじめは単に倫理的な問題ではなく、刑法上の問題であり犯罪であることを再確認することができると思います。',
   user_id: 4,
-  created_at: 8.day.ago,
-  updated_at: 8.day.ago
+  created_at: 8.days.ago,
+  updated_at: 8.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image13.jpg"),
@@ -230,8 +230,8 @@ Post.create!(
   purchase_date: '2020-9-20',
   post_content: '名古屋から「半日」で行って帰ってこられる、おもしろいスポットが満載です。',
   user_id: 5,
-  created_at: 7.day.ago,
-  updated_at: 7.day.ago
+  created_at: 7.days.ago,
+  updated_at: 7.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image14.jpg"),
@@ -244,8 +244,8 @@ Post.create!(
   purchase_date: '2020-4-25',
   post_content: '絵本的で面白いです。',
   user_id: 6,
-  created_at: 6.day.ago,
-  updated_at: 6.day.ago
+  created_at: 6.days.ago,
+  updated_at: 6.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image15.jpg"),
@@ -261,8 +261,8 @@ Post.create!(
   都会に暮らす人たちの姿が、いきいきと描かれています。
   続刊も面白いですが、本作はなお面白いです。',
   user_id: 7,
-  created_at: 5.day.ago,
-  updated_at: 5.day.ago
+  created_at: 5.days.ago,
+  updated_at: 5.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image16.jpg"),
@@ -278,8 +278,8 @@ Post.create!(
   決して堅いほんという訳ではなく、読んでいて感動するところもあります。
   何回も読み直したい、そう思える一冊でした。',
   user_id: 1,
-  created_at: 4.day.ago,
-  updated_at: 4.day.ago
+  created_at: 4.days.ago,
+  updated_at: 4.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image17.jpg"),
@@ -295,8 +295,8 @@ Post.create!(
   そして、人とのつながりを考えさせられる内容でした。
   この本が胸に刺さる方は多いのではないでしょうか。',
   user_id: 2,
-  created_at: 3.day.ago,
-  updated_at: 3.day.ago
+  created_at: 3.days.ago,
+  updated_at: 3.days.ago
 )
 Post.create!(
   post_image: open("#{Rails.root}/db/post_image/image18.jpg"),
@@ -313,8 +313,8 @@ Post.create!(
   人により評価・受け取り方が変わりそうな作品です。
   お時間のあるときに、ゆっくり読むことをお勧めします。',
   user_id: 3,
-  created_at: 2.day.ago,
-  updated_at: 2.day.ago
+  created_at: 2.days.ago,
+  updated_at: 2.days.ago
 )
 
 Post.create!(
@@ -375,8 +375,8 @@ end
     user_id: 8,
     post_id: postid,
     comment_content: '感想、参考になります。ありがとうございます。',
-    created_at: 5.hour.ago,
-    updated_at: 5.hour.ago
+    created_at: 5.hours.ago,
+    updated_at: 5.hours.ago
   )
 end
 
@@ -397,8 +397,8 @@ end
     user_id: 7,
     post_id: postid,
     comment_content: '私も読んで投稿したいと思います！',
-    created_at: 40.minute.ago,
-    updated_at: 40.minute.ago
+    created_at: 40.minutes.ago,
+    updated_at: 40.minutes.ago
   )
 end
 
@@ -408,8 +408,8 @@ end
     user_id: 11,
     post_id: postid,
     comment_content: 'この作者の本は読んだことがありませんでしたが、読んでみたいと思いました。',
-    created_at: 10.minute.ago,
-    updated_at: 10.minute.ago
+    created_at: 10.minutes.ago,
+    updated_at: 10.minutes.ago
   )
 end
 
@@ -431,77 +431,77 @@ end
   postid = 20 - (n * 2)
   Like.create!(
     user_id: 9,
-    post_id: postid,
+    post_id: postid
   )
 end
 10.times do |n|
   postid = 19 - (n * 2)
   Like.create!(
     user_id: 15,
-    post_id: postid,
+    post_id: postid
   )
 end
 10.times do |n|
   postid = 20 - (n * 2)
   Like.create!(
     user_id: 13,
-    post_id: postid,
+    post_id: postid
   )
 end
 10.times do |n|
   postid = 11 - n
   Like.create!(
     user_id: 11,
-    post_id: postid,
+    post_id: postid
   )
 end
 8.times do |n|
   postid = 10 - n
   Like.create!(
     user_id: 12,
-    post_id: postid,
+    post_id: postid
   )
 end
 6.times do |n|
-  postid = 20 - ( n * 2)
+  postid = 20 - (n * 2)
   Like.create!(
     user_id: 5,
-    post_id: postid,
+    post_id: postid
   )
 end
 5.times do |n|
   postid = 12 - n
   Like.create!(
     user_id: 3,
-    post_id: postid,
+    post_id: postid
   )
 end
 5.times do |n|
   postid = 10 - n
   Like.create!(
     user_id: 6,
-    post_id: postid,
+    post_id: postid
   )
 end
 3.times do |n|
   postid = 19 - (n * 2)
   Like.create!(
     user_id: 1,
-    post_id: postid,
+    post_id: postid
   )
 end
 3.times do |n|
   postid = 20 - (n * 2)
   Like.create!(
     user_id: 2,
-    post_id: postid,
+    post_id: postid
   )
 end
 10.times do |n|
   postid = 20 - n
   Like.create!(
     user_id: 14,
-    post_id: postid,
+    post_id: postid
   )
 end
 

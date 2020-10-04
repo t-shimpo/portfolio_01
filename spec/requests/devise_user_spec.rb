@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "UserAuthentications", type: :request do
+RSpec.describe 'UserAuthentications', type: :request do
   let(:user) { create(:user) }
   let(:user_params) { attributes_for(:user) }
-  let(:invalid_user_params) { attributes_for(:user, nickname: "") }
+  let(:invalid_user_params) { attributes_for(:user, nickname: '') }
 
   describe 'POST #create' do
     before do
@@ -12,7 +12,7 @@ RSpec.describe "UserAuthentications", type: :request do
 
     context 'パラメータが妥当な場合' do
       it 'リクエストが成功すること' do
-        post user_registration_path, params: {user: user_params}
+        post user_registration_path, params: { user: user_params }
         expect(response.status).to eq 302
       end
 
@@ -96,9 +96,8 @@ RSpec.describe "UserAuthentications", type: :request do
 
     it 'ユーザーが削除されること' do
       expect do
-        delete  user_registration_path
+        delete user_registration_path
       end.to change(User, :count).by(-1)
     end
   end
-
 end

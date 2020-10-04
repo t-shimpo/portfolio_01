@@ -9,13 +9,12 @@ class User < ApplicationRecord
   has_many :commented_posts, through: :comments, source: :post
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
-  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship",  dependent: :destroy
+  has_many :following_relationships, foreign_key: 'follower_id', class_name: 'Relationship', dependent: :destroy
   has_many :following, through: :following_relationships
-  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
   has_many :followers, through: :follower_relationships
   has_many :active_notifications, class_name: 'Notification', foreign_key: 'visitor_id', dependent: :destroy
   has_many :passive_notifications, class_name: 'Notification', foreign_key: 'visited_id', dependent: :destroy
-
 
   mount_uploader :image, ImageUploader
 
@@ -28,7 +27,7 @@ class User < ApplicationRecord
   end
 
   def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
+    likes.exists?(post_id: post.id)
   end
 
   def following?(other_user)
@@ -44,7 +43,7 @@ class User < ApplicationRecord
   end
 
   def feed
-    Post.where("user_id IN (?)", following_ids)
+    Post.where('user_id IN (?)', following_ids)
   end
 
   def self.search(search)
@@ -56,7 +55,7 @@ class User < ApplicationRecord
   end
 
   def create_notification_follow!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and action = ? ",current_user.id, id, 'follow'])
+    temp = Notification.where(['visitor_id = ? and visited_id = ? and action = ? ', current_user.id, id, 'follow'])
     if temp.blank?
       notification = current_user.active_notifications.new(
         visited_id: id,
@@ -65,5 +64,4 @@ class User < ApplicationRecord
       notification.save if notification.valid?
     end
   end
-
 end
