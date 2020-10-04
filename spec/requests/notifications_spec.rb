@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Notifications", type: :request do
-
+RSpec.describe 'Notifications', type: :request do
   let!(:user) { create(:user) }
 
   describe 'GET #index' do
@@ -21,5 +20,4 @@ RSpec.describe "Notifications", type: :request do
       end
     end
   end
-
 end

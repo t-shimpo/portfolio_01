@@ -1,7 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'PostSearch', type: :system  do
-
+RSpec.feature 'PostSearch', type: :system do
   let!(:post1) { create(:post, title: '投稿タイトル', genre: 'novel') }
   let!(:post2) { create(:post, title: 'ポスト', author: 'ユーザ', genre: 'novel') }
   let!(:post3) { create(:post, title: '著書', publisher: '出版社', genre: 'novel') }
@@ -34,37 +33,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：全て表示の場合' do
       before { visit posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 16)
+        expect(page).to have_css('.post-container', count: 16)
         expect(page).to have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 9)
+        expect(page).to have_css('.post-container', count: 9)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 16)
+        expect(page).to have_css('.post-container', count: 16)
         expect(page).to have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 9)
+        expect(page).to have_css('.post-container', count: 9)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 16)
+        expect(page).to have_css('.post-container', count: 16)
         expect(page).to have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 9)
+        expect(page).to have_css('.post-container', count: 9)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -73,37 +72,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：小説の場合' do
       before { visit novel_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -112,37 +111,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：ビジネスの場合' do
       before { visit business_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -151,37 +150,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：教育の場合' do
       before { visit education_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -190,37 +189,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：エンタメの場合' do
       before { visit art_ent_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -229,37 +228,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：タレント本の場合' do
       before { visit celebrity_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -268,37 +267,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：趣味の場合' do
       before { visit hobby_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -307,37 +306,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：旅行・地理の場合' do
       before { visit geography_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -346,37 +345,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：子どもの場合' do
       before { visit child_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'
@@ -385,37 +384,37 @@ RSpec.feature 'PostSearch', type: :system  do
     context 'ジャンル：その他の場合' do
       before { visit others_posts_path }
       it '投稿名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'タイトル'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '著者名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: 'ユーザ'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to have_content 'ポスト'
         expect(page).to_not have_content '著書'
       end
       it '出版社名が一致した投稿が表示される' do
-        expect(page).to have_css('.post-container',count: 3)
+        expect(page).to have_css('.post-container', count: 3)
         expect(page).to have_content '投稿'
         expect(page).to have_content 'ポスト'
         expect(page).to have_content '著書'
         fill_in 'search', with: '出版'
         click_button '検索'
-        expect(page).to have_css('.post-container',count: 1)
+        expect(page).to have_css('.post-container', count: 1)
         expect(page).to_not have_content '投稿タイトル'
         expect(page).to_not have_content 'ポスト'
         expect(page).to have_content '著書'

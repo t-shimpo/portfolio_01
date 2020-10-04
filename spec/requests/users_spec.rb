@@ -1,38 +1,37 @@
 require 'rails_helper'
 
-RSpec.describe "Users", type: :request do
-
+RSpec.describe 'Users', type: :request do
   let!(:user) { create(:user) }
   let!(:takashi) { create(:takashi) }
   before do
     user.confirm
     takashi.confirm
   end
-  
-  #  -----  index ------  
+
+  #  -----  index ------
   #  -------------------
-  describe "GET #index" do
-    context "ログインしていないユーザの場合" do
-      it "リクエストに成功すること" do
+  describe 'GET #index' do
+    context 'ログインしていないユーザの場合' do
+      it 'リクエストに成功すること' do
         get users_path
         expect(response).to have_http_status 200
       end
-      it "ユーザー名が表示されていること" do
+      it 'ユーザー名が表示されていること' do
         get users_path
         expect(response.body).to include user.nickname
         expect(response.body).to include takashi.nickname
       end
     end
 
-    context "ログインしているユーザの場合" do
+    context 'ログインしているユーザの場合' do
       before do
         sign_in user
       end
-      it "リクエストに成功すること" do
+      it 'リクエストに成功すること' do
         get users_path
         expect(response).to have_http_status 200
       end
-      it "ユーザー名が表示されていること" do
+      it 'ユーザー名が表示されていること' do
         get users_path
         expect(response.body).to include user.nickname
         expect(response.body).to include takashi.nickname
@@ -40,11 +39,11 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  #  -----  show  ------  
+  #  -----  show  ------
   #  -------------------
   describe 'GET #show' do
     describe 'ログインしていないユーザのテスト' do
-      it "リクエストが失敗すること" do
+      it 'リクエストが失敗すること' do
         get user_path user
         expect(response).to have_http_status 302
       end
@@ -98,17 +97,17 @@ RSpec.describe "Users", type: :request do
 
       context '存在しないユーザのページを表示する場合' do
         it 'エラーが発生すること' do
-          expect{ get "/users/999999" }.to raise_error ActiveRecord::RecordNotFound
+          expect { get '/users/999999' }.to raise_error ActiveRecord::RecordNotFound
         end
       end
     end
   end
 
-  #  -----  posts ------  
+  #  -----  posts ------
   #  -------------------
   describe 'GET #posts' do
     describe 'ログインしていないユーザのテスト' do
-      it "リクエストが失敗すること" do
+      it 'リクエストが失敗すること' do
         get posts_user_path user
         expect(response).to have_http_status 302
       end
@@ -162,17 +161,17 @@ RSpec.describe "Users", type: :request do
 
       context '存在しないユーザのページを表示する場合' do
         it 'エラーが発生すること' do
-          expect{ get "/users/999999/posts" }.to raise_error ActiveRecord::RecordNotFound
+          expect { get '/users/999999/posts' }.to raise_error ActiveRecord::RecordNotFound
         end
       end
     end
   end
 
-  #  -----following------  
+  #  -----following------
   #  --------------------
   describe 'GET #following' do
     describe 'ログインしていないユーザのテスト' do
-      it "リクエストが失敗すること" do
+      it 'リクエストが失敗すること' do
         get following_user_path user
         expect(response).to have_http_status 302
       end
@@ -226,17 +225,17 @@ RSpec.describe "Users", type: :request do
 
       context '存在しないユーザのページを表示する場合' do
         it 'エラーが発生すること' do
-          expect{ get "/users/999999/following" }.to raise_error ActiveRecord::RecordNotFound
+          expect { get '/users/999999/following' }.to raise_error ActiveRecord::RecordNotFound
         end
       end
     end
   end
 
-  #  -----followers------  
+  #  -----followers------
   #  --------------------
   describe 'GET #followers' do
     describe 'ログインしていないユーザのテスト' do
-      it "リクエストが失敗すること" do
+      it 'リクエストが失敗すること' do
         get followers_user_path user
         expect(response).to have_http_status 302
       end
@@ -290,17 +289,17 @@ RSpec.describe "Users", type: :request do
 
       context '存在しないユーザのページを表示する場合' do
         it 'エラーが発生すること' do
-          expect{ get "/users/999999/followers" }.to raise_error ActiveRecord::RecordNotFound
+          expect { get '/users/999999/followers' }.to raise_error ActiveRecord::RecordNotFound
         end
       end
     end
   end
 
-  #  -----  likes ------  
+  #  -----  likes ------
   #  -------------------
   describe 'GET #likes' do
     describe 'ログインしていないユーザのテスト' do
-      it "リクエストが失敗すること" do
+      it 'リクエストが失敗すること' do
         get likes_user_path user
         expect(response).to have_http_status 302
       end
@@ -354,17 +353,17 @@ RSpec.describe "Users", type: :request do
 
       context '存在しないユーザのページを表示する場合' do
         it 'エラーが発生すること' do
-          expect{ get "/users/999999/likes" }.to raise_error ActiveRecord::RecordNotFound
+          expect { get '/users/999999/likes' }.to raise_error ActiveRecord::RecordNotFound
         end
       end
     end
   end
-  
-  #  -----comments------  
+
+  #  -----comments------
   #  -------------------
   describe 'GET #comments' do
     describe 'ログインしていないユーザのテスト' do
-      it "リクエストが失敗すること" do
+      it 'リクエストが失敗すること' do
         get comments_user_path user
         expect(response).to have_http_status 302
       end
@@ -418,10 +417,9 @@ RSpec.describe "Users", type: :request do
 
       context '存在しないユーザのページを表示する場合' do
         it 'エラーが発生すること' do
-          expect{ get "/users/999999/comments" }.to raise_error ActiveRecord::RecordNotFound
+          expect { get '/users/999999/comments' }.to raise_error ActiveRecord::RecordNotFound
         end
       end
     end
   end
-
 end

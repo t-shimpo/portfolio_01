@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
-
   let!(:takashi) { create(:takashi) }
   let!(:michael) { create(:michael) }
   before do
@@ -20,9 +19,9 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
       expect {
         click_button 'フォローする'
         wait_for_ajax
-      }.to change{ takashi.followers.count }.by(1)
+      }.to change { takashi.followers.count }.by(1)
       expect(michael.following.count).to eq 1
-      expect(page).to have_xpath"//input[@value='フォロー中']" 
+      expect(page).to have_xpath "//input[@value='フォロー中']"
     end
     it 'ユーザ詳細ページのフォロワー数の表示が変わること' do
       expect(page).to have_content 'フォロワー 0'
@@ -53,7 +52,7 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
       click_link 'フォロー'
       expect(page).to have_content 'フォロー 1 人'
       expect(page).to have_content 'たかし'
-      expect(page).to have_css('.current',count: 1)
+      expect(page).to have_css('.current', count: 1)
       expect(page).to have_selector '.current', text: 'フォロー'
     end
     it 'たかしのフォロー一覧に、michaelが表示されること' do
@@ -63,7 +62,7 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
       click_link 'フォロワー'
       expect(page).to have_content 'フォロワー 1 人'
       expect(page).to have_content 'michael'
-      expect(page).to have_css('.current',count: 1)
+      expect(page).to have_css('.current', count: 1)
       expect(page).to have_selector '.current', text: 'フォロワー'
     end
   end
@@ -81,9 +80,9 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
       expect {
         click_button 'フォロー中'
         wait_for_ajax
-      }.to change{ takashi.followers.count }.by(-1)
+      }.to change { takashi.followers.count }.by(-1)
       expect(michael.following.count).to eq 0
-      expect(page).to have_xpath"//input[@value='フォローする']" 
+      expect(page).to have_xpath "//input[@value='フォローする']"
     end
     it 'ユーザ詳細ページのフォロー・フォロワー数の表示が変わること' do
       expect(page).to have_content 'フォロワー 1'
@@ -114,7 +113,7 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
       click_link 'フォロー'
       expect(page).to have_content 'フォロー 0 人'
       expect(page).to_not have_content 'たかし'
-      expect(page).to have_css('.current',count: 1)
+      expect(page).to have_css('.current', count: 1)
       expect(page).to have_selector '.current', text: 'フォロー'
     end
     it 'たかしのフォロー一覧に、michaelが表示されないこと' do
@@ -124,9 +123,8 @@ RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
       click_link 'フォロワー'
       expect(page).to have_content 'フォロワー 0 人'
       expect(page).to_not have_content 'michael'
-      expect(page).to have_css('.current',count: 1)
+      expect(page).to have_css('.current', count: 1)
       expect(page).to have_selector '.current', text: 'フォロワー'
     end
   end
-
 end

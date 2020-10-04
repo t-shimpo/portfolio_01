@@ -13,17 +13,17 @@ class Post < ApplicationRecord
   validates :author, presence: true, length: { maximum: 60 }
   validates :publisher, length: { maximum: 60 }
   validates :genre, inclusion: {
-    in: %w(not_select novel business education art_ent celebrity hobby geography child others)
+    in: %w[not_select novel business education art_ent celebrity hobby geography child others]
   }
   validates :rating, inclusion: {
-    in: %w(not_select int_5 int1 int1_5 int2 int2_5 int3 int3_5 int4 int4_5 int5)
+    in: %w[not_select int_5 int1 int1_5 int2 int2_5 int3 int3_5 int4 int4_5 int5]
   }
   validates :hours, inclusion: {
-    in: %w(not_select to10 to20 to30 to40 to50 to70 to100 from100)
+    in: %w[not_select to10 to20 to30 to40 to50 to70 to100 from100]
   }
   validates :post_content, length: { maximum: 1000 }
   validates :user_id, presence: true
-  
+
   enum genre: {
     not_select: 0,
     novel: 1,
@@ -72,7 +72,9 @@ class Post < ApplicationRecord
   end
 
   def create_notification_like!(current_user)
-    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_id = ? and action = ? ", current_user.id, user_id, id, 'like'])
+    temp = Notification.where(
+      ['visitor_id = ? and visited_id = ? and post_id = ? and action = ? ', current_user.id, user_id, id, 'like']
+    )
     if temp.blank?
       notification = current_user.active_notifications.new(
         post_id: id,
@@ -106,6 +108,4 @@ class Post < ApplicationRecord
     end
     notification.save if notification.valid?
   end
-
-  
 end
