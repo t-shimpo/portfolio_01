@@ -450,6 +450,7 @@ RSpec.describe 'Users', type: :system do
       click_link '編集'
       click_button 'アカウントを削除する'
       page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
     end
     it '削除に成功したメッセージが表示されること' do
       expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'

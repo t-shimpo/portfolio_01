@@ -5,8 +5,8 @@ User.create!(
   # image: open("#{Rails.root}/db/user_image/user_image1.jpg"),
   nickname: 'ダイチ',
   email: 'firstuser@example.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: Rails.application.credentials.users_password,
+  password_confirmation: Rails.application.credentials.users_password,
   confirmed_at: 30.days.ago
 )
 
@@ -26,8 +26,8 @@ User.create!(
     # image: open("#{Rails.root}/db/user_image/user_image#{n + 3}.jpg"),
     nickname: nickname,
     email: email,
-    password: 'password',
-    password_confirmation: 'password',
+    password: Rails.application.credentials.users_password,
+    password_confirmation: Rails.application.credentials.users_password,
     confirmed_at: 30.days.ago
   )
 end
@@ -38,8 +38,8 @@ end
   User.create!(
     nickname: nickname,
     email: email,
-    password: 'password',
-    password_confirmation: 'password',
+    password: Rails.application.credentials.users_password,
+    password_confirmation: Rails.application.credentials.users_password,
     confirmed_at: 30.days.ago
   )
 end
