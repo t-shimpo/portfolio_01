@@ -48,7 +48,7 @@ gem 'devise'
 gem 'devise-i18n'
 
 gem 'carrierwave'
-gem 'fog'
+gem 'fog-aws'
 gem 'mini_magick'
 
 gem 'faker'

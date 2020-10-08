@@ -545,6 +545,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   fog
+  fog-aws
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
