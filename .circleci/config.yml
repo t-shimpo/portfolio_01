@@ -1,3 +1,4 @@
+# test
 version: 2
 jobs:
   build:
@@ -25,11 +26,12 @@ jobs:
       - run:
           name: install dependencies
           command: |
+            gem install bundler -v 2.0.2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
           paths:
-            - ./vendor/bundle
+          - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
       - run: mv config/database.yml.ci config/database.yml
