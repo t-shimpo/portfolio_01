@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
   if Rails.env.production?
     config.storage :fog
     config.fog_provider = 'fog/aws'
-    config.fog_directory  = 'portfolio1-image'
+    config.fog_directory = 'portfolio1-image'
     config.asset_host = 'https://s3.amazonaws.com/portfolio1-image'
     config.fog_public = false
 
