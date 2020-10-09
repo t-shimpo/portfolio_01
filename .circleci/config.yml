@@ -19,7 +19,7 @@ jobs:
           command: docker-compose run app bundle exec rubocop
       - run:
           name: Rspec
-          command: docker-compose run app rbundle exec rspec spec
+          command: docker-compose run app bundle exec rspec spec
       - run:
           name: docker-compose down
           command: docker-compose down
