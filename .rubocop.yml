@@ -15,6 +15,7 @@ Metrics/BlockLength:
     - 'spec/**/*'
     - 'config/environments/development.rb'
     - 'config/routes.rb'
+    - 'config/environments/production.rb'
 
 HashSyntax:
   EnforcedStyle: ruby19
@@ -71,6 +72,7 @@ Rails/FilePath:
     - 'config/environments/development.rb'
     - 'db/seeds.rb'
     - 'spec/rails_helper.rb'
+    - 'config/initializers/carrierwave.rb'
 
 Rails/HelperInstanceVariable:
   Exclude:
