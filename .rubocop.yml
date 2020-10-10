@@ -10,6 +10,11 @@ AllCops:
   Exclude:
     - "db/schema.rb"
 
+AllCops:
+  TargetRubyVersion: 2.6.6
+  Exclude:
+    - 'vendor/**/*'
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
