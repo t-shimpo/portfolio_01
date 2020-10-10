@@ -9,8 +9,8 @@ AsciiComments:
 AllCops:
   TargetRubyVersion: 2.6.6
   Exclude:
-    - 'vendor/**/*'
     - "db/schema.rb"
+    - 'vendor/**/*'
 
 Metrics/BlockLength:
   Exclude:
