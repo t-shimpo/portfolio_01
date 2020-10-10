@@ -1,4 +1,8 @@
 FROM ruby:2.6.6
+
+ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
+
 RUN apt-get update -qq && \
 apt-get install -y build-essential nodejs vim imagemagick unzip
 RUN CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
