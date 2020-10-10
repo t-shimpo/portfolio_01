@@ -13,7 +13,7 @@ jobs:
           command: docker-compose up -d
       - run:
           name: sleep for waiting launch db
-          command: sleep 1
+          command: sleep 5
       - run:
           name: "before_test: setup db"
           command: docker-compose run app rails db:migrate:reset RAILS_ENV=test
