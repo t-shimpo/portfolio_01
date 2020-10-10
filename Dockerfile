@@ -1,4 +1,5 @@
 FROM ruby:2.6.6
+
 RUN apt-get update -qq && \
 apt-get install -y build-essential nodejs vim imagemagick unzip
 RUN CHROME_DRIVER_VERSION=`curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE` && \
