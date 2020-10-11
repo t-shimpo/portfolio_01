@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Relationship', type: :system, js: true, retry: 3 do
+RSpec.feature 'Relationship', type: :system, js: true do
   let!(:takashi) { create(:takashi) }
   let!(:michael) { create(:michael) }
   before do

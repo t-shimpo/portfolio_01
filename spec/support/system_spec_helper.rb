@@ -14,8 +14,8 @@ module LoginMacros
 end
 
 module WaitForAjax
-  def wait_for_ajax
-    Timeout.timeout(4) do
+  def wait_for_ajax(wait_time = 4)
+    Timeout.timeout(wait_time) do
       loop until finished_all_ajax_requests?
     end
   end

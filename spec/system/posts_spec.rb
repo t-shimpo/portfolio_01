@@ -338,7 +338,7 @@ RSpec.feature 'Posts', type: :system do
       expect {
         click_link '投稿を削除する'
         page.driver.browser.switch_to.alert.accept
-        wait_for_ajax
+        wait_for_ajax(6)
       }.to change { Post.count }.by(-1)
     end
     it '削除に成功したメッセージが表示されること' do
