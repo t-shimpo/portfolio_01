@@ -63,7 +63,7 @@ $(function () {
       .fail(function () {
         const commentError = $('#js-comment-post-error-' + commentId);
         commentError.show();
-        commentError.text('コメントをは1文字以上150文字以内で入力してください');
+        commentError.text('コメントをは1文字以上250文字以内で入力してください');
       })
   });
 });

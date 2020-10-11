@@ -17,7 +17,7 @@ RSpec.feature 'Likes', type: :system, js: true do
         visit posts_path
         expect {
           find('.fa-heart').click
-          wait_for_ajax(6)
+          wait_for_ajax(8)
         }.to change { hibana.likes.count }.by(1)
         expect(find('.fa-heart')).to have_content '1'
         expect(page).to have_css('.like-red')
