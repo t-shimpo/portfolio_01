@@ -6,13 +6,23 @@
 /**************/
 
 $text-gray: #474747;
+
 $my-light-gray: #8a969c;
 $my-off-white: #F6F2E9;
 $my-charcoal: #dbd7cb;
 $my-orange: #f8b967;
 $my-dark-green: #339999;
 
-
+// genre color
+$novel-color: #f59948;
+$business-color: #9370DB;
+$education-color: #05d1df;
+$art_ent-color: #F08080;
+$celebrity-color: #3CB371;
+$hobby-color: #008BBB;
+$geography-color: #66CDAA;
+$child-color: #DAA520;
+$others-color: #5e5e5e;
 
 .like-red { color: #FF6666;}
 
@@ -600,6 +610,60 @@ header {
       .middle-field {
         margin-top: 11px;
         margin-bottom: 5px;
+        .genre-label {
+          float: left;
+          font-size: 14px;
+          text-align: center;
+          width: 80px;
+          p {
+            line-height: 1.6em;
+            &.novel {
+              border: 2px solid $novel-color;
+              background-color: $novel-color;
+              color: #fff;
+            }
+            &.business {
+              border: 2px solid $business-color;
+              background-color: $business-color;
+              color: #fff;
+            }
+            &.education {
+              border: 2px solid $education-color;
+              background-color: $education-color;
+              color: #fff;
+            }
+            &.art_ent {
+              border: 2px solid $art_ent-color;
+              background-color: $art_ent-color;
+              color: #fff;
+            }
+            &.celebrity {
+              border: 2px solid $celebrity-color;
+              background-color: $celebrity-color;
+              color: #fff;
+            }
+            &.hobby {
+              border: 2px solid $hobby-color;
+              background-color: $hobby-color;
+              color: #fff;
+            }
+            &.geography {
+              border: 2px solid $geography-color;
+              background-color: $geography-color;
+              color: #fff;
+            }
+            &.child {
+              border: 2px solid $child-color;
+              background-color: $child-color;
+              color: #fff;
+            }
+            &.others {
+              border: 2px solid $others-color;
+              background-color: $others-color;
+              color: #fff;
+            }
+          }
+        }
         .comment-icon {
           display: inline-block;
           padding-right: 12px;
@@ -1024,123 +1088,123 @@ header {
           width: 50%;
         }
         &.all {
-          color: #5e5e5e;
-          border: solid 2px #5e5e5e;
+          color: $others-color;
+          border: solid 2px $others-color;
           &:hover {
             color: #fff;
-            background: #5e5e5e;
+            background: $others-color;
           }
           &.current {
             color: #fff;
-            background: #5e5e5e;
+            background: $others-color;
           }
         }
         &.novel {
-          color: #f59948;
-          border: solid 2px #f59948;
+          color: $novel-color;
+          border: solid 2px $novel-color;
           &:hover {
             color: #fff;
-            background: #f59948;
+            background: $novel-color;
           }
           &.current {
             color: #fff;
-            background: #f59948;
+            background: $novel-color;
           }
         }
         &.business {
-          color: #9370DB;
-          border: solid 2px #9370DB;
+          color: $business-color;
+          border: solid 2px $business-color;
           &:hover {
             color: #fff;
-            background: #9370DB;
+            background: $business-color;
           }
           &.current {
             color: #fff;
-            background: #9370DB;
+            background: $business-color;
           }
         }
         &.education {
-          color: #05d1df;
-          border: solid 2px #05d1df;
+          color: $education-color;
+          border: solid 2px $education-color;
           &:hover {
             color: #fff;
-            background: #05d1df;
+            background: $education-color
           }
           &.current {
             color: #fff;
-            background: #05d1df;
+            background: $education-color;
           }
         }
         &.art_ent {
-          color: #F08080;
-          border: solid 2px #F08080;
+          color: $art_ent-color;
+          border: solid 2px $art_ent-color;
           &:hover {
             color: #fff;
-            background: #F08080;
+            background: $art_ent-color;
           }
           &.current {
             color: #fff;
-            background: #F08080;
+            background: $art_ent-color;
           }
         }
         &.celebrity {
-          color: #3CB371;
-          border: solid 2px #3CB371;
+          color: $celebrity-color;
+          border: solid 2px $celebrity-color;
           &:hover {
             color: #fff;
-            background: #3CB371;
+            background: $celebrity-color;
           }
           &.current {
             color: #fff;
-            background: #3CB371;
+            background: $celebrity-color;
           }
         }
         &.hobby {
-          color: #008BBB;
-          border: solid 2px #008BBB;
+          color: $hobby-color;
+          border: solid 2px $hobby-color;
           &:hover {
             color: #fff;
-            background: #008BBB;
+            background: $hobby-color;
           }
           &.current {
             color: #fff;
-            background: #008BBB;
+            background: $hobby-color;
           }
         }
         &.geography {
-          color: #66CDAA;
-          border: solid 2px #66CDAA;
+          color: $geography-color;
+          border: solid 2px $geography-color;
           &:hover {
             color: #fff;
-            background: #66CDAA;
+            background: $geography-color;
           }
           &.current {
             color: #fff;
-            background: #66CDAA;
+            background: $geography-color;
           }
         }
         &.child {
-          color: #DAA520;
-          border: solid 2px #DAA520;
+          color: $child-color;
+          border: solid 2px $child-color;
           &:hover {
             color: #fff;
-            background: #DAA520;
+            background: $child-color;
           }
           &.current {
             color: #fff;
-            background: #DAA520;
+            background: $child-color;
           }
         }
         &.others {
-          color: #5e5e5e;
-          border: solid 2px #5e5e5e;
+          color: $others-color;
+          border: solid 2px $others-color;
           &:hover {
             color: #fff;
-            background: #5e5e5e;
+            background: $others-color;
           }
           &.current {
             color: #fff;
-            background: #5e5e5e;
+            background: $others-color;
           }
         }
       }

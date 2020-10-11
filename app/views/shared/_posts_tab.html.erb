@@ -11,7 +11,11 @@
     <% else %>
       <li><%= link_to "フォローユーザの投稿", following_posts_path, class: "btn" %></li>
     <% end %>
-    <span>/</span>
-    <li><%= link_to "いいねランキング", '#', class: "btn" %></li>
+    <%
+=begin%>
+ <span>/</span>
+    <li><%= link_to "いいねランキング", '#', class: "btn" %></li> 
+<%
+=end%>
   </ul>
 </div>

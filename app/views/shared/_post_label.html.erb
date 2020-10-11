@@ -1,0 +1,23 @@
+<% unless post.genre == 'not_select' %>
+  <div class="genre-label">
+    <% if post.genre == 'novel' %>
+      <p class='novel'>小説</p>
+    <% elsif post.genre == 'business' %>
+      <p class='business'>ビジネス</p>
+    <% elsif post.genre == 'education' %>
+      <p class='education'>教育</p>
+    <% elsif post.genre == 'art_ent' %>
+      <p class='art_ent'>エンタメ</p>
+    <% elsif post.genre == 'celebrity' %>
+      <p class='celebrity'>タレント</p>
+    <% elsif post.genre == 'hobby' %>
+      <p class='hobby'>趣味</p>
+    <% elsif post.genre == 'geography' %>
+      <p class='geography'>旅行地理</p>
+    <% elsif post.genre == 'child' %>
+      <p class='child'>子ども</p>
+    <% elsif post.genre == 'others' %>
+      <p class='others'>その他</p>
+    <% end %>
+  </div>
+<% end %>
