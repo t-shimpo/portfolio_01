@@ -344,12 +344,14 @@ RSpec.feature 'Posts', type: :system do
     it '削除に成功したメッセージが表示されること' do
       click_link '投稿を削除する'
       page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
       expect(page).to have_content '投稿は削除されました。'
       expect(current_path).to eq user_path kenji
     end
     it '削除した投稿が本を探すの投稿一覧に表示されないこと' do
       click_link '投稿を削除する'
       page.driver.browser.switch_to.alert.accept
+      wait_for_ajax
       visit posts_path
       expect(page).to_not have_content '流浪の月'
     end

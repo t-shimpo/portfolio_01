@@ -156,6 +156,7 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           page.driver.browser.switch_to.alert.accept
           wait_for_ajax
           wait_for_ajax
+          wait_for_ajax
         }.to change { hibana.comments.count }.by(-1)
       end
       it 'コメントを削除すると一覧に表示されないこと' do
