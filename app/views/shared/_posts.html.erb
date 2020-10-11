@@ -9,6 +9,7 @@
     <p><%= link_to post.title, post %></p>
   </div>
   <div class="middle-field">
+    <%= render 'shared/post_label', post: post %>
     <% if post.comments.present? %>
       <div class="comment-icon">
       <i class="far fa-comment-alt comment-size">
