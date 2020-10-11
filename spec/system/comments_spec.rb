@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
+RSpec.feature 'Comments', type: :system, js: true do
   let!(:takashi) { create(:takashi) }
   let!(:michael) { create(:michael) }
   before do
     takashi.confirm
     michael.confirm
+    login takashi
   end
   let!(:hibana) { create(:hibana, user_id: michael.id) }
 
@@ -15,11 +16,8 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
 
   describe 'ユーザはコメントをする' do
     # たかしでログインする
-    before do
-      login takashi
-      visit post_path hibana
-    end
-    #  -----  有効な値  -----  #
+    before { visit post_path hibana }
+    #  -----  有効な値  -----
     context '有効な値を入力する場合' do
       context 'コメント前' do
         it 'コメントフォームがあること' do
@@ -31,13 +29,13 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_css('.fa-comment-alt', count: 0)
         end
       end
+
       context 'コメント送信後' do
         before { fill_in 'comment_comment_content', with: '参考になります。' }
         it 'コメントが増える' do
           expect {
             click_button '送信'
-            wait_for_ajax
-            wait_for_ajax
+            wait_for_ajax(10)
           }.to change { hibana.comments.count }.by(1)
         end
         it '送信したコメントがコメント一覧に表示されること' do
@@ -65,6 +63,7 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
           expect(page).to have_selector '.fa-comment-alt', text: '1'
         end
       end
+
       context 'コメント4件送信後' do
         before do
           fill_in 'comment_comment_content', with: '参考になります。'
@@ -105,8 +104,7 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
         end
       end
     end
-
-    #  -----  無効な値  -----  #
+    #  -----  無効な値  -----
     context '無効な値を入力する場合' do
       it '値が空の場合、コメントが投稿されず、エラーメッセージが表示されること' do
         fill_in 'comment_comment_content', with: ''
@@ -133,13 +131,127 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
   end
 
   #--------------------
+  #    コメント編集
+  #--------------------
+
+  describe 'ユーザはコメントを編集する' do
+    # たかしでログインしコメントをする
+    before do
+      visit post_path hibana
+      fill_in 'comment_comment_content', with: '参考になります。'
+      click_button '送信'
+      wait_for_ajax
+    end
+    context 'コメント編集前' do
+      it 'コメントがと編集ボタンがコメント一覧に表示されていること' do
+        expect(page).to have_content '1件コメント'
+        expect(page).to have_content 'たかし'
+        expect(page).to have_content '参考になります。'
+        expect(page).to have_css('.fa-edit', count: 1)
+        expect(page).to have_selector '.fa-edit', text: '編集'
+        expect(page).to_not have_css('.comment-post-textarea')
+        expect(page).to_not have_selector '.comment-cancel-button', text: 'キャンセル'
+        expect(page).to_not have_selector '.comment-update-button', text: '更新'
+      end
+      it 'マイページのコメントした投稿に表示されていること' do
+        visit comments_user_path takashi
+        expect(page).to have_content 'コメントした投稿 1 件'
+        expect(page).to have_content '火花'
+        expect(page).to have_content 'michael'
+        expect(page).to have_css('.current', count: 1)
+        expect(page).to have_selector '.current', text: 'コメントした投稿'
+      end
+    end
+
+    context '編集ボタン押下後' do
+      it 'テキストエリア・キャンセルボタン・更新ボタンが表示されること' do
+        find('.fa-edit', text: '編集').click
+        wait_for_ajax
+        expect(page).to have_css('.comment-post-textarea')
+        expect(page).to have_selector '.comment-cancel-button', text: 'キャンセル'
+        expect(page).to have_selector '.comment-update-button', text: '更新'
+      end
+    end
+
+    context '更新ボタン押下後' do
+      before do
+        find('.fa-edit', text: '編集').click
+        wait_for_ajax
+        fill_in 'js-textarea-comment', with: '投稿ありがとうございます。私も読んでみます。'
+      end
+      it 'コメントの数は変わらないこと' do
+        expect {
+          click_button '更新'
+          wait_for_ajax(10)
+        }.to change { hibana.comments.count }.by(0)
+      end
+      it '更新したコメントがコメント一覧に表示されること' do
+        click_button '更新'
+        wait_for_ajax
+        expect(page).to have_content '1件コメント'
+        expect(page).to have_content 'たかし'
+        expect(page).to have_content '投稿ありがとうございます。私も読んでみます。'
+      end
+      it 'コメントを更新した投稿が、マイページのコメントした投稿に表示されていること' do
+        click_button '更新'
+        wait_for_ajax
+        visit comments_user_path takashi
+        expect(page).to have_content 'コメントした投稿 1 件'
+        expect(page).to have_content '火花'
+        expect(page).to have_content 'michael'
+      end
+      it '投稿一覧ページにコメントマークとコメント数が表示されていること' do
+        click_button '更新'
+        wait_for_ajax
+        visit posts_path
+        expect(page).to have_css('.fa-comment-alt', count: 1)
+        expect(page).to have_selector '.fa-comment-alt', text: '1'
+      end
+    end
+
+    context 'キャンセルボタン押下後' do
+      before do
+        find('.fa-edit', text: '編集').click
+        wait_for_ajax
+      end
+      it 'コメントの数は変わらないこと' do
+        expect {
+          click_button 'キャンセル'
+          wait_for_ajax(10)
+        }.to change { hibana.comments.count }.by(0)
+      end
+      it 'コメント文が変わらないこと' do
+        click_button 'キャンセル'
+        wait_for_ajax
+        expect(page).to have_content '1件コメント'
+        expect(page).to have_content 'たかし'
+        expect(page).to have_content '参考になります。'
+      end
+      it 'マイページのコメントした投稿に表示されていること' do
+        click_button 'キャンセル'
+        wait_for_ajax
+        visit comments_user_path takashi
+        expect(page).to have_content 'コメントした投稿 1 件'
+        expect(page).to have_content '火花'
+        expect(page).to have_content 'michael'
+      end
+      it '投稿一覧ページにコメントマークとコメント数が表示されていること' do
+        click_button 'キャンセル'
+        wait_for_ajax
+        visit posts_path
+        expect(page).to have_css('.fa-comment-alt', count: 1)
+        expect(page).to have_selector '.fa-comment-alt', text: '1'
+      end
+    end
+  end
+
+  #--------------------
   #    コメント削除
   #--------------------
 
   describe 'ユーザはコメントを削除する' do
     # たかしでコメントする
     before do
-      login takashi
       visit post_path hibana
       fill_in 'comment_comment_content', with: 'おもしろそうだと思いました。'
       click_button '送信'
@@ -154,9 +266,7 @@ RSpec.feature 'Comments', type: :system, js: true, retry: 3 do
         expect {
           click_link '削除'
           page.driver.browser.switch_to.alert.accept
-          wait_for_ajax
-          wait_for_ajax
-          wait_for_ajax
+          wait_for_ajax(12)
         }.to change { hibana.comments.count }.by(-1)
       end
       it 'コメントを削除すると一覧に表示されないこと' do

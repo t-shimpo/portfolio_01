@@ -1,13 +1,12 @@
 <!-----コメント3件----->
 <% if comments.count == 0 %>
-  <h4>コメントはまだありません。</h4>
+  <h3>コメントはまだありません。</h3>
 <% else %>
   <h3><%= comments.count %>件コメント</h3>
-  <h4 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-caret-down"></i>もっと見る....</h4>
+  <h4 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h4>
   <% comments.first(3).each do |comment| %>
     <% unless comment.id.nil? %>
       <div class="comment-container row">
-        <!--⬇️クラス名変更した方がいいかも-->
         <div class="comment-left col-2">
           <% if comment.user.image.present? %>
             <p class="comment_user_img"><%= image_tag comment.user.image_url(:thumb200) %></p>
@@ -17,10 +16,26 @@
           <p class="comment_user_nickname"><%= link_to comment.user.nickname, comment.user %></p>
         </div>
         <div class="comment-right col-10">
-          <div><%= comment.comment_content %></div>
           <% if comment.user == current_user %>
-          <!--⬇️編集ボタンも追加-->
-            <%= link_to "削除", post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-secondary" %>
+            <input name="post_id_for_comment" type="hidden" value=<%= @post.id %> class='post_id_for_comment'/>
+            <input name="user_id_for_comment" type="hidden" value=<%= current_user.id %> class='user_id_for_comment'/>
+            <div id="js-comment-<%= comment.id %>">
+              <p id="js-comment-label-<%= comment.id %>"><%= comment.comment_content %></p>
+              <p id="js-comment-post-error-<%= comment.id %>" class="text-danger"></p>
+              <textarea style="display: none;" id="js-textarea-comment-<%= comment.id %>" name="js-textarea-comment" class="form-control comment-post-textarea"><%= comment.comment_content %></textarea>
+              <div id="js-comment-button-<%= comment.id %>" style="display: none;">
+                <button data-cancel-id=<%= comment.id %> type="button" class="btn btn-sm btn-secondary comment-cancel-button">キャンセル</button>
+                <button data-update-id=<%= comment.id%> type="submit" class="btn btn-sm btn-success comment-update-button">更新</button>
+              </div>
+            </div>
+            <span data-comment-id=<%= comment.id %> class="js-edit-comment-button">
+              <i class="fas fa-edit text-primary">編集</i>
+            </span>
+            <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "delete" do %> 
+              <i class="far fa-trash-alt text-dark">削除</i>
+            <% end %>
+            <% else %>
+              <div><%= comment.comment_content %></div>
           <% end %>
           <span class="comment-date">
             <%= comment.updated_at.strftime('%Y/%m/%d %H:%M') %>
@@ -46,10 +61,26 @@
             <p class="comment_user_nickname"><%= link_to comment.user.nickname, comment.user %></p>
           </div>
           <div class="comment-right col-10">
-            <div><%= comment.comment_content %></div>
             <% if comment.user == current_user %>
-            <!--⬇️編集ボタンも追加-->
-              <%= link_to "削除", post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-secondary" %>
+            <input name="post_id_for_comment" type="hidden" value=<%= @post.id %> class='post_id_for_comment'/>
+            <input name="user_id_for_comment" type="hidden" value=<%= current_user.id %> class='user_id_for_comment'/>
+            <div id="js-comment-<%= comment.id %>">
+              <p id="js-comment-label-<%= comment.id %>"><%= comment.comment_content %></p>
+              <p id="js-comment-post-error-<%= comment.id %>" class="text-danger"></p>
+              <textarea style="display: none;" id="js-textarea-comment-<%= comment.id %>" name="js-textarea-comment" class="form-control comment-post-textarea"><%= comment.comment_content %></textarea>
+                <div id="js-comment-button-<%= comment.id %>" style="display: none;">
+                  <button data-cancel-id=<%= comment.id %> type="button" class="btn btn-sm btn-secondary comment-cancel-button">キャンセル</button>
+                  <button data-update-id=<%= comment.id%> type="submit" class="btn btn-sm btn-success comment-update-button">更新</button>
+                </div>
+              </div>
+              <span data-comment-id=<%= comment.id %> class="js-edit-comment-button">
+                <i class="fas fa-edit text-primary">編集</i>
+              </span>
+              <%= link_to post_comment_path(comment.post_id, comment.id), method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "delete" do %> 
+                <i class="far fa-trash-alt text-dark">削除</i>
+              <% end %>
+            <% else %>
+              <div><%= comment.comment_content %></div>
             <% end %>
             <span class="comment-date">
               <%= comment.updated_at.strftime('%Y/%m/%d %H:%M') %>

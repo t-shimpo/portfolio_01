@@ -11,6 +11,14 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit; end
+
+  def update
+    @comment = current_user.comments.find(params[:id])
+    @comment.update!(comment_update_params)
+    render json: @comment
+  end
+
   def destroy
     @comment = Comment.find_by(id: params[:id])
     @comment.destroy
@@ -21,5 +29,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:comment_content, :post_id, :user_id)
+  end
+
+  def comment_update_params
+    params.require(:comment).permit(:comment_content)
   end
 end

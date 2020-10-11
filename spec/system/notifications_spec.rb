@@ -19,8 +19,7 @@ RSpec.feature 'Notifications', type: :system, js: true do
       it '通知が増える' do
         expect {
           click_button 'フォローする'
-          wait_for_ajax
-          wait_for_ajax
+          wait_for_ajax(10)
         }.to change { Notification.count }.by(1)
       end
       it 'フォローされたユーザに1件通知が表示される' do

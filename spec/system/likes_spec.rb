@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
+RSpec.feature 'Likes', type: :system, js: true do
   let!(:takashi) { create(:takashi) }
   let!(:michael) { create(:michael) }
   before do
@@ -17,7 +17,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         visit posts_path
         expect {
           find('.fa-heart').click
-          wait_for_ajax
+          wait_for_ajax(6)
         }.to change { hibana.likes.count }.by(1)
         expect(find('.fa-heart')).to have_content '1'
         expect(page).to have_css('.like-red')
@@ -29,7 +29,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         visit post_path hibana
         expect {
           find('.fa-heart').click
-          wait_for_ajax
+          wait_for_ajax(6)
         }.to change { hibana.likes.count }.by(1)
         expect(find('.fa-heart')).to have_content '1'
         expect(page).to have_css('.like-red')
@@ -99,7 +99,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         visit posts_path
         expect {
           find('.fa-heart').click
-          wait_for_ajax
+          wait_for_ajax(6)
         }.to change { hibana.likes.count }.by(-1)
         expect(find('.fa-heart')).to have_content '0'
         expect(page).to_not have_css('.like-red')
@@ -113,7 +113,7 @@ RSpec.feature 'Likes', type: :system, js: true, retry: 3 do
         expect(page).to have_css('.like-red')
         expect {
           find('.fa-heart').click
-          wait_for_ajax
+          wait_for_ajax(6)
         }.to change { hibana.likes.count }.by(-1)
         expect(find('.fa-heart')).to have_content '0'
         expect(page).to_not have_css('.like-red')

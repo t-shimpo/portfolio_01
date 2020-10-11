@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   resources :posts do
-    resources :comments, only: %i[create destroy]
+    resources :comments, only: %i[create edit update destroy]
     resource :likes, only: %i[create destroy]
     member do
       get :liked_users
