@@ -35,7 +35,7 @@ RSpec.feature 'Comments', type: :system, js: true do
         it 'コメントが増える' do
           expect {
             click_button '送信'
-            wait_for_ajax(12)
+            wait_for_ajax(20)
           }.to change { hibana.comments.count }.by(1)
         end
         it '送信したコメントがコメント一覧に表示されること' do
