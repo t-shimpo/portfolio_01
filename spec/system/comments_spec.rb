@@ -35,7 +35,7 @@ RSpec.feature 'Comments', type: :system, js: true do
         it 'コメントが増える' do
           expect {
             click_button '送信'
-            wait_for_ajax(12)
+            wait_for_ajax(15)
           }.to change { hibana.comments.count }.by(1)
         end
         it '送信したコメントがコメント一覧に表示されること' do
@@ -266,7 +266,7 @@ RSpec.feature 'Comments', type: :system, js: true do
         expect {
           click_link '削除'
           page.driver.browser.switch_to.alert.accept
-          wait_for_ajax(14)
+          wait_for_ajax(16)
         }.to change { hibana.comments.count }.by(-1)
       end
       it 'コメントを削除すると一覧に表示されないこと' do
