@@ -1,9 +1,5 @@
 <% @users.each do |user| %>
-  <% if @current_page == 'liked_users' %>
-  <li class="col-12">
-  <%else%>
   <li class="col-md-6 col-sm-12">
-  <% end %>
     <div class="user-container">
       <% if user.image.present? %>
         <p class="img"><%= image_tag user.image_url(:thumb200) %></p>
