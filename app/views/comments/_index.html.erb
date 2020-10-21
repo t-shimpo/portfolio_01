@@ -3,15 +3,17 @@
   <h3>コメントはまだありません。</h3>
 <% else %>
   <h3><%= comments.count %>件コメント</h3>
-  <h4 class="more" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">もっと見る....</h4>
+  <h4 class="more btn btn-sm btn-outline-secondary" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">全件表示する</h4>
   <% comments.first(3).each do |comment| %>
     <% unless comment.id.nil? %>
       <div class="comment-container row">
         <div class="comment-left col-2">
-          <% if comment.user.image.present? %>
-            <p class="comment_user_img"><%= image_tag comment.user.image_url(:thumb200) %></p>
-          <% else %>
-            <p class="comment_user_img default-user-image"><%= image_tag 'default.png' %></p>
+          <%= link_to user_path(comment.user) do %>
+            <% if comment.user.image.present? %>
+              <p class="comment_user_img"><%= image_tag comment.user.image_url(:thumb200) %></p>
+            <% else %>
+              <p class="comment_user_img default-user-image"><%= image_tag 'default.png' %></p>
+            <% end %>
           <% end %>
           <p class="comment_user_nickname"><%= link_to comment.user.nickname, comment.user %></p>
         </div>

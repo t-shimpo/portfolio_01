@@ -26,6 +26,8 @@ $others-color: #5e5e5e;
 
 .like-red { color: #FF6666;}
 
+
+
 /*************/
 /* universal */
 /*************/
@@ -46,6 +48,15 @@ div#wrapper {
     margin-bottom: 10px;
   }
 }
+
+@media (max-width: 767px) {
+  .btn-dark {
+    font-size: 12px;
+    padding: 3px 6px;
+    margin-left: .5em;
+  }
+}
+
 
 /**************/
 /* typography */
@@ -81,24 +92,36 @@ h1 {
   }
 }
 
+@media (max-width: 767px) {
+  h1 {
+    font-size: 20px;
+    letter-spacing: 0px;
+    span {
+      font-size: .8em;
+      padding-right: 1px;
+    }
+  }
+}
+
 h2 {
   font-size:2em;
   letter-spacing: -1px;
   text-align: center;
   font-weight: normal;
 }
-
-
 p {
   margin: 0;
   line-height: 1.7em;
 }
-
 em { font-style: normal }
 
+
+
+
 /*************/
-/*  header  */
-/************/
+/*   header  */
+/*  ヘッダー */
+/*************/
 
 header {
   width: 100%;
@@ -146,10 +169,36 @@ header {
   }
 }
 
+@media (max-width: 767px) {
+  header {
+    .navbar {
+      padding: .2rem 1rem;
+      .logo {
+        font-size: 1.4em;
+        letter-spacing: 1px;
+      }
+      div {
+        ul {
+          li {
+            i {
+              padding-right: 2px;
+            }
+            .guest-login {
+              display: inline-block;
+              color: #fff;
+            }
+          }
+        }
+    }
+  }
+}
+}
+
 
 
 /**************/
 /*    tabs    */
+/*    タブ    */
 /**************/
 
 .fluid-box {
@@ -175,34 +224,54 @@ header {
       margin: .7em 0;
       float: left;
       text-align: center;
-      // box-shadow: 0 0 10px rgba(0,0,0,0.15);
       a {
         color: $text-gray;
         display: block;
         padding: .2em .7em;
         text-decoration: none;
         margin: 0 .6em;
-        // border: 2px solid rgb(124, 124, 124);
         border-radius: 2px;
         &:hover {
           color: #fff;
           background: $my-dark-green;
-          // border: 2px solid  #2499cf;
         }
         &.current {
           color: #fff;
           background: $my-dark-green;
-          // border: 2px solid  #2499cf;
         }
       }
     }
   }
-
 }
 
-/***********/
-/*  flash  */
-/***********/
+@media (max-width: 767px) {
+  .fluid-box {
+    .tabs {
+      margin: 0 auto 1em;
+      padding: 0;
+      span {
+        padding-top: 3px;
+        margin: .2em 0;
+        font-size: 16px;
+      }
+      li {
+        margin: .2em 0;
+        vertical-align: middle;
+        a {
+          font-size: 14px;
+          margin: 0 3px;
+        }
+      }
+    }
+  }
+}
+
+
+
+/***************/
+/*    flash    */
+/*  フラッシュ */
+/***************/
 
 .notice {
   padding: 0.6rem 0.4rem;
@@ -224,9 +293,17 @@ header {
   border-radius: 0;
 }
 
-/*************/
-/* container */
-/*************/
+@media (max-width: 767px) {
+  .notice ,.alert {
+    font-size: 13px;
+    padding: 0.3rem 0.2rem;
+  }
+
+}
+
+/***************/
+/*  container  */
+/***************/
 
 #container {
   padding: 0 0 2em;
@@ -236,9 +313,19 @@ header {
   margin-top: 1em;
 }
 
-/**********/
-/*  form  */
-/**********/
+@media (max-width: 767px) {
+  #container {
+    padding: 0 0 .4em;
+    h1 {
+      margin-top: .8em;
+    }
+  }
+}
+
+
+/************/
+/*   form   */
+/************/
 
   .form-container {
     background: #fff;
@@ -442,11 +529,75 @@ header {
       }
     }
   }
+.p-mb {
+  margin-bottom: 2em;
+}
+
+@media (max-width: 767px) {
+  .form-container {
+    .guest-login {
+      a {
+        font-size: 14px;
+        padding: 3px 6px;
+      }
+    }
+    padding: 1em 1.5em;
+    margin: 1em auto 0;
+    font-size: 12px;
+    h1 {
+      font-size: 20px;
+      letter-spacing: 0px;
+      span {
+        font-size: .8em;
+        padding-right: 1px;
+      }
+    }
+    form {
+      div {
+        select {
+          background-position:
+            calc(100% - 18px) calc(.8em),
+            calc(100% - 13px) calc(.8em),
+            calc(100% - 2.5em) 0.5em;
+          background-size:
+            5px 5px,
+            5px 5px,
+            1px 1em;
+          background-repeat: no-repeat;
+        }
+        textarea {
+          height: 7em;
+        }
+      }
+      .field {
+        label {
+          font-size: 12px;
+        }
+      }
+      .actions {
+        .btn {
+          font-size: 14px;
+          padding: 3px 6px;
+        }
+      }
+    }
+    .button {
+      .btn-sm {
+        font-size: 14px;
+        padding: 3px 6px;
+      }
+    }
+  }
+}
 
 
-/***************/
-/* Users index */
-/***************/
+
+
+
+/*****************/
+/*  Users index  */
+/*  ユーザ一覧   */
+/*****************/
 
 .users {
   margin: 1.5em auto;
@@ -519,6 +670,35 @@ header {
   }
 }
 
+@media (max-width: 767px) {
+  .users {
+    li {
+      .user-container {
+        box-shadow: 0 0 6px rgba(0,0,0,0.25);
+        img {
+          width: 60px;
+          height: 60px;
+        }
+        .nickname {
+          font-size: 1em;
+        }
+        .follow {
+          font-size: 0.9em;
+          span {
+            font-size: .95em
+          }
+        }
+        .post {
+          font-size: 0.9em;
+          span {
+            font-size: .95em
+          }
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 480px) {
   .users {
     li {
@@ -526,18 +706,33 @@ header {
         margin: 0.4em 0;
         padding: 0.4em;
         box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        .nickname {
+          top: 5px;
+          left: 80px;
+        }
+        .follow {
+          bottom: 22px;
+          left: 80px;
+        }
+        .post {
+          bottom: 5px;
+          left: 80px;
+        }
       }
       p {
-        //display: inline-block;
         font-size: 0.8em;
       }
     }
   }
 }
 
-/***************/
-/* Posts index */
-/***************/
+
+
+
+/*****************/
+/*  Posts index  */
+/*   投稿一覧    */
+/*****************/
 
 .posts {
   margin: 1.5em 0;
@@ -547,9 +742,7 @@ header {
     padding-right: 15px;
     padding-left: 15px;
     color: rgb(80, 80, 80);
-    // width: 220px;
     .post-container {
-      // padding-top: 15px;
       box-shadow: 0 0 10px rgba(0,0,0,0.15);
       background-color: #fff;
       text-align: right;
@@ -565,7 +758,6 @@ header {
         transition : all 0.3s ease-in-out;
         &:hover {
           background-color: $my-charcoal;
-
         }
         .title {
           overflow: hidden;
@@ -706,9 +898,76 @@ header {
   }
 }
 
-/*******************/
-/* .user_small_img */
-/*******************/
+@media (max-width: 991px) {
+  .posts {
+    li {
+      .post-container {
+        .post-field {
+          .post-img {
+            width: 160px;
+            height: 160px;
+          }
+          .title {
+            line-height: 1.4em;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .posts {
+    li {
+      font-size: 14px;
+      .post-container {
+        .post-field {
+          .post-img {
+            width: 120px;
+            height: 120px;
+          }
+          .title {
+            font-size: 16px;
+            line-height: 1em;
+          }
+        }
+        .middle-field {
+          margin-top: 8px;
+          margin-bottom: 4px;
+          .genre-label {
+            float: left;
+            font-size: 12px;
+            text-align: center;
+            width: 80px;
+            p {
+              line-height: 1.6em;
+            }
+          }
+          .comment-icon {
+            padding-right: 8px;
+            span {
+              font-size: 12px;
+            }
+            .comment-size {
+              font-size: 13px;
+            }
+          }
+        }
+        .bottom-field {
+          margin-bottom: 1.2em;
+          padding-bottom: 2px;
+          padding-right: 2px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+/*********************/
+/*  .user_small_img  */
+/*********************/
 
 .user_small_img {
   img {
@@ -719,10 +978,21 @@ header {
   }
 }
 
+@media (max-width: 991px) {
+  .user_small_img {
+    img {
+      width: 45px;
+      height: 45px;
+    }
+  }
+}
 
-/***************/
-/* いいねボタン*/
-/***************/
+
+
+
+/******************/
+/*  いいねボタン  */
+/******************/
 
 .like {
   display: inline-block;
@@ -744,9 +1014,29 @@ header {
   font-size: 1.3em;
 }
 
-/**************/
-/* Users show */
-/**************/
+@media (max-width: 767px) {
+  .like {
+    padding-right: 2px;
+    .fa-heart {
+      vertical-align: middle;
+      span {
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+  }
+  .like-size {
+    font-size: 14px;
+  }
+}
+
+
+
+
+/****************/
+/*  Users show  */
+/*  ユーザ詳細  */
+/****************/
 
 .user-show-info {
   margin: .7em auto;
@@ -817,7 +1107,6 @@ header {
   }
 }
 
-
 .user-show-title {
   margin: 1.5em auto 1em;
   max-width: 830px;
@@ -840,14 +1129,92 @@ header {
   max-width: 830px;
 }
 
+@media (max-width: 767px) {
+  .user-show-info {
+    line-height: 1em;
+    padding: .4em .2em 1em;
+    .user-image, .default-user-image {
+      margin-top: 1em;
+      padding-right: 0;
+      img {
+        width: 95px;
+        height: 95px;
+      }
+    }
+    .user-right {
+      padding-left: 0;
+      .button {
+        text-align: right;
+        div {
+          form {
+            input {
+              font-size: 12px;
+              padding: 2px 4px;
+            }
+          }
+        }
+      }
+      .follow {
+        margin-bottom: .5em;
+        #follow_users {
+          padding-right: .5em;
+        }
+        #follow_users, #follower_users {
+          a {
+            font-size: 12px;
+          }
+        }
+      }
+      .post_like {
+        a {
+          margin-bottom: .1em;
+          &::after {
+            bottom: -0.5px;
+          }
+        }
+      }
+      h4 {
+        font-size: 16px;
+        margin-bottom: 0.3em;
+      }
+      a {
+        font-size: 12px;
+      }
+    }
+  }
+  .user-show-title {
+    margin: 1em auto .5em;
+    padding-left: .8em;
+    font-size: 20px;
+    span {
+      font-size: 16px;
+    }
+  }
+  .user_small_img {
+    img {
+      width: 36px;
+      height: 36px;
+    }
+  }
+}
 
-/**************/
-/* posts#show */
-/**************/
+
+
+
+/****************/
+/*  posts#show  */
+/*   投稿詳細   */
+/****************/
 
 .post-wrapper {
   max-width: 760px;
-  margin: 1.8em auto;
+  margin: 2em auto;
+  background-color: #fff;
+  box-shadow: 0 0 0.5em #c0c0c0;
+  padding: 2em 1.3em;
+  h1 {
+    margin: 0 auto;
+  }
   .user-field {
     margin: 0;
     padding-right: 5px;
@@ -890,18 +1257,20 @@ header {
       color: #6e6e6e;
     }
   }
-  .post-show-like {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+  .title-bottom {
+    text-align: right;
     padding: 0;
   }
+  .post-show-like {
+    display: inline-block;
+    padding-left: 10px;
+  }
   .liked_users {
-    text-align: right;
+    display: inline-block;
     margin: 0 0 1.2em;
     a {
       text-decoration: none;
-      color: #464a7a;
+      color: #585858;
       text-decoration: none;
       transition: color 0.2s;
       &:hover {
@@ -910,10 +1279,8 @@ header {
     }
   }
   .post-image {
-    // box-shadow: 0 0 15px rgba(0,0,0,0.10);
     text-align: center;
     padding: 10px;
-    // background-color: #f1f1f1;
     background-color: transparent;
     text-align: center;
     margin: 0 auto;
@@ -947,28 +1314,18 @@ header {
       width: 20%;
       padding-bottom: 18px;
       text-align: right;
-
     }
     td {
       padding-left: 15px;
       padding-bottom: 18px;
-      // line-height: 2.4em;
       font-size: 17px;
       width: 80%;
     }
-
-    // span {
-    //   font-size: 12.5px;
-    //   color: #6e6e6e;
-    //   display: inline-block;
-    //   padding-left: 1.1em;
-    //   width: 155px;
-    // }
   }
 
   .post-content-container {
     position: relative;
-    margin: 2em 0;
+    margin: 2em 0 1em;
     padding: 0.5em 1em;
     border: solid 2.5px #acacac;;
     border-radius: 8px;
@@ -981,7 +1338,7 @@ header {
       padding: 0 9px;
       font-size: 13px;
       color: #6e6e6e;
-      background-color: #ecececfd;
+      background-color: #fff;
     }
     .post-content {
       font-size: 14.5px;
@@ -990,19 +1347,108 @@ header {
   }
 }
 
+@media (max-width: 767px) {
+  .post-wrapper {
+    margin: 1em auto 1.2em;
+    padding: 1em .7em;
+    .user-field {
+      a {
+        font-size: 14px;
+      }
+    }
+    .user_small_img {
+      img {
+        width: 35px;
+        height: 35px;
+      }
+    }
+    .post-image {
+      padding: 0px;
+      width: 180px;
+      height: 180px;
+    }
+    .post-title {
+      h2 {
+        font-size: 18px;
+      }
+      .title-top {
+        font-size: 10px;
+      }
+    }
+    .post-show-like {
+      padding-left: 5px;
+    }
+    .liked_users {
+      font-size: 12px;
+    }
+    .post-info {
+      margin-top: .3em;
+      padding-left: .2em;
+      tr {
+        line-height: 1em;
+      }
+      th {
+        font-size: 10px;
+        padding-bottom: 11px;
+        text-align: right;
+      }
+      td {
+        padding-left: 13px;
+        padding-bottom: 11px;
+        font-size: 13px;
+        width: 75%;
+      }
+    }
+    .post-content-container {
+      margin: 1.3em 0 .5em;
+      padding: 0.3em .7em;
+      border: solid 2px #acacac;;
+      min-height: 30px;
+      .post-content-top {
+        top: -13px;
+        left: 10px;
+        padding: 0 9px;
+        font-size: 11px;
+      }
+      .post-content {
+        font-size: 12px;
+        padding: .3em .3em;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .post-wrapper {
+    .post-image {
+      padding: 0px;
+      width: 150px;
+      height: 150px;
+    }
+  }
+}
+
+
+
+
+/**********************/
+/*    liked_users     */
+/*  いいねしたユーザ  */
+/**********************/
+
 .show-liked-users {
   max-width: 850px;
   margin: 0 auto;
   .post-field {
-    margin-top: 3em;
+    max-width: 760px;
+    background-color: #fff;
+    padding: 1em .5em;
+    margin: 3em auto 1em;
+    .user-field {
+      text-align: right;
+    }
     .user_small_img {
       display: inline-block;
-      img {
-        width: 55px;
-        height: 55px;
-        border-radius: 50%;
-        border: 1px solid rgba(204, 204, 204, 0.555);
-      }
     }
     p.user-name {
       display: inline-block;
@@ -1015,18 +1461,15 @@ header {
         }
       }
     }
-    h5, p {
+    h5, .author, .publisher {
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
     .post-image {
-      text-align: center;
-      // padding: 10px;
-      text-align: center;
       position: relative;
-      width: 220px;
-      height: 220px;
+      width: 170px;
+      height: 170px;
       img {
         position: absolute;
         top: 0;
@@ -1035,32 +1478,111 @@ header {
         right: 0;
         height: auto;
         width: auto;
-        max-height: 95%;
+        max-height: 100%;
+        margin: auto;
       }
     }
     h5 {
-      font-size: 18px;
-      margin-top: .8em;
-      margin-bottom: 0;
+      font-size: 22px;
+      margin-top: .3em;
+      margin-bottom: 1em;
     }
-    .author {
-      font-size: 15px;
+    .author, .publisher {
+      font-size: 16px;
       margin-bottom: .5em;
     }
   }
   .liked-users-field {
-    padding-left: 2em;
-    h4 {
-      padding-left: 1em;
+    margin-top: 2em;
+    h1 {
+      margin-bottom: .8em;
+      padding-left: .5em;
+      text-align: left;
+    }
+    .btn-dark {
+      margin-top: 1em;
     }
   }
 }
 
-/****************/
-/* genre-button */
-/****************/
+@media (max-width: 991px) {
+  .show-liked-users {
+    .post-field {
+      max-width: 670px;
+      margin: 2em auto 1em;
+      .post-image {
+        width: 140px;
+        height: 140px;
+      }
+      h5 {
+        font-size: 20px;
+        margin-top: .2em;
+        margin-bottom: .8em;
+      }
+      .author, .publisher {
+        font-size: 15px;
+        margin-bottom: .2em;
+      }
+    }
+    .liked-users-field {
+      margin-top: .8em;
+      h1 {
+        margin-bottom: .5em;
+        padding-left: .4em;
+        text-align: left;
+      }
+    }
+  }
+}
 
-.genre-button{
+@media (max-width: 767px) {
+  .show-liked-users {
+    .post-field {
+      max-width: 520px;
+      .post-image {
+        width: 100px;
+        height: 100px;
+      }
+      h5 {
+        font-size: 16px;
+        margin-top: .2em;
+        margin-bottom: .5em;
+      }
+      .author, .publisher {
+        font-size: 12px;
+        margin-bottom: .1em;
+      }
+      .user-name {
+        font-size: 13px;
+      }
+      .user_small_img {
+        img {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+    .liked-users-field {
+      margin-top: .4em;
+      padding: 0;
+      h1 {
+        margin-bottom: .2em;
+        padding-left: .5em;
+        text-align: left;
+      }
+    }
+  }
+}
+
+
+
+
+/*******************/
+/*  genre-button   */
+/*  ジャンルボタン  */
+/*******************/
+
+.genre-button {
   margin: 1.8em auto 1em;
   padding: 0 1em;
   // max-width: 830px;
@@ -1082,7 +1604,7 @@ header {
           position: absolute;
           content: " ";
           display: block;
-          border-bottom: solid 2px $my-orange;
+          border-bottom: solid 2px #f8069b;
           bottom: -7px;
           left: 25%;
           width: 50%;
@@ -1211,9 +1733,47 @@ header {
   }
 }
 
+@media (max-width: 1199px) {
+  .genre-button {
+    li {
+      width: 80px;
+    }
+  }
+}
+@media (max-width: 991px) {
+  .genre-button {
+    max-width: 550px;
+    li {
+      width: 90px;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .genre-button {
+    max-width: 500px;
+    li {
+      width: 80px;
+    }
+  }
+}
+@media (max-width: 480px) {
+  .genre-button {
+    max-width: 420px;
+    li {
+      width: 65px;
+      a {
+        font-size: 12px;
+        padding: 2px;
+      }
+    }
+  }
+}
+
+
 
 /****************/
 /*    Search    */
+/*     検索     */
 /****************/
 
 .user_search, .post_search {
@@ -1255,40 +1815,47 @@ header {
   }
 }
 
+@media (max-width: 767px) {
+  .search-form {
+    font-size: 14px;
+    border-radius: 20px;
+    height: 1.8em;
+    padding: 0px 14px 4px;
+  }
+}
 
 
-/************/
-/* Comments */
-/************/
+
+
+/**************/
+/*  Comments  */
+/*  コメント  */
+/**************/
 
 .comment-wrapper {
   color: #444;
   max-width: 700px;
   margin: 1.8em auto;
   h2 {
-    font-size:1.3em;
-    margin: 0;
+    font-size:1.5em;
+    margin: 0 0 .5em;
+    i {
+      padding-right: 4px;
+    }
   }
   #comments_area {
     h3 {
       font-size: 1.1em;
+      padding-left: 5px;
     }
     h4 {
       margin-top: .4em;
       font-size: 1em;
     }
     .more {
-      i {
-        padding-right: 2px;
-      }
       display: inline-block;
       font-size: .9em;
-      color: #a7a7a7;
-      padding-top: 10px;
-      padding-left: 20px;
-      &:hover {
-        color: #5e5e5e;
-      }
+      margin-left: .8em;
     }
     .comment-container {
       box-shadow: 0 0 0.7em #c0c0c0;
@@ -1382,7 +1949,7 @@ header {
     .actions {
       width: 50%;
       text-align: center;
-      margin: .5em auto;
+      margin: .5em auto 1em;
     }
     .btn {
      width: 70%;
@@ -1398,8 +1965,123 @@ header {
   }
 }
 
+@media (max-width: 767px) {
+  .comment-wrapper {
+    margin: 1em auto;
+    h2 {
+      font-size: 18px;
+      margin: 0 0 .5em;
+      i {
+        padding-right: 2px;
+      }
+    }
+    #comments_area {
+      h3 {
+        font-size: 14px;
+        padding-left: 5px;
+      }
+      h4 {
+        margin: 0;
+        padding: 2px 6px;
+      }
+      .more {
+        display: inline-block;
+        font-size: 12px;
+        margin-left: 0;
+      }
+      .comment-container {
+        padding: .5em .2em .2em;
+        margin: .7em 0;
+        .comment-left {
+          p {
+            line-height: 1em;
+            img {
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+            }
+            a {
+              font-size: 10px;
+            }
+          }
+        }
+        .comment-right {
+          font-size: 11px;
+          padding: 0 6px;
+          textarea {
+            height: 6em;
+            padding: 0 .2em;
+            font-size: 11px;
+          }
+          .btn {
+            position: absolute;
+            bottom: .1em;
+            right: 140px;
+          }
+          .comment-date {
+            font-size: 10px;
+            right: .5em;
+            bottom: .1em;
+          }
+          .fa-edit {
+            cursor: pointer;
+            position: absolute;
+            right: 131px;
+            bottom: .3em;
+          }
+          .delete {
+            position: absolute;
+            bottom: .1em;
+            right: 90px;
+          }
+          .comment-cancel-button, .comment-update-button {
+            font-size: 9px;
+            padding: 1px 2px;
+            left: 5px;
+          }
+          .comment-update-button {
+            left: 72px;
+          }
+        }
+      }
+    }
+    .comment-form {
+      h2 {
+        margin: .5em 0;
+      }
+      textarea {
+        font-size: 12px;
+        border: 1px solid #dbdbdb;
+        padding: .2em .3em;
+        height: 7em;
+      }
+      .actions {
+        width: 50%;
+        input {
+          font-size: 14px;
+          padding: 3px 6px;
+        }
+      }
+      .btn {
+       width: 70%;
+      }
+      #error_explanation{
+        ul {
+          li {
+          font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+
 /*****************/
 /* Notifications */
+/*     通知      */
 /*****************/
 
 .notifications-container {
@@ -1448,6 +2130,11 @@ header {
 }
 
 @media screen and (max-width: 991px) {
+  .notifications-container {
+    .comment-text {
+      padding: 0 55px;
+    }
+  }
   .nav-notification {
     .fa-circle {
       left: -9px;
@@ -1455,11 +2142,35 @@ header {
   }
 }
 
+@media (max-width: 480px) {
+  .notifications-container {
+    margin: 1em auto 0;
+    .fa-trash  {
+      font-size: 13px;
+    }
+    .comment-text, .action_ago {
+      font-size: 11px;
+    }
+    .comment-text {
+      padding: 0 35px;
+    }
+    font-size: 14px;
+    padding: .5em 1.2em .8em;
+    .user_small_img {
+      img {
+        width: 26px;
+        height: 26px;
+      }
+    }
+  }
+}
 
 
-/**************/
-/* pagination */
-/**************/
+
+/***********************/
+/*      pagination     */
+/*   ページネーション  */
+/***********************/
 
 .pagination {
   margin-top: 1em;
@@ -1498,10 +2209,10 @@ header {
 
 
 
-/************/
-/*  footer  */
-/************/
-
+/**************/
+/*   footer   */
+/*  フッター  */
+/**************/
 
 footer {
   padding: 10px 0 15px 0;
@@ -1525,6 +2236,21 @@ footer {
     font-size: 0.9em;
   }
 }
+
+@media (max-width: 767px) {
+  footer {
+    padding: 3px 0;
+    .logo {
+      font-size: 1em;
+      line-height: 1em;
+    }
+    p {
+      font-size: 0.8em;
+    }
+
+  }
+}
+
 
 /***********/
 /*  debug  */

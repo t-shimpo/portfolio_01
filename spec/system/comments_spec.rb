@@ -81,8 +81,8 @@ RSpec.feature 'Comments', type: :system, js: true do
           expect(page).to have_content 'おもしろそうです。'
           expect(page).to_not have_content 'お気に入りに追加しました。'
         end
-        it 'もっと見る...をクリックすると、4件のコメントがコメント一覧に表示されること' do
-          find('.more', text: 'もっと見る....').click
+        it '全件表示するをクリックすると、4件のコメントがコメント一覧に表示されること' do
+          find('.more', text: '全件表示する').click
           wait_for_ajax
           expect(page).to have_content '参考になります。'
           expect(page).to have_content '私も読みました'
