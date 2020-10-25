@@ -20,7 +20,7 @@ User.create!(
 )
 
 13.times do |n|
-  nickname = ['綾乃', 'Yoko', 'ゆうと', '奈緒', 'TK', 'ショウ', '美咲', 'あきよし', 'Yui' , '太一' , 'ケン', '奈々', 'Coki']
+  nickname = %w[綾乃 Yoko ゆうと 奈緒 TK ショウ 美咲 あきよし Yui 太一 ケン 奈々 Coki]
   email = "example#{n + 1}@example.com"
   User.create!(
     # image: open("#{Rails.root}/db/user_image/user_image#{n + 3}.jpg"),
