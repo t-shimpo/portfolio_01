@@ -2,7 +2,7 @@
 # --- ユーザ ---
 # --------------
 User.create!(
-  # image: open("#{Rails.root}/db/user_image/user_image1.jpg"),
+  image: open("#{Rails.root}/db/user_image/user_image1.jpg"),
   nickname: 'ダイチ',
   email: 'firstuser@example.com',
   password: Rails.application.credentials.users_password,
@@ -11,7 +11,7 @@ User.create!(
 )
 
 User.create!(
-  # image: open("#{Rails.root}/db/user_image/user_image2.jpg"),
+  image: open("#{Rails.root}/db/user_image/user_image2.jpg"),
   nickname: 'ゲストユーザ',
   email: 'guestuser@example.com',
   password: Rails.application.credentials.guest_user_password,
@@ -20,11 +20,11 @@ User.create!(
 )
 
 13.times do |n|
-  nickname = Faker::Name.first_name
-  email = "example#{n + 2}@example.com"
+  nickname = ['綾乃', 'Yoko', 'ゆうと', '奈緒', 'TK', 'ショウ', '美咲', 'あきよし', 'Yui' , '太一' , 'ケン', '奈々', 'Coki']
+  email = "example#{n + 1}@example.com"
   User.create!(
-    # image: open("#{Rails.root}/db/user_image/user_image#{n + 3}.jpg"),
-    nickname: nickname,
+    image: open("#{Rails.root}/db/user_image/user_image#{n + 3}.jpg"),
+    nickname: nickname[n],
     email: email,
     password: Rails.application.credentials.users_password,
     password_confirmation: Rails.application.credentials.users_password,
@@ -48,7 +48,7 @@ end
 # --- 投稿20件 ---
 # ----------------
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image1.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image1.jpg"),
   title: 'ナミヤ雑貨店の奇蹟',
   author: '東野圭吾',
   publisher: '角川文庫',
@@ -63,7 +63,7 @@ Post.create!(
 )
 
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image2.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image2.jpg"),
   title: 'ゼロからつくるビジネスモデル: 新しい価値を生み出す技術',
   author: '井上 達彦',
   publisher: '東洋経済新報社',
@@ -77,7 +77,7 @@ Post.create!(
   updated_at: 18.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image3.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image3.jpg"),
   title: '新・エリート教育 混沌を生き抜くためにつかみたい力とは?',
   author: '竹村 詠美',
   publisher: '日本経済新聞出版',
@@ -91,7 +91,7 @@ Post.create!(
   updated_at: 17.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image4.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image4.jpg"),
   title: 'SF映画のタイポグラフィとデザイン',
   author: 'デイヴ・アディ(著) 篠儀直子(翻訳)',
   publisher: 'フィルムアート社',
@@ -105,7 +105,7 @@ Post.create!(
   updated_at: 16.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image5.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image5.jpg"),
   title: 'ウチら棺桶まで永遠のランウェ',
   author: 'kemio',
   publisher: 'KADOKAWA',
@@ -119,7 +119,7 @@ Post.create!(
   updated_at: 15.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image6.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image6.jpg"),
   title: '境遇',
   author: '湊かなえ',
   publisher: '双葉文庫',
@@ -133,7 +133,7 @@ Post.create!(
   updated_at: 14.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image7.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image7.jpg"),
   title: '反応しない練習 あらゆる悩みが消えていくブッダの超・合理的な「考え方」',
   author: '草薙龍瞬',
   publisher: 'KADOKAWA/中経出版',
@@ -147,7 +147,7 @@ Post.create!(
   updated_at: 13.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image8.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image8.jpg"),
   title: '私たちは子どもに何ができるのか――非認知能力を育み、格差に挑む',
   author: 'ポール・タフ',
   publisher: '英治出版',
@@ -162,7 +162,7 @@ Post.create!(
   updated_at: 12.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image9.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image9.jpg"),
   title: '現代アートとは何か',
   author: '小崎哲哉',
   publisher: '河出書房新社',
@@ -176,7 +176,7 @@ Post.create!(
   updated_at: 11.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image10.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image10.jpg"),
   title: 'ひとりで生きていく',
   author: 'ヒロシ',
   publisher: '廣済堂出版',
@@ -191,7 +191,7 @@ Post.create!(
 )
 
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image11.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image11.jpg"),
   title: 'きょうの料理 わたしのいつものごはん',
   author: '栗原 はるみ',
   publisher: 'NHK出版',
@@ -205,7 +205,7 @@ Post.create!(
   updated_at: 9.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image12.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image12.jpg"),
   title: 'こども六法',
   author: '山崎 聡一郎',
   publisher: '山崎 聡一郎',
@@ -220,7 +220,7 @@ Post.create!(
   updated_at: 8.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image13.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image13.jpg"),
   title: '名古屋発 半日旅',
   author: '吉田 友和',
   publisher: 'ワニブックス',
@@ -234,7 +234,7 @@ Post.create!(
   updated_at: 7.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image14.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image14.jpg"),
   title: 'キャラ絵で学ぶ！ 仏教図鑑',
   author: '山折哲雄 いとうみつる',
   publisher: 'すばる舎',
@@ -248,7 +248,7 @@ Post.create!(
   updated_at: 6.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image15.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image15.jpg"),
   title: '池袋ウエストゲートパーク',
   author: '石田 衣良',
   publisher: '文藝春秋',
@@ -265,7 +265,7 @@ Post.create!(
   updated_at: 5.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image16.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image16.jpg"),
   title: '完訳 7つの習慣 人格主義の回復',
   author: 'スティーブン・R．コヴィー',
   publisher: 'キングベアー出版',
@@ -282,7 +282,7 @@ Post.create!(
   updated_at: 4.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image17.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image17.jpg"),
   title: '表参道のセレブ犬とカバーニャ要塞の野良犬',
   author: '若林 正恭',
   publisher: 'KADOKAWA',
@@ -299,7 +299,7 @@ Post.create!(
   updated_at: 3.days.ago
 )
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image18.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image18.jpg"),
   title: '流浪の月',
   author: '凪良 ゆう',
   publisher: '東京創元社',
@@ -318,7 +318,7 @@ Post.create!(
 )
 
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image19.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image19.jpg"),
   title: 'ＳＨＯＥ ＤＯＧ ―靴にすべてを。',
   author: 'フィル・ナイト(著) 大田黒奉之(翻訳) ',
   publisher: '東洋経済新報社',
@@ -338,7 +338,7 @@ Post.create!(
 )
 
 Post.create!(
-  # post_image: open("#{Rails.root}/db/post_image/image20.jpg"),
+  post_image: open("#{Rails.root}/db/post_image/image20.jpg"),
   title: '逆ソクラテス',
   author: '伊坂 幸太郎',
   publisher: '集英社',
@@ -427,6 +427,7 @@ end
 # --------------
 # --- いいね ---
 # --------------
+
 10.times do |n|
   postid = 20 - (n * 2)
   Like.create!(
@@ -504,6 +505,13 @@ end
     post_id: postid
   )
 end
+2.times do |n|
+  postid = 17 - n
+  Like.create!(
+    user_id: 4,
+    post_id: postid
+  )
+end
 
 # ----------------
 # --- フォロー ---
@@ -520,3 +528,7 @@ following.each { |followed| third_user.follow(followed) }
 followers.each { |follower| follower.follow(first_user) }
 followers.each { |follower| follower.follow(second_user) }
 followers.each { |follower| follower.follow(third_user) }
+
+ninth_user = users[8]
+following2 = users[3..7]
+following2.each { |followed| ninth_user.follow(followed) }
