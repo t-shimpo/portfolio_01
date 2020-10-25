@@ -20,11 +20,11 @@ User.create!(
 )
 
 13.times do |n|
-  nickname = Faker::Name.first_name
-  email = "example#{n + 2}@example.com"
+  nickname = %w[綾乃 Yoko ゆうと 奈緒 TK ショウ 美咲 あきよし Yui 太一 ケン 奈々 Coki]
+  email = "example#{n + 1}@example.com"
   User.create!(
     # image: open("#{Rails.root}/db/user_image/user_image#{n + 3}.jpg"),
-    nickname: nickname,
+    nickname: nickname[n],
     email: email,
     password: Rails.application.credentials.users_password,
     password_confirmation: Rails.application.credentials.users_password,
@@ -427,6 +427,7 @@ end
 # --------------
 # --- いいね ---
 # --------------
+
 10.times do |n|
   postid = 20 - (n * 2)
   Like.create!(
@@ -504,6 +505,13 @@ end
     post_id: postid
   )
 end
+2.times do |n|
+  postid = 17 - n
+  Like.create!(
+    user_id: 4,
+    post_id: postid
+  )
+end
 
 # ----------------
 # --- フォロー ---
@@ -520,3 +528,7 @@ following.each { |followed| third_user.follow(followed) }
 followers.each { |follower| follower.follow(first_user) }
 followers.each { |follower| follower.follow(second_user) }
 followers.each { |follower| follower.follow(third_user) }
+
+ninth_user = users[8]
+following2 = users[3..7]
+following2.each { |followed| ninth_user.follow(followed) }
